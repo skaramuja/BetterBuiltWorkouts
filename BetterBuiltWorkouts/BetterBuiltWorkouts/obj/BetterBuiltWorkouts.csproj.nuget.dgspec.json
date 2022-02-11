@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\karam\\source\\repos\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts.csproj": {}
+    "C:\\dev\\C#\\Workspace\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\karam\\source\\repos\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts.csproj": {
+    "C:\\dev\\C#\\Workspace\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karam\\source\\repos\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts.csproj",
+        "projectUniqueName": "C:\\dev\\C#\\Workspace\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts.csproj",
         "projectName": "BetterBuiltWorkouts",
-        "projectPath": "C:\\Users\\karam\\source\\repos\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts.csproj",
-        "packagesPath": "C:\\Users\\karam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karam\\source\\repos\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\obj\\",
+        "projectPath": "C:\\dev\\C#\\Workspace\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts.csproj",
+        "packagesPath": "C:\\Users\\Cshal\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\C#\\Workspace\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\karam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Cshal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -75,12 +75,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.13, 5.0.13]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -89,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
