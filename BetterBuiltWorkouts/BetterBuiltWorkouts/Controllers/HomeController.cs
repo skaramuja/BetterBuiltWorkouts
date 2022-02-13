@@ -22,12 +22,19 @@ namespace BetterBuiltWorkouts.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult Workout()
         {
             return View();
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+        public IActionResult Perform()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
