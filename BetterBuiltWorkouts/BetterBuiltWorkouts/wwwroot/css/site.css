@@ -86,6 +86,15 @@ body {
         padding: 14px 16px;
         text-decoration: none;
     }
+    /* Links inside the navbar */
+    .navbar button {
+        float: right;
+        font-size: 16px;
+        color: #343a40;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
 
 /* The dropdown container */
 .dropdown {
