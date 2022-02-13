@@ -73,19 +73,19 @@ body {
 /* Navbar container */
 .navbar {
     overflow: hidden;
-    background-color: #333;
+    background-color: #fff;
     font-family: Arial;
 }
 
 /* Links inside the navbar */
-.navbar a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+    .navbar a {
+        float: right;
+        font-size: 16px;
+        color: #343a40;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
 
 /* The dropdown container */
 .dropdown {
@@ -98,7 +98,7 @@ body {
         font-size: 16px;
         border: none;
         outline: none;
-        color: white;
+        color: #343a40;
         padding: 14px 16px;
         background-color: inherit;
         font-family: inherit; /* Important for vertical align on mobile phones */
@@ -107,7 +107,7 @@ body {
 
     /* Add a red background color to navbar links on hover */
     .navbar a:hover, .dropdown:hover .dropbtn {
-        background-color: red;
+        background-color: #fff;
     }
 
 /* Dropdown content (hidden by default) */
