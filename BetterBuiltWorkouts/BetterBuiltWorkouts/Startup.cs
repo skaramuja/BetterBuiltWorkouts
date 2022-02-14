@@ -62,6 +62,10 @@ namespace BetterBuiltWorkouts
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
                 //This will be implemented later after we create some workouts
                 endpoints.MapControllerRoute(
                     name: "workouts",
