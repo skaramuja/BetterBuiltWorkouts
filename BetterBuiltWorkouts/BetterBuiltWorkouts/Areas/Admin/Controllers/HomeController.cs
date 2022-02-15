@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BetterBuiltWorkouts.Controllers
+namespace BetterBuiltWorkouts.Areas.Admin.Controllers
 {
-    public class AdminController : Controller
+    [Area("Admin")]
+    public class HomeController : Controller
     {
+        
         public IActionResult Index()
         {
             ViewBag.Message = "Welcome to the Admin page!";
