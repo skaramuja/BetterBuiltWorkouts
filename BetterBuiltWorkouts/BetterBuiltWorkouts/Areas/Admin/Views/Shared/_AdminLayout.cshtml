@@ -19,20 +19,18 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <div class="navbar">
-                            <div class="dropdown">
-                                <button class="dropbtn">
-                                    Workout
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                <div class="dropdown-content">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Create">Create</a>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Workout" asp-action="Index">Perform</a>
-                                </div>
-                            </div>
+                         <ul class="navbar-nav flex-grow-1">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Workout <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Create">Create</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Workout" asp-action="Index">Perform</a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
-
-                        </div>
+                        </li>
+                        </ul>
                     }
                     <partial name="_LoginPartial" />
                 </div>
