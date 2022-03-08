@@ -27,7 +27,7 @@ namespace BetterBuiltWorkouts.Controllers
             return View();
         }
 
-        [Route("Create")]
+        [Route("Create-Workout")]
         public IActionResult Create()
         {
             return View();

@@ -33,6 +33,7 @@ namespace BetterBuiltWorkouts
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+
             services.AddIdentity<ApplicationUser, IdentityRole>(options => {
                 // Change these options back to make more secure
                 options.SignIn.RequireConfirmedAccount = false;
@@ -44,6 +45,7 @@ namespace BetterBuiltWorkouts
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
             services.AddControllersWithViews();
         }
 
@@ -71,6 +73,10 @@ namespace BetterBuiltWorkouts
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
                 //This will be implemented later after we create some workouts
                 endpoints.MapControllerRoute(
                     name: "workouts",

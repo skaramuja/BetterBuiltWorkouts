@@ -7,6 +7,7 @@ using BetterBuiltWorkouts.Models;
 
 namespace BetterBuiltWorkouts.Data
 {
+    // IdentityDbContext inherits from the normal DbContext class but add additional items needed for AA 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
