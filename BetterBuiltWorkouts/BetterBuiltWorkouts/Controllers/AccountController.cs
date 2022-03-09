@@ -57,7 +57,7 @@ namespace BetterBuiltWorkouts.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return Redirect("~/Home/Index");
         }
 
 
@@ -92,6 +92,12 @@ namespace BetterBuiltWorkouts.Controllers
             }
             ModelState.AddModelError("", "Invalid username/password.");
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
