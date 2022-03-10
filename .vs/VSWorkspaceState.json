@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\BetterBuiltWorkouts",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas\\Admin",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas\\Admin\\Controllers",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Shared"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts.sln",
+  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas\\Admin\\Controllers\\ApplicationUserController.cs",
   "PreviewInSolutionExplorer": false
 }

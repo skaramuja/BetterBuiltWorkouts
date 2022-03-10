@@ -67,14 +67,10 @@ namespace BetterBuiltWorkouts.Areas.Admin.Controllers
         public async Task<IActionResult> AddToAdmin(string id)
         {
             IdentityRole adminRole = await roleManager.FindByNameAsync("Admin");
-            if (adminRole == null) {
-                TempData["message"] = "Admin role does not exist. Click 'Create Admin Role' button to create it.";
-            }
-            else 
-            {
-                ApplicationUser user = await userManager.FindByIdAsync(id);
-                await userManager.AddToRoleAsync(user, adminRole.Name);
-            }
+            ApplicationUser user = await userManager.FindByIdAsync(id);
+
+            await userManager.AddToRoleAsync(user, adminRole.Name);
+            
             return RedirectToAction("Index");
         }
 
@@ -87,17 +83,30 @@ namespace BetterBuiltWorkouts.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteRole(string id)
+        // If a user is suspended and were previously an Admin, the Admin role will be 
+        // removed at the time of suspension. If they need to be an Admin again
+        // this will have to be added back seperatly from the revocation of the suspension. 
+        public async Task<IActionResult> AddToSuspended(string id)
         {
-            IdentityRole role = await roleManager.FindByIdAsync(id);
-            await roleManager.DeleteAsync(role);
+            IdentityRole suspendedRole = await roleManager.FindByNameAsync("Suspended");
+            ApplicationUser user = await userManager.FindByIdAsync(id);
+
+            user.RoleNames = await userManager.GetRolesAsync(user);
+            await userManager.AddToRoleAsync(user, suspendedRole.Name);
+
+            if (user.RoleNames != null && user.RoleNames.Contains("Admin"))
+            {
+                await userManager.RemoveFromRoleAsync(user, "Admin");
+            }
+            
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAdminRole(string id)
+        public async Task<IActionResult> RemoveFromSuspended(string id)
         {
-            await roleManager.CreateAsync(new IdentityRole("Admin"));
+            ApplicationUser user = await userManager.FindByIdAsync(id);
+            await userManager.RemoveFromRoleAsync(user, "Suspended");
             return RedirectToAction("Index");
         }
 

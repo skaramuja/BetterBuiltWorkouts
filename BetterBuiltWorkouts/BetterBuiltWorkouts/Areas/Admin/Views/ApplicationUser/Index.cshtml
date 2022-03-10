@@ -27,32 +27,54 @@
         {
             @foreach (ApplicationUser user in Model.ApplicationUsers)
             {
-                <tr>
-                    <td>@user.UserName</td>
-                    <td>
-                        @foreach (string roleName in user.RoleNames)
-                        {
-                            <div>@roleName</div>
-                        }
-                    </td>
-                    <td>
-                        <form method="post" asp-action="Delete" asp-route-id="@user.Id">
-                            <button type="submit" class="btn btn-danger">Delete User</button>
-                        </form>
-                    </td>
-                    <td>
-                        @*TODO make generic*@
-                        <form method="post" asp-action="AddToAdmin" asp-route-id="@user.Id">
-                            <button type="submit" class="btn btn-warning">Add To Admin</button>
-                        </form>
-                    </td>
-                    <td>
-                        @*TODO make generic*@
-                        <form method="post" asp-action="RemoveFromAdmin" asp-route-id="@user.Id">
-                            <button type="submit" class="btn btn-outline-danger">Remove From Admin</button>
-                        </form>
-                    </td>
-                </tr>
+    <tr>
+        <td>@user.UserName</td>
+        <td>
+            @foreach (string roleName in user.RoleNames)
+            {
+                <div>@roleName</div>
+            }
+        </td>
+        <td>
+            <form method="post" asp-action="Delete" asp-route-id="@user.Id">
+                <button type="submit" class="btn btn-danger">Delete User</button>
+            </form>
+        </td>
+        @if (user.RoleNames.Contains("Admin"))
+        {
+            <td>
+                <form method="post" asp-action="RemoveFromAdmin" asp-route-id="@user.Id">
+                    <button type="submit" class="btn btn-outline-danger">Remove From Admin</button>
+                </form>
+            </td>
+        }
+        else
+        {
+
+            <td>
+                <form method="post" asp-action="AddToAdmin" asp-route-id="@user.Id">
+                    <button type="submit" class="btn btn-warning">Add To Admin</button>
+                </form>
+            </td>
+        }
+        @if (user.RoleNames.Contains("Suspended"))
+        {
+            <td>
+                <form method="post" asp-action="RemoveFromSuspended" asp-route-id="@user.Id">
+                    <button type="submit" class="btn btn-outline-danger">Remove From Suspended</button>
+                </form>
+            </td>
+        }
+        else
+        {
+            <td>
+                <form method="post" asp-action="AddToSuspended" asp-route-id="@user.Id">
+                    <button type="submit" class="btn btn-warning">Suspend User</button>
+                </form>
+            </td>
+        }
+
+    </tr>
             }
         }
     </tbody>
@@ -61,34 +83,19 @@
 
 <h1 class="mb-2">Manage Roles</h1>
 
-@if (Model.Roles.Count() == 0)
-{
-    @*TODO make generic*@
-    <form method="post" asp-action="CreateAdminRole">
-        <button type="submit" class="btn btn-primary">Create Admin Role</button>
-    </form>
-}
-else
-{
-    <table class="table table-bordered table-striped table-sm">
-        <thead>
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr>
+            <th>Available Roles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model.Roles)
+        {
             <tr>
-                <th>Role</th>
-                <th></th>
+                <td>@role.Name</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var role in Model.Roles)
-            {
-                <tr>
-                    <td>@role.Name</td>
-                    <td>
-                        @*<form method="post" asp-action="DeleteRole" asp-route-id="@role.Id">
-                            <button type="submit" class="btn btn-danger">Delete Role</button>
-                        </form>*@
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+        }
+    </tbody>
+</table>
+

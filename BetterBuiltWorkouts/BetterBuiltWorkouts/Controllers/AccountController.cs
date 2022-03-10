@@ -26,16 +26,19 @@ namespace BetterBuiltWorkouts.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, 
-                                                 FirstName = model.FirstName,
-                                                 LastName = model.LastName,
-                                                 Email = model.Email
-                                                };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Username,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email
+                };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -53,6 +56,7 @@ namespace BetterBuiltWorkouts.Controllers
             return View(model);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -67,6 +71,7 @@ namespace BetterBuiltWorkouts.Controllers
             var model = new LoginViewModel { ReturnUrl = returnUrl };
             return View(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -91,6 +96,78 @@ namespace BetterBuiltWorkouts.Controllers
 
             }
             ModelState.AddModelError("", "Invalid username/password.");
+            return View(model);
+        }
+
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                ApplicationUser user = await userManager.FindByNameAsync(model.Username);
+                var result = await userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    TempData["message"] = "Password updated successfully!";
+                    TempData["style"] = "success";
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (IdentityError error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View(model);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ChangeUserDetails()
+        {
+            ApplicationUser user = await userManager.GetUserAsync(HttpContext.User);
+            ChangeUserDetailsViewModel model = new ChangeUserDetailsViewModel();
+
+            model.Username = user.UserName;
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            model.Email = user.Email;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeUserDetails(ChangeUserDetailsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                ApplicationUser user = await userManager.GetUserAsync(HttpContext.User);
+
+                user.UserName = model.Username;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+
+                IdentityResult result = await userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
             return View(model);
         }
 
