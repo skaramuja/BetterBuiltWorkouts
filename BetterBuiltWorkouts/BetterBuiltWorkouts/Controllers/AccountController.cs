@@ -164,6 +164,7 @@ namespace BetterBuiltWorkouts.Controllers
                 IdentityResult result = await userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
+                    await signInManager.RefreshSignInAsync(user);
                     return RedirectToAction("Index", "Home");
                 }
             }
