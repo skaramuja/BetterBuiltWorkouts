@@ -27,12 +27,13 @@
                                 <li><a class="nav-link text-dark" asp-area="" asp-controller="Workout" asp-action="Index">Perform</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="ApplicationUser" asp-action="Index">Users</a>
-                        </li>
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="Admin" asp-controller="ApplicationUser" asp-action="Index">Users</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     }
                     <partial name="_LoginPartial" />
