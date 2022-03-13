@@ -16,5 +16,8 @@ namespace BetterBuiltWorkouts.Models
         [PersonalData]
         [Column(TypeName = "nvarchar(30)")]
         public string LastName { get; set; }
+
+        [NotMapped]
+        public IList<string> RoleNames { get; set; }
     }
 }

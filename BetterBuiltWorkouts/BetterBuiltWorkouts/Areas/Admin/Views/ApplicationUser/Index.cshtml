@@ -1,0 +1,99 @@
+﻿@model ApplicationUserViewModel
+@{
+    ViewData["Title"] = " | Manage Users";
+}
+
+<h1 class="mb-2">Manager Users</h1>
+
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Roles</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model.ApplicationUsers.Count() == 0)
+        {
+            <tr><td colspan="5">There are no user accounts.</td></tr>
+        }
+        else
+        {
+            @foreach (ApplicationUser user in Model.ApplicationUsers)
+            {
+    <tr>
+        <td>@user.UserName</td>
+        <td>
+            @foreach (string roleName in user.RoleNames)
+            {
+                <div>@roleName</div>
+            }
+        </td>
+        <td>
+            <form method="post" asp-action="Delete" asp-route-id="@user.Id">
+                <button type="submit" class="btn btn-danger">Delete User</button>
+            </form>
+        </td>
+        @if (user.RoleNames.Contains("Admin"))
+        {
+            <td>
+                <form method="post" asp-action="RemoveFromAdmin" asp-route-id="@user.Id">
+                    <button type="submit" class="btn btn-outline-danger">Remove From Admin</button>
+                </form>
+            </td>
+        }
+        else
+        {
+
+            <td>
+                <form method="post" asp-action="AddToAdmin" asp-route-id="@user.Id">
+                    <button type="submit" class="btn btn-warning">Add To Admin</button>
+                </form>
+            </td>
+        }
+        @if (user.RoleNames.Contains("Suspended"))
+        {
+            <td>
+                <form method="post" asp-action="RemoveFromSuspended" asp-route-id="@user.Id">
+                    <button type="submit" class="btn btn-outline-danger">Remove From Suspended</button>
+                </form>
+            </td>
+        }
+        else
+        {
+            <td>
+                <form method="post" asp-action="AddToSuspended" asp-route-id="@user.Id">
+                    <button type="submit" class="btn btn-warning">Suspend User</button>
+                </form>
+            </td>
+        }
+
+    </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+<h1 class="mb-2">Manage Roles</h1>
+
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr>
+            <th>Available Roles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model.Roles)
+        {
+            <tr>
+                <td>@role.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

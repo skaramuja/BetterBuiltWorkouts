@@ -6,36 +6,26 @@ using System.Threading.Tasks;
 
 namespace BetterBuiltWorkouts.ViewModels
 {
-    public class RegisterViewModel
+    public class ChangeUserDetailsViewModel
     {
-
-        [Required(ErrorMessage = "Please enter a username.")]
+        [Required(ErrorMessage = "Please enter a user name.")]
+        [Display(Name = "User Name")]
         [StringLength(50)]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name.")]
-        [StringLength(30)]
         [Display(Name = "First Name")]
+        [StringLength(50)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Please enter your last name.")]
-        [StringLength(30)]
         [Display(Name = "Last Name")]
+        [StringLength(50)]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter a valid email address.")]
+        [Required(ErrorMessage = "Please enter your email address.")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "Please enter a password.")]
-        [DataType(DataType.Password)]
-        public string Password{ get; set; }
-
-        [Required(ErrorMessage = "Please enter a username.")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm Password")]
-        [Compare("Password")]
-        public string ConfirmPassword{ get; set; }
 
 
     }

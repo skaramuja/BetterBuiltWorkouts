@@ -1,13 +1,12 @@
-﻿@model RegisterViewModel
+﻿@model ChangeUserDetailsViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Change User Details";
 }
 
-<h1>Register</h1>
-
+<h1>Change Details</h1>
+<br />
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-<form method="post" asp-action="Register">
+<form method="post" asp-action="ChangeUserDetails" asp-controller="Account">
     <div class="form-group row">
         <div class="col-sm-2"><label>Username:</label></div>
         <div class="col-sm-4">
@@ -48,34 +47,20 @@
         </div>
     </div>
 
-    <div class="form-group row">
-        <div class="col-sm-2"><label>Password:</label></div>
-        <div class="col-sm-4">
-            <input asp-for="Password" class="form-control" />
-        </div>
-        <div class="col">
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <div class="col-sm-2"><label>Confirm Password:</label></div>
-        <div class="col-sm-4">
-            <input asp-for="ConfirmPassword" class="form-control" />
-        </div>
-        <div class="col">
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-        </div>
-    </div>
 
     <div class="row">
         <div class="offset-2 col-sm-4">
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Update</button>
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="offset-2 col-sm-4">
-            Already Registered? <a asp-action="Login">Log In</a>
-        </div>
-    </div>
+
 </form>
+<br />
+<br />
+
+<div class="offset-2 col-sm-4">
+
+    <div>Need to change your password? </div>
+    <a asp-action="ChangePassword" asp-controller="Account" class="btn btn-primary">Change Password</a>
+
+</div>
