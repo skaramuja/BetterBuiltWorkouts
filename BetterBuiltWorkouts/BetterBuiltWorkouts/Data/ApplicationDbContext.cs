@@ -73,7 +73,7 @@ namespace BetterBuiltWorkouts.Data
                 NormalizedEmail = "KARAMUJA.SABINA@GMAIL.COM",
                 EmailConfirmed = true,
                 FirstName = "Sabina",
-                LastName = "Karamuja",
+                LastName = "Johnson",
                 UserName = "skaramuja",
                 NormalizedUserName = "SKARAMUJA"
             };
