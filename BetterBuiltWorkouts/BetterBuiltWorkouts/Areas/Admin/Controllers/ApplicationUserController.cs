@@ -24,7 +24,7 @@ namespace BetterBuiltWorkouts.Areas.Admin.Controllers
             this.roleManager = roleManager;
         }
 
-
+        [Route("Admin-Users")]
         public async Task<IActionResult> Index()
         {
             List<ApplicationUser> applicationUsers = new List<ApplicationUser>();

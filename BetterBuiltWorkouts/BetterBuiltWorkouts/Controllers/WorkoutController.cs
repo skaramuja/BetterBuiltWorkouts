@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace BetterBuiltWorkouts.Controllers
 {
-
-    [Route("Perform-Workout")]
     public class WorkoutController : Controller
     {
-        public IActionResult Index()
+        [Route("Create-Workout")]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [Route("Perform-Workout")]
+        public IActionResult Perform()
         {
             return View();
         }
