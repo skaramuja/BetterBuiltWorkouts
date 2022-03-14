@@ -11,7 +11,7 @@ namespace BetterBuiltWorkouts.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        
+        [Route("Admin-Home")]
         public IActionResult Index()
         {
             ViewBag.Message = "Welcome to the Admin page!";

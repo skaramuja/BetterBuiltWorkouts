@@ -22,21 +22,6 @@ namespace BetterBuiltWorkouts.Controllers
         {
             return View();
         }
-        public IActionResult Workout()
-        {
-            return View();
-        }
-
-        [Route("Create-Workout")]
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [Route("Perform")]
-        public IActionResult Perform()
-        {
-            return View();
-        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
