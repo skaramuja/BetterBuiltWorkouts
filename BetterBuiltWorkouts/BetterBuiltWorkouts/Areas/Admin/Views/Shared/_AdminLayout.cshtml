@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BetterBuiltWorkouts</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -19,19 +19,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     @if (User.Identity.IsAuthenticated)
                     {
-                         <ul class="navbar-nav flex-grow-1">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Workout <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Workout" asp-action="Create">Create</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Workout" asp-action="Perform">Perform</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                                <a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="Admin" asp-controller="ApplicationUser" asp-action="Index">Users</a></li>
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle nav-link text-light" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Workout <span class="caret"></span></a>
+                                <ul class="dropdown-menu bg-dark">
+                                    <li><a class="nav-link text-light" asp-area="" asp-controller="Workout" asp-action="Create">Create</a></li>
+                                    <li><a class="nav-link text-light" asp-area="" asp-controller="Workout" asp-action="Perform">Perform</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle nav-link text-light" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                                <ul class="dropdown-menu bg-dark">
+                                    <li><a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li><a class="nav-link text-light" asp-area="Admin" asp-controller="ApplicationUser" asp-action="Index">Users</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -47,11 +47,6 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - BetterBuiltWorkouts
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -2,7 +2,38 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="welcome">
+    @if (User.Identity.IsAuthenticated)
+    {
+
+    <h1 class="text-center">Workouts built by
+        <a class="d-inline" asp-area="" asp-action="ChangeUserDetails" asp-controller="Account">
+            @User.Identity.Name</a>!
+    </h1>
+    }
+    else
+    {
+        <h1 class="text-center">Workouts are better when they are built by 
+    <span><a class="d-inline" asp-action="Login" asp-controller="Account">You</a></span>!
+    </h1>
+    }
+
+<div class="message-box row text-white justify-content-around">
+
+    <div class="message-card col-md-3 mb-5 text-center">
+        <h3>Success is achievable</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id diam maecenas ultricies mi eget mauris. Nunc congue nisi vitae suscipit tellus mauris a. Sagittis eu volutpat odio facilisis mauris sit amet massa vitae.</p>
+    </div>
+
+    <div class="message-card col-md-3 mb-5 text-center">
+        <h3>Workouts just for you</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id diam maecenas ultricies mi eget mauris. Nunc congue nisi vitae suscipit tellus mauris a. Sagittis eu volutpat odio facilisis mauris sit amet massa vitae.</p>
+    </div>
+
+    <div class="message-card col-md-3 mb-5 text-center">
+        <h3>Proven Results</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id diam maecenas ultricies mi eget mauris. Nunc congue nisi vitae suscipit tellus mauris a. Sagittis eu volutpat odio facilisis mauris sit amet massa vitae.</p>
+    </div>
+
+</div>
 </div>
