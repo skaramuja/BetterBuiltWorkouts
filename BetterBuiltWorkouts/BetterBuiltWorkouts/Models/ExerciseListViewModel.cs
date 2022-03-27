@@ -19,6 +19,6 @@ namespace BetterBuiltWorkouts.Models
             }
         }
         public string CheckActiveExerciseType(string g) =>
-            g.ToLower() == ActiveExerciseType.ExerciseTypeID.ToLower() ? "active" : "";
+            g.ToLower() == ActiveExerciseType.ToLower() ? "active" : "";
     }
 }

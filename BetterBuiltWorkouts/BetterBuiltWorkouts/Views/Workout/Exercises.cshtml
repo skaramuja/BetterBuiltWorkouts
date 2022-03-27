@@ -9,7 +9,7 @@
             @foreach (ExerciseType exerciseType in Model.ExerciseTypes)
             {
                 <a asp-action="Exercises"
-                   asp-route-selectedExerciseType="@exerciseType.ExerciseTypeID"
+                   asp-route-activeExerciseType="@exerciseType.ExerciseTypeID"
                    class="list-group-item 
                        @Model.CheckActiveExerciseType(exerciseType.ExerciseTypeID)">@exerciseType.Name</a>
             }

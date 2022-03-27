@@ -31,11 +31,10 @@ namespace BetterBuiltWorkouts.Controllers
         {
             model.ExerciseTypes = context.ExerciseTypes.ToList();
             // get Exercises - filter by Exersise Type
-            IQueryable<Exercise> exerciseQuery = context.Exercises;
-            if(model.ActiveExerciseType.ExerciseTypeID != "all")
-                exerciseQuery = exerciseQuery.Where(
-                    e => e.ExerciseTypes.Contains(model.ActiveExerciseType));
-            model.Exercises = exerciseQuery.ToList();
+            IQueryable<Exercise> query = context.Exercises;
+            if(model.ActiveExerciseType != "all")
+                query = query.Where(x => x.ExerciseType.ExerciseTypeID == model.ActiveExerciseType);
+            model.Exercises = query.ToList();
             return View(model);
         }
     }
