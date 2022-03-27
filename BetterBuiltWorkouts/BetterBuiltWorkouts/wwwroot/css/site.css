@@ -24,6 +24,27 @@ a {
   border-color: #1861ac;
 }
 
+.welcome {
+    margin-top: 10vh;
+}
+
+.welcome h1 {
+    color: white;
+    background-color: rgba(128, 128, 128, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    width: fit-content;
+    margin:auto;
+}
+
+.welcome h1 a{
+    color: darkturquoise;
+}
+
+.welcome h1 a:hover {
+    text-decoration: none;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -59,8 +80,12 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    background-color: #292b2c;
+    background-image: url("../images/home-bkg.webp");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    max-height: 91vh;
 }
 .footer {
   position: absolute;
@@ -68,4 +93,22 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+  background-color: black;
+}
+
+.form-container {
+    color: white;
+    background-color: rgba(128, 128, 128, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    width: fit-content;
+}
+
+.message-box {
+    margin-top: 10vh;
+}
+
+.message-card {
+    background-color: rgba(128, 128, 128, 0.8);
+    border-radius: 10px;
 }

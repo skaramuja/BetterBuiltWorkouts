@@ -2,65 +2,73 @@
 @{
     ViewBag.Title = "Change User Details";
 }
+<div class="container form-container">
 
-<h1>Change Details</h1>
-<br />
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<form method="post" asp-action="ChangeUserDetails" asp-controller="Account">
-    <div class="form-group row">
-        <div class="col-sm-2"><label>Username:</label></div>
-        <div class="col-sm-4">
-            <input asp-for="Username" class="form-control" />
-        </div>
-        <div class="col">
-            <span asp-validation-for="Username" class="text-danger"></span>
-        </div>
-    </div>
 
-    <div class="form-group row">
-        <div class="col-sm-2"><label>First Name:</label></div>
-        <div class="col-sm-4">
-            <input asp-for="FirstName" class="form-control" />
+    <h1>Change Details</h1>
+    <br />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form method="post" asp-action="ChangeUserDetails" asp-controller="Account">
+        <div class="form-group row">
+            <div class="col-sm-3"><label>Username:</label></div>
+            <div class="col-sm-9">
+                <input asp-for="Username" class="form-control" />
+            </div>
+            <div class="col">
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
         </div>
-        <div class="col">
-            <span asp-validation-for="FirstName" class="text-danger"></span>
-        </div>
-    </div>
 
-    <div class="form-group row">
-        <div class="col-sm-2"><label>Last Name:</label></div>
-        <div class="col-sm-4">
-            <input asp-for="LastName" class="form-control" />
+        <div class="form-group row">
+            <div class="col-sm-3"><label>First Name:</label></div>
+            <div class="col-sm-9">
+                <input asp-for="FirstName" class="form-control" />
+            </div>
+            <div class="col">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
         </div>
-        <div class="col">
-            <span asp-validation-for="LastName" class="text-danger"></span>
-        </div>
-    </div>
 
-    <div class="form-group row">
-        <div class="col-sm-2"><label>Email:</label></div>
-        <div class="col-sm-4">
-            <input asp-for="Email" class="form-control" />
+        <div class="form-group row">
+            <div class="col-sm-3"><label>Last Name:</label></div>
+            <div class="col-sm-9">
+                <input asp-for="LastName" class="form-control" />
+            </div>
+            <div class="col">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
         </div>
-        <div class="col">
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
 
+        <div class="form-group row">
+            <div class="col-sm-3"><label>Email:</label></div>
+            <div class="col-sm-9">
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="col">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="offset-3 col-sm-4">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+
+    </form>
+    <br />
+    <br />
 
     <div class="row">
-        <div class="offset-2 col-sm-4">
-            <button type="submit" class="btn btn-primary">Update</button>
+
+        <div class="col-sm-7">
+            Need to change your password?
         </div>
+        <div class="col-sm-5">
+            <a asp-action="ChangePassword" asp-controller="Account" class="btn btn-primary">Change Password</a>
+        </div>
+
     </div>
-
-</form>
-<br />
-<br />
-
-<div class="offset-2 col-sm-4">
-
-    <div>Need to change your password? </div>
-    <a asp-action="ChangePassword" asp-controller="Account" class="btn btn-primary">Change Password</a>
 
 </div>
