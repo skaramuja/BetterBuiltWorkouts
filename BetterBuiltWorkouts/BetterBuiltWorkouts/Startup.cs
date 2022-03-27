@@ -31,6 +31,8 @@ namespace BetterBuiltWorkouts
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ExerciseContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ExerciseContext")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
 
@@ -82,6 +84,9 @@ namespace BetterBuiltWorkouts
                     name: "workouts",
                     pattern: "{controller=Workout}/{action=Set}/user{user}/{id?}"
                 );
+                endpoints.MapControllerRoute(
+                    name: "custom",
+                    pattern: "{controller=Workout}/{action=Exercises}/selectedExerciseType/{selectedExerciseType}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
