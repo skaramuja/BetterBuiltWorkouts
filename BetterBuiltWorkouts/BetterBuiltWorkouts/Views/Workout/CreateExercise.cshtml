@@ -1,124 +1,131 @@
 ﻿@model Exercise
 
-@{ 
+@{
     ViewBag.Title = "Create Your Exercise";
 }
 
 <div class="container form-container">
-    <h1>Change Password</h1>
+    <h1>Create New Exercise</h1>
     <br />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <form method="post" asp-action="CreateExercise" asp-controller="Workout">
 
+
+        <div class="row">
+            <span asp-validation-for="Name" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-5"><label>Name:</label></div>
+            <div class="col-sm-2 text-right"><label>Name:</label></div>
             <div class="col-sm-7">
                 <input asp-for="Name" class="form-control" />
             </div>
-            <div class="col">
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
         </div>
 
+
+        <div class="row">
+            <span asp-validation-for="ExerciseType" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-5"><label>Exercise Type:</label></div>
-            <div class="from-group">
-                <label asp-for="ExerciseTypeID">Exercise Type</label>
-                <select asp-for="ExerciseTypeID" class="form-control">
+            <label asp-for="ExerciseTypeID" class="col-sm-2 text-right">Exercise Type:</label>
+            <select asp-for="ExerciseTypeID" class="col-sm-7 rounded ml-1 mr-5 ">
                 <option value="">select an exercise type</option>
                 @foreach (ExerciseType t in ViewBag.Types)
                 {
                     <option value="@t.ExerciseTypeID">@t.Name</option>
                 }
-                </select>
-            </div>
-            <div class="col">
-                <span asp-validation-for="ExerciseType" class="text-danger"></span>
-            </div>
+            </select>
         </div>
 
+
+        <div class="row">
+            <span asp-validation-for="Image" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-5"><label>Image:</label></div>
+            <div class="col-sm-2 text-right"><label>Image:</label></div>
             <div class="col-sm-7">
                 <input asp-for="Image" class="form-control" value="default-img.webp" />
             </div>
-            <div class="col">
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
         </div>
 
+
+        <div class="row">
+            <span asp-validation-for="IsPublic" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-7">
-                <input type="checkbox" title="Make Public?" asp-for="IsPublic" class="form-check d-inline" />
-                <label>Make Public?</label>
+            <div class="col-sm-2 text-right"><label>Make Public?</label></div>
+            <div class="col-sm-1 offset-sm-2">
+                <input type="checkbox" title="Make Public?" asp-for="IsPublic" class="form-check d-inline text-left" />
             </div>
-            <div class="col">
-                <span asp-validation-for="IsPublic" class="text-danger"></span>
-            </div>
+            <div class="col-sm-6"></div>
         </div>
 
+
+        <div class="row">
+            <span asp-validation-for="Distance" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-5"><label>Distance:</label></div>
+            <div class="col-sm-2 text-right"><label>Distance:</label></div>
             <div class="col-sm-7">
                 <input asp-for="Distance" class="form-control" />
             </div>
-            <div class="col">
-                <span asp-validation-for="Distance" class="text-danger"></span>
-            </div>
         </div>
 
+
+        <div class="row">
+            <span asp-validation-for="Time" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-5"><label>Time:</label></div>
+            <div class="col-sm-2 text-right"><label>Time:</label></div>
             <div class="col-sm-7">
                 <input asp-for="Time" class="form-control" />
             </div>
-            <div class="col">
-                <span asp-validation-for="Time" class="text-danger"></span>
-            </div>
         </div>
 
+
+        <div class="row">
+            <span asp-validation-for="Link" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-5"><label>Link to video:</label></div>
+            <div class="col-sm-2 text-right"><label>Link to video:</label></div>
             <div class="col-sm-7">
                 <input asp-for="Link" class="form-control" />
             </div>
-            <div class="col">
-                <span asp-validation-for="Link" class="text-danger"></span>
-            </div>
         </div>
 
+
+        <div class="row">
+            <span asp-validation-for="Reps" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-5"><label>Reps:</label></div>
+            <div class="col-sm-2 text-right"><label>Reps:</label></div>
             <div class="col-sm-7">
                 <input asp-for="Reps" class="form-control" />
             </div>
-            <div class="col">
-                <span asp-validation-for="Reps" class="text-danger"></span>
-            </div>
         </div>
 
+
+        <div class="row">
+            <span asp-validation-for="Weight" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-5"><label>Weight:</label></div>
+            <div class="col-sm-2 text-right"><label>Weight:</label></div>
             <div class="col-sm-7">
                 <input asp-for="Weight" class="form-control" />
             </div>
-            <div class="col">
-                <span asp-validation-for="Weight" class="text-danger"></span>
-            </div>
         </div>
 
+
+        <div class="row">
+            <span asp-validation-for="Note" class="text-danger col offset-sm-2"></span>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-5"><label>Notes:</label></div>
+            <div class="col-sm-2 text-right"><label>Notes:</label></div>
             <div class="col-sm-7">
                 <input asp-for="Note" class="form-control" />
             </div>
-            <div class="col">
-                <span asp-validation-for="Note" class="text-danger"></span>
-            </div>
         </div>
 
-
-
+        <input type="hidden" asp-for="ExerciseID" />
 
         <div class="row">
             <div class="offset-5 col-sm-7">

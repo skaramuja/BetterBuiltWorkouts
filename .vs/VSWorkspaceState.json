@@ -6,9 +6,12 @@
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas\\Admin",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas\\Admin\\Controllers",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Controllers",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Shared"
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Shared",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\wwwroot",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\wwwroot\\css"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas\\Admin\\Controllers\\ApplicationUserController.cs",
+  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\wwwroot\\css\\site.css",
   "PreviewInSolutionExplorer": false
 }

@@ -5,16 +5,15 @@ namespace BetterBuiltWorkouts.Models
 {
     public class Exercise
     {
-        [Required]
+   
         public string ExerciseID { get; set; }
 
 
         [Required]
-        [NameAttribute(5)]
+        [NameAttribute(50)]
         public string Name { get; set; }
 
 
-        [Required]
         public ExerciseType ExerciseType { get; set; }
         public string ExerciseTypeID { get; set; }
 
@@ -30,7 +29,7 @@ namespace BetterBuiltWorkouts.Models
 
 
         // For exercises that have a specific distance
-        [DistanceAttribute(10)]
+        //[DistanceAttribute(10)]
         public string Distance { get; set; }
 
 
@@ -38,7 +37,7 @@ namespace BetterBuiltWorkouts.Models
         public string Time { get; set; }
 
 
-        [WeightAttribute(50)]
+        //[WeightAttribute(50)]
         public string Weight { get; set; }
 
 

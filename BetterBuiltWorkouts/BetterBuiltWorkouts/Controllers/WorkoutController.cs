@@ -56,6 +56,11 @@ namespace BetterBuiltWorkouts.Controllers
         [HttpPost]
         public IActionResult CreateExercise(Exercise model)
         {
+            if (model.ExerciseTypeID != null)
+            {
+                ExerciseType selectedType = context.ExerciseTypes.Find(model.ExerciseTypeID);
+                model.ExerciseType = selectedType;
+            }
             if (ModelState.IsValid)
             {
                 model.CreatedBy = User.Identity.Name;
