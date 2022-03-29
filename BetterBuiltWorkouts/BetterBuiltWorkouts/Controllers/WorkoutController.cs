@@ -17,7 +17,7 @@ namespace BetterBuiltWorkouts.Controllers
             context = ctx;
         }
 
-        public IActionResult Details(string id)
+        public IActionResult Details(int id)
         {
             Exercise model = context.Exercises.Find(id);
             return View(model);
@@ -66,7 +66,7 @@ namespace BetterBuiltWorkouts.Controllers
                 model.CreatedBy = User.Identity.Name;
                 context.Exercises.Add(model);
                 context.SaveChanges();
-                return RedirectToAction("CreateExercise");
+                return RedirectToAction("Details", new { id = model.ExerciseId });
             }
             else
             {

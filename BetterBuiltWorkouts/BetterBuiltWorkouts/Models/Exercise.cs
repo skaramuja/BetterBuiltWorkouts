@@ -6,7 +6,7 @@ namespace BetterBuiltWorkouts.Models
     public class Exercise
     {
    
-        public string ExerciseID { get; set; }
+        public int ExerciseId { get; set; }
 
 
         [Required]

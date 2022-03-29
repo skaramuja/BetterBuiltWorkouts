@@ -4,14 +4,16 @@ using BetterBuiltWorkouts.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BetterBuiltWorkouts.Data.Migrations
+namespace BetterBuiltWorkouts.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220329201025_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,9 +94,9 @@ namespace BetterBuiltWorkouts.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0a51365c-5390-44c8-ad19-79e3f84d39e0",
+                            Id = "edeb89fe-2f9b-4b6d-b062-add2fd46e9a8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c5725928-f117-4f66-ba03-4c48a57f6f6f",
+                            ConcurrencyStamp = "00855dab-cc68-47ed-a13b-9051812806d8",
                             Email = "drewxcom@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Drew",
@@ -102,17 +104,17 @@ namespace BetterBuiltWorkouts.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DREWXCOM@GMAIL.COM",
                             NormalizedUserName = "DREWXCOM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMpvajCBQybp9raa/PFbx6M/1rcDXBLDrpmFBflK0+r0ijCfDMLe3FscTEOnPzxqKQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIbgd6gFSBAw777H27D2SoewT6Idv4bo+sEE6FZvPoSo86qnRT8UIFweskNSaW9gvw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "734a204a-505e-44e6-9f6b-78c6c7bc0f54",
+                            SecurityStamp = "28185a84-187f-464e-b06f-27f47c0f8f5b",
                             TwoFactorEnabled = false,
                             UserName = "drewxcom"
                         },
                         new
                         {
-                            Id = "9ed5580f-0987-4733-89a7-ae07bf8cc67f",
+                            Id = "e32c76c4-526a-4756-9efe-7eb70b9c0a19",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "30fd3a82-db43-4bf5-adb9-6f34f96ef52f",
+                            ConcurrencyStamp = "3144e963-af3a-4677-89ee-fe0bc160af4a",
                             Email = "hale.l.c91@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Cody",
@@ -120,17 +122,17 @@ namespace BetterBuiltWorkouts.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "HALE.L.C91@GMAIL.COM",
                             NormalizedUserName = "CHALE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPCe53GUf4Z3RaJCyQ4T8PqPgQpTRtzWjJU1vZbgwta+9K3prYawaCCXvIjUTA9fZA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMdg7M0QR6TegNqd+0hMzEO46ETtDjdGc3Y+park+kh7w61xTZZTzIfTkydz+mUVZQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "83b959fb-227c-4044-a525-83037451b777",
+                            SecurityStamp = "82adc4ab-4680-4773-88a8-8dcd050a08ab",
                             TwoFactorEnabled = false,
                             UserName = "chale"
                         },
                         new
                         {
-                            Id = "ead3976b-1a71-4212-af6c-260318a51747",
+                            Id = "15943deb-c8cb-4249-a7dc-a11f4f7b5c9f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "68992138-d15e-4c0d-845c-9676412367c8",
+                            ConcurrencyStamp = "87c8a391-9234-4fb2-b35a-e39240b2fbf1",
                             Email = "Karamuja.sabina@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Sabina",
@@ -138,9 +140,9 @@ namespace BetterBuiltWorkouts.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KARAMUJA.SABINA@GMAIL.COM",
                             NormalizedUserName = "SKARAMUJA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJl1ct6J3XLZ4cucSvDrGIAJw9Cfy8bV43YjdTbCew1LdeXKNGEOlMw4vr5NzcxAIA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMTff0PqxIAcJpkdZhGzUT5Jigy12azAvPwja+k8vSzwdzcQnPT+yDiYKkcYPf1laA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "59e45b85-c77b-49d3-8b0e-73bdd1493bd4",
+                            SecurityStamp = "ae94b9ec-42cd-453f-9259-3b00472e5dd4",
                             TwoFactorEnabled = false,
                             UserName = "skaramuja"
                         });
@@ -148,18 +150,18 @@ namespace BetterBuiltWorkouts.Data.Migrations
 
             modelBuilder.Entity("BetterBuiltWorkouts.Models.Exercise", b =>
                 {
-                    b.Property<string>("ExerciseID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ExerciseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Distance")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExerciseTypeID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Image")
@@ -173,8 +175,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(75)
-                        .HasColumnType("nvarchar(75)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
                         .HasMaxLength(500)
@@ -187,10 +188,9 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Weight")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ExerciseID");
+                    b.HasKey("ExerciseId");
 
                     b.HasIndex("ExerciseTypeID");
 
@@ -199,7 +199,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ExerciseID = "50c8dd43-1e2c-4d69-bba8-26b7449e04cd",
+                            ExerciseId = 1,
                             ExerciseTypeID = "strength_training",
                             Image = "BackExtension.png",
                             IsPublic = true,
@@ -207,7 +207,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "0fbdd46c-2c1c-4714-8862-1027a1507d48",
+                            ExerciseId = 2,
                             ExerciseTypeID = "aerobic",
                             Image = "Basketball.png",
                             IsPublic = true,
@@ -215,7 +215,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "36a710ed-e131-4109-a9ea-68b5103ded88",
+                            ExerciseId = 3,
                             ExerciseTypeID = "strength_training",
                             Image = "BenchPress.png",
                             IsPublic = true,
@@ -223,7 +223,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "c37dbdbc-4c80-4eba-812b-2532d079f51d",
+                            ExerciseId = 4,
                             ExerciseTypeID = "strength_training",
                             Image = "BicepCurl.png",
                             IsPublic = true,
@@ -231,7 +231,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "a2602232-9e81-4426-9534-1fa28ed46f03",
+                            ExerciseId = 5,
                             ExerciseTypeID = "aerobic",
                             Image = "Biking.png",
                             IsPublic = true,
@@ -239,7 +239,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "d3a5d568-cc64-4ac2-a8cf-89ba7e6ac313",
+                            ExerciseId = 6,
                             ExerciseTypeID = "aerobic",
                             Image = "BriskWalking.png",
                             IsPublic = true,
@@ -247,7 +247,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "7bb1fc0d-d4b7-49c1-a194-1071a505447d",
+                            ExerciseId = 7,
                             ExerciseTypeID = "aerobic",
                             Image = "CardioClass.png",
                             IsPublic = true,
@@ -255,7 +255,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "2c4892b6-bd35-4721-9ee0-7390aca29aa4",
+                            ExerciseId = 8,
                             ExerciseTypeID = "aerobic",
                             Image = "CardioMachine.png",
                             IsPublic = true,
@@ -263,7 +263,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "fba7c5db-62b0-498c-ae50-d71cdc8bc03d",
+                            ExerciseId = 9,
                             ExerciseTypeID = "strength_training",
                             Image = "ChestFly.png",
                             IsPublic = true,
@@ -271,7 +271,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "09225d37-099c-4d92-b92f-573238275e60",
+                            ExerciseId = 10,
                             ExerciseTypeID = "strength_training",
                             Image = "Crunches.png",
                             IsPublic = true,
@@ -279,7 +279,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "263da85f-11cb-40b8-a46c-4d44e0de4b61",
+                            ExerciseId = 11,
                             ExerciseTypeID = "aerobic",
                             Image = "Dancing.png",
                             IsPublic = true,
@@ -287,7 +287,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "4b24d8d2-17cc-48f9-bbfb-9806558382bd",
+                            ExerciseId = 12,
                             ExerciseTypeID = "strength_training",
                             Image = "Deadlift.png",
                             IsPublic = true,
@@ -295,7 +295,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "fcf92528-8837-4ec8-a3fe-fc69131122cc",
+                            ExerciseId = 13,
                             ExerciseTypeID = "aerobic",
                             Image = "GardeningAndWeeding.png",
                             IsPublic = true,
@@ -303,7 +303,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "593fe2ab-25b9-411e-bcd3-509278f4ca75",
+                            ExerciseId = 14,
                             ExerciseTypeID = "aerobic",
                             Image = "Golf.png",
                             IsPublic = true,
@@ -311,7 +311,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "6492c5d9-e870-4272-b671-d9dcd2d5e753",
+                            ExerciseId = 15,
                             ExerciseTypeID = "aerobic",
                             Image = "HighIntensityIntervalTraining.png",
                             IsPublic = true,
@@ -319,7 +319,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "5bd3fb30-c732-4a13-8c50-11436d9699cb",
+                            ExerciseId = 16,
                             ExerciseTypeID = "aerobic",
                             Image = "Hiking.png",
                             IsPublic = true,
@@ -327,7 +327,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "ddf87e95-6025-4575-b6e0-3be747a21f7a",
+                            ExerciseId = 17,
                             ExerciseTypeID = "aerobic",
                             Image = "JoggingOrRunning.png",
                             IsPublic = true,
@@ -335,7 +335,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "21feedca-86d0-4e15-8c03-8b1cff77d111",
+                            ExerciseId = 18,
                             ExerciseTypeID = "strength_training",
                             Image = "LateralRaise.png",
                             IsPublic = true,
@@ -343,7 +343,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "97ec7f49-4e07-45a0-8dbf-d0a378fe2ff5",
+                            ExerciseId = 19,
                             ExerciseTypeID = "strength_training",
                             Image = "LegCurl.png",
                             IsPublic = true,
@@ -351,7 +351,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "850f15cf-73f5-469b-a370-53f37c5af815",
+                            ExerciseId = 20,
                             ExerciseTypeID = "strength_training",
                             Image = "LegExtension.png",
                             IsPublic = true,
@@ -359,7 +359,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "0263b2d1-2156-42c9-b6d8-b74dfd77d15c",
+                            ExerciseId = 21,
                             ExerciseTypeID = "strength_training",
                             Image = "LegPress.png",
                             IsPublic = true,
@@ -367,7 +367,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "a6a7fd68-ddd4-4ec5-8669-1bc1d860f142",
+                            ExerciseId = 22,
                             ExerciseTypeID = "strength_training",
                             Image = "Lunge.png",
                             IsPublic = true,
@@ -375,7 +375,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "1a10b635-7f7d-48f8-8210-b98ca0ba3593",
+                            ExerciseId = 23,
                             ExerciseTypeID = "aerobic",
                             Image = "LiftingWeights.png",
                             IsPublic = true,
@@ -383,7 +383,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "a859c8ee-1611-4c36-ba33-65431b9ea5be",
+                            ExerciseId = 24,
                             ExerciseTypeID = "balance",
                             Image = "Pilates.png",
                             IsPublic = true,
@@ -391,7 +391,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "9f0ff33e-6300-449c-9312-ead13bfd7f54",
+                            ExerciseId = 25,
                             ExerciseTypeID = "strength_training",
                             Image = "PullDown.png",
                             IsPublic = true,
@@ -399,7 +399,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "ff720fa6-a4c6-4cbb-a04b-44a5f776869d",
+                            ExerciseId = 26,
                             ExerciseTypeID = "strength_training",
                             Image = "PullUp.png",
                             IsPublic = true,
@@ -407,7 +407,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "bf068445-0818-450d-a7f8-54b3479756d8",
+                            ExerciseId = 27,
                             ExerciseTypeID = "strength_training",
                             Image = "PushUps.png",
                             IsPublic = true,
@@ -415,7 +415,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "cea68f5f-f97d-4dd3-9f66-39ea0d5e2647",
+                            ExerciseId = 28,
                             ExerciseTypeID = "aerobic",
                             Image = "ResistanceExercise.png",
                             IsPublic = true,
@@ -423,7 +423,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "5ce15d39-13c8-44bb-8777-606dd75eb1b6",
+                            ExerciseId = 29,
                             ExerciseTypeID = "aerobic",
                             Image = "Rowing.png",
                             IsPublic = true,
@@ -431,7 +431,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "c71c6641-4ba3-4e7e-94ce-5cd352ca9dc7",
+                            ExerciseId = 30,
                             ExerciseTypeID = "strength_training",
                             Image = "SeatedCalfRaise.png",
                             IsPublic = true,
@@ -439,7 +439,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "70f3bf4f-b8c3-4575-ad10-9b5abcc9f403",
+                            ExerciseId = 31,
                             ExerciseTypeID = "strength_training",
                             Image = "ShoulderPress.png",
                             IsPublic = true,
@@ -447,7 +447,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "2a859216-92b9-4c45-abe3-c1d62d3c7386",
+                            ExerciseId = 32,
                             ExerciseTypeID = "strength_training",
                             Image = "ShoulderShrug.png",
                             IsPublic = true,
@@ -455,7 +455,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "0b73db3e-79c5-4c39-84a2-73202e2a50d1",
+                            ExerciseId = 33,
                             ExerciseTypeID = "aerobic",
                             Image = "Soccer.png",
                             IsPublic = true,
@@ -463,7 +463,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "dbe8ec95-55c0-458c-88b4-3f498489571f",
+                            ExerciseId = 34,
                             ExerciseTypeID = "strength_training",
                             Image = "Squat.png",
                             IsPublic = true,
@@ -471,7 +471,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "383e3184-0f0f-4f10-aa9e-617f3310c487",
+                            ExerciseId = 35,
                             ExerciseTypeID = "aerobic",
                             Image = "Stairs.png",
                             IsPublic = true,
@@ -479,7 +479,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "d80a3240-b7cf-49ce-b9f4-5c5f28674bd0",
+                            ExerciseId = 36,
                             ExerciseTypeID = "strength_training",
                             Image = "StandingCalfRaise.png",
                             IsPublic = true,
@@ -487,7 +487,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "a81e3b79-b91c-47a1-be30-445f816e8acc",
+                            ExerciseId = 37,
                             ExerciseTypeID = "aerobic",
                             Image = "StrengthClass.png",
                             IsPublic = true,
@@ -495,7 +495,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "9bf9b6a5-cbaa-44fd-9041-fea6eaf4c00b",
+                            ExerciseId = 38,
                             ExerciseTypeID = "aerobic",
                             Image = "Swimming.png",
                             IsPublic = true,
@@ -503,7 +503,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "fd455b61-f96f-4463-9d8d-a250644b66f2",
+                            ExerciseId = 39,
                             ExerciseTypeID = "balance",
                             Image = "TaiChi.png",
                             IsPublic = true,
@@ -511,7 +511,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "f01f30f6-0545-4419-aa56-33deda68e4f2",
+                            ExerciseId = 40,
                             ExerciseTypeID = "aerobic",
                             Image = "Tennis.png",
                             IsPublic = true,
@@ -519,7 +519,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "3398a21b-d450-4729-84ff-91c587e791fb",
+                            ExerciseId = 41,
                             ExerciseTypeID = "strength_training",
                             Image = "TricepExtension.png",
                             IsPublic = true,
@@ -527,7 +527,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "6d12aeff-cb64-491f-8ffb-88aeec6f28d2",
+                            ExerciseId = 42,
                             ExerciseTypeID = "aerobic",
                             Image = "UltimateFrisbee.png",
                             IsPublic = true,
@@ -535,7 +535,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "55aaa08a-f24c-45ab-beeb-b205e8715cee",
+                            ExerciseId = 43,
                             ExerciseTypeID = "strength_training",
                             Image = "UprightRow.png",
                             IsPublic = true,
@@ -543,7 +543,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "fcc18a2a-c8a4-481f-bdf7-ff0f0c3dd572",
+                            ExerciseId = 44,
                             ExerciseTypeID = "aerobic",
                             Image = "Volleyball.png",
                             IsPublic = true,
@@ -551,7 +551,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "5f996ce4-7c42-4372-8cc2-6905d9f855bc",
+                            ExerciseId = 45,
                             ExerciseTypeID = "aerobic",
                             Image = "WalkingWithStroller.png",
                             IsPublic = true,
@@ -559,7 +559,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "d1954921-5890-450f-901a-a5d3781e2064",
+                            ExerciseId = 46,
                             ExerciseTypeID = "aerobic",
                             Image = "Yoga.png",
                             IsPublic = true,
@@ -567,7 +567,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "784c99bc-3f3d-447f-bbc5-047073e72ede",
+                            ExerciseId = 47,
                             ExerciseTypeID = "streching",
                             Image = "CalfStretch.png",
                             IsPublic = true,
@@ -575,7 +575,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "07ee99cb-a437-4c5a-9c63-5ed0b8881b88",
+                            ExerciseId = 48,
                             ExerciseTypeID = "streching",
                             Image = "HamstringStretch.png",
                             IsPublic = true,
@@ -583,7 +583,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "39809ec8-a82b-4018-98eb-0262c7ff6ab5",
+                            ExerciseId = 49,
                             ExerciseTypeID = "streching",
                             Image = "QuadricepsStretch.png",
                             IsPublic = true,
@@ -591,7 +591,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "ee02fbc6-5c17-4193-a407-acd1a16d97db",
+                            ExerciseId = 50,
                             ExerciseTypeID = "streching",
                             Image = "HipFlexorsStretch.png",
                             IsPublic = true,
@@ -599,7 +599,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "c9e43654-3fea-447a-9005-a9677e30ea0a",
+                            ExerciseId = 51,
                             ExerciseTypeID = "streching",
                             Image = "KneeToChestStretch.png",
                             IsPublic = true,
@@ -607,7 +607,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "ba826abd-0faa-47c2-800f-14c892c6a6cf",
+                            ExerciseId = 52,
                             ExerciseTypeID = "streching",
                             Image = "ShoulderStretch.png",
                             IsPublic = true,
@@ -615,7 +615,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "eb2cfc73-9935-428f-9bbf-3873f8899b48",
+                            ExerciseId = 53,
                             ExerciseTypeID = "streching",
                             Image = "NeckStretch.png",
                             IsPublic = true,
@@ -623,7 +623,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "f659ebec-9196-424b-8245-d83200ddf1c1",
+                            ExerciseId = 54,
                             ExerciseTypeID = "balance",
                             Image = "TightropeWalk.png",
                             IsPublic = true,
@@ -631,7 +631,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "7d547024-da6b-428e-b75c-b3dd9010dc7a",
+                            ExerciseId = 55,
                             ExerciseTypeID = "balance",
                             Image = "FlamingoStand.png",
                             IsPublic = true,
@@ -639,7 +639,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "6003b0eb-5412-4331-98ad-9f9a31f64d87",
+                            ExerciseId = 56,
                             ExerciseTypeID = "balance",
                             Image = "HeelToToeWalk.png",
                             IsPublic = true,
@@ -647,7 +647,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                         },
                         new
                         {
-                            ExerciseID = "d6014007-0233-4688-8496-8eb8dc257207",
+                            ExerciseId = 57,
                             ExerciseTypeID = "balance",
                             Image = "BandedTriplanarToeTaps.png",
                             IsPublic = true,
@@ -724,15 +724,15 @@ namespace BetterBuiltWorkouts.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9c5bd6c1-76e7-476f-b4ed-895f2f0df00f",
-                            ConcurrencyStamp = "9c5bd6c1-76e7-476f-b4ed-895f2f0df00f",
+                            Id = "d8304918-f365-4d4c-b53d-1d76d7452041",
+                            ConcurrencyStamp = "d8304918-f365-4d4c-b53d-1d76d7452041",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "edd5de60-d5bc-46d0-b3a6-d829eec68050",
-                            ConcurrencyStamp = "edd5de60-d5bc-46d0-b3a6-d829eec68050",
+                            Id = "a16e8a3d-e5c6-454e-9c93-f9181ee981db",
+                            ConcurrencyStamp = "a16e8a3d-e5c6-454e-9c93-f9181ee981db",
                             Name = "Suspended",
                             NormalizedName = "SUSPENDED"
                         });
@@ -825,18 +825,18 @@ namespace BetterBuiltWorkouts.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "0a51365c-5390-44c8-ad19-79e3f84d39e0",
-                            RoleId = "9c5bd6c1-76e7-476f-b4ed-895f2f0df00f"
+                            UserId = "edeb89fe-2f9b-4b6d-b062-add2fd46e9a8",
+                            RoleId = "d8304918-f365-4d4c-b53d-1d76d7452041"
                         },
                         new
                         {
-                            UserId = "9ed5580f-0987-4733-89a7-ae07bf8cc67f",
-                            RoleId = "9c5bd6c1-76e7-476f-b4ed-895f2f0df00f"
+                            UserId = "e32c76c4-526a-4756-9efe-7eb70b9c0a19",
+                            RoleId = "d8304918-f365-4d4c-b53d-1d76d7452041"
                         },
                         new
                         {
-                            UserId = "ead3976b-1a71-4212-af6c-260318a51747",
-                            RoleId = "9c5bd6c1-76e7-476f-b4ed-895f2f0df00f"
+                            UserId = "15943deb-c8cb-4249-a7dc-a11f4f7b5c9f",
+                            RoleId = "d8304918-f365-4d4c-b53d-1d76d7452041"
                         });
                 });
 
@@ -863,9 +863,7 @@ namespace BetterBuiltWorkouts.Data.Migrations
                 {
                     b.HasOne("BetterBuiltWorkouts.Models.ExerciseType", "ExerciseType")
                         .WithMany()
-                        .HasForeignKey("ExerciseTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ExerciseTypeID");
 
                     b.Navigation("ExerciseType");
                 });
