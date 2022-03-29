@@ -22,15 +22,14 @@
 
         <div class="form-group row">
             <div class="col-sm-5"><label>Exercise Type:</label></div>
-            <div class="col-sm-7">
-                <select class="form-control" asp-for="ExerciseType"
-                    asp-items="@(new SelectList(ViewBag.Types, "ExerciseTypeID", "Name" , Model.ExerciseType))">
-                    @*I cant get this stupid thing to work. Falling back to html options*@
-                    @*<option selected="selected" value="other">Other</option>
-                    <option value="aerobic">Aerobic</option>
-                    <option value="strength_training">Strength Training</option>
-                    <option value="streching">Stretching</option>
-                    <option value="balance">Balance</option>*@
+            <div class="from-group">
+                <label asp-for="ExerciseTypeID">Exercise Type</label>
+                <select asp-for="ExerciseTypeID" class="form-control">
+                <option value="">select an exercise type</option>
+                @foreach (ExerciseType t in ViewBag.Types)
+                {
+                    <option value="@t.ExerciseTypeID">@t.Name</option>
+                }
                 </select>
             </div>
             <div class="col">

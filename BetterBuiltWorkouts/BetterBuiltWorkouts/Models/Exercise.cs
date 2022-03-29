@@ -10,12 +10,13 @@ namespace BetterBuiltWorkouts.Models
 
 
         [Required]
-        [StringLength(75, ErrorMessage = "Name must be less than 75 characters.")]
+        [NameAttribute(5)]
         public string Name { get; set; }
 
 
         [Required]
         public ExerciseType ExerciseType { get; set; }
+        public string ExerciseTypeID { get; set; }
 
 
         public string Image { get; set; }
@@ -29,7 +30,7 @@ namespace BetterBuiltWorkouts.Models
 
 
         // For exercises that have a specific distance
-        [StringLength(50, ErrorMessage = "Distance must be less than 50 characters long.")]
+        [DistanceAttribute(10)]
         public string Distance { get; set; }
 
 
@@ -37,7 +38,7 @@ namespace BetterBuiltWorkouts.Models
         public string Time { get; set; }
 
 
-        [StringLength(50, ErrorMessage = "Weight must be less than 50 characters long.")]
+        [WeightAttribute(50)]
         public string Weight { get; set; }
 
 
