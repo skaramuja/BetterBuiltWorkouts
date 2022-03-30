@@ -32,7 +32,7 @@ namespace BetterBuiltWorkouts.Models
                 ctx.Attributes.Add("data-val", "true");
             ctx.Attributes.Add("data-val-name-length",
                 maxLength.ToString());
-            ctx.Attributes.Add("data-val-namelength",
+            ctx.Attributes.Add("data-val-name",
                 GetMsg(ctx.ModelMetadata.DisplayName ?? ctx.ModelMetadata.Name));
         }
 
