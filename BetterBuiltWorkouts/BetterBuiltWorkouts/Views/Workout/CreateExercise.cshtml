@@ -5,9 +5,13 @@
 }
 
 <div class="container form-container">
+
     <h1>Create New Exercise</h1>
+
     <br />
+
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <form method="post" asp-action="CreateExercise" asp-controller="Workout">
 
 
@@ -23,7 +27,7 @@
 
 
         <div class="row">
-            <span asp-validation-for="ExerciseType" class="text-danger col offset-sm-2"></span>
+            <span asp-validation-for="ExerciseTypeID" class="text-danger col offset-sm-2"></span>
         </div>
         <div class="form-group row">
             <label asp-for="ExerciseTypeID" class="col-sm-2 text-right">Exercise Type:</label>

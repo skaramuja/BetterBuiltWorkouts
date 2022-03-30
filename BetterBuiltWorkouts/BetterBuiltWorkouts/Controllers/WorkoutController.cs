@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BetterBuiltWorkouts.Models;
 using BetterBuiltWorkouts.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BetterBuiltWorkouts.Controllers
 {
@@ -19,8 +20,9 @@ namespace BetterBuiltWorkouts.Controllers
 
         public IActionResult Details(int id)
         {
-            Exercise model = context.Exercises.Find(id);
-            return View(model);
+            var exercise = context.Exercises.Find(id);
+            ViewBag.ExerciseType = context.ExerciseTypes.Find(exercise.ExerciseTypeID);
+            return View(exercise);
         }
 
         [Route("Create-Workout")]
@@ -56,11 +58,6 @@ namespace BetterBuiltWorkouts.Controllers
         [HttpPost]
         public IActionResult CreateExercise(Exercise model)
         {
-            if (model.ExerciseTypeID != null)
-            {
-                ExerciseType selectedType = context.ExerciseTypes.Find(model.ExerciseTypeID);
-                model.ExerciseType = selectedType;
-            }
             if (ModelState.IsValid)
             {
                 model.CreatedBy = User.Identity.Name;
@@ -71,6 +68,7 @@ namespace BetterBuiltWorkouts.Controllers
             else
             {
                 ViewBag.Types = context.ExerciseTypes.ToList();
+                ModelState.AddModelError("", "There are errors in the form.");
                 return View(model);
             }
         }

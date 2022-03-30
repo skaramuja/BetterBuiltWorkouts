@@ -200,8 +200,8 @@ namespace BetterBuiltWorkouts.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "d8304918-f365-4d4c-b53d-1d76d7452041", "d8304918-f365-4d4c-b53d-1d76d7452041", "Admin", "ADMIN" },
-                    { "a16e8a3d-e5c6-454e-9c93-f9181ee981db", "a16e8a3d-e5c6-454e-9c93-f9181ee981db", "Suspended", "SUSPENDED" }
+                    { "3c85e47b-2d6f-49dc-8f86-1d6dd77cf1af", "3c85e47b-2d6f-49dc-8f86-1d6dd77cf1af", "Admin", "ADMIN" },
+                    { "d2172027-e924-4bbd-be5e-53db9e571f14", "d2172027-e924-4bbd-be5e-53db9e571f14", "Suspended", "SUSPENDED" }
                 });
 
             migrationBuilder.InsertData(
@@ -209,9 +209,9 @@ namespace BetterBuiltWorkouts.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "edeb89fe-2f9b-4b6d-b062-add2fd46e9a8", 0, "00855dab-cc68-47ed-a13b-9051812806d8", "drewxcom@gmail.com", true, "Drew", "Crawford", false, null, "DREWXCOM@GMAIL.COM", "DREWXCOM", "AQAAAAEAACcQAAAAEIbgd6gFSBAw777H27D2SoewT6Idv4bo+sEE6FZvPoSo86qnRT8UIFweskNSaW9gvw==", null, false, "28185a84-187f-464e-b06f-27f47c0f8f5b", false, "drewxcom" },
-                    { "e32c76c4-526a-4756-9efe-7eb70b9c0a19", 0, "3144e963-af3a-4677-89ee-fe0bc160af4a", "hale.l.c91@gmail.com", true, "Cody", "Hale", false, null, "HALE.L.C91@GMAIL.COM", "CHALE", "AQAAAAEAACcQAAAAEMdg7M0QR6TegNqd+0hMzEO46ETtDjdGc3Y+park+kh7w61xTZZTzIfTkydz+mUVZQ==", null, false, "82adc4ab-4680-4773-88a8-8dcd050a08ab", false, "chale" },
-                    { "15943deb-c8cb-4249-a7dc-a11f4f7b5c9f", 0, "87c8a391-9234-4fb2-b35a-e39240b2fbf1", "Karamuja.sabina@gmail.com", true, "Sabina", "Johnson", false, null, "KARAMUJA.SABINA@GMAIL.COM", "SKARAMUJA", "AQAAAAEAACcQAAAAEMTff0PqxIAcJpkdZhGzUT5Jigy12azAvPwja+k8vSzwdzcQnPT+yDiYKkcYPf1laA==", null, false, "ae94b9ec-42cd-453f-9259-3b00472e5dd4", false, "skaramuja" }
+                    { "9f39f31d-16ad-49f3-942a-2a2909cd14aa", 0, "4a6334f8-5960-42d2-a1e6-84412d8efe16", "drewxcom@gmail.com", true, "Drew", "Crawford", false, null, "DREWXCOM@GMAIL.COM", "DREWXCOM", "AQAAAAEAACcQAAAAEF1X2bVQ0lIAQAA7wkQjGeJcfexP1XaALqFD0N9VlNTjJEZsmVeuWExe1gK43gyZ9g==", null, false, "c8da601d-21b4-4188-acc1-05b949aac5f5", false, "drewxcom" },
+                    { "1720a676-602c-4083-bd1f-8813be8cfb7e", 0, "213f441a-a1d8-46c1-b6aa-71c08a930217", "hale.l.c91@gmail.com", true, "Cody", "Hale", false, null, "HALE.L.C91@GMAIL.COM", "CHALE", "AQAAAAEAACcQAAAAEBZVwKX2wGJE2Y+NfnrHdTT8r6w/6McTy9Z1krg9kUE+U6A6etPj3vkhJKexOfR9NQ==", null, false, "024ab306-93f2-46aa-b6cf-362b06e4b900", false, "chale" },
+                    { "cde303cf-f9a0-4886-9a97-eda149f6aa69", 0, "54596207-9bfa-4317-b4f3-5a5690a37d60", "Karamuja.sabina@gmail.com", true, "Sabina", "Johnson", false, null, "KARAMUJA.SABINA@GMAIL.COM", "SKARAMUJA", "AQAAAAEAACcQAAAAEPu1/3Ic2eXTD6dlYfTz8NIT4dCULdANkT7GNxtJRcaPnOJxtNG8yrHri6I+VMX0Nw==", null, false, "92324e7c-ced5-44b5-9413-58cdf6376876", false, "skaramuja" }
                 });
 
             migrationBuilder.InsertData(
@@ -231,9 +231,9 @@ namespace BetterBuiltWorkouts.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "d8304918-f365-4d4c-b53d-1d76d7452041", "15943deb-c8cb-4249-a7dc-a11f4f7b5c9f" },
-                    { "d8304918-f365-4d4c-b53d-1d76d7452041", "e32c76c4-526a-4756-9efe-7eb70b9c0a19" },
-                    { "d8304918-f365-4d4c-b53d-1d76d7452041", "edeb89fe-2f9b-4b6d-b062-add2fd46e9a8" }
+                    { "3c85e47b-2d6f-49dc-8f86-1d6dd77cf1af", "cde303cf-f9a0-4886-9a97-eda149f6aa69" },
+                    { "3c85e47b-2d6f-49dc-8f86-1d6dd77cf1af", "1720a676-602c-4083-bd1f-8813be8cfb7e" },
+                    { "3c85e47b-2d6f-49dc-8f86-1d6dd77cf1af", "9f39f31d-16ad-49f3-942a-2a2909cd14aa" }
                 });
 
             migrationBuilder.InsertData(
