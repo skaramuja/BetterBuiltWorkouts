@@ -9,6 +9,9 @@
     else {
         return false;
     }
-});
+},
+function() {
+    return ''
+    });
 
 jQuery.validator.unobtrusive.adapters.addSingleVal("name", "maxLength");
