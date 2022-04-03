@@ -10,7 +10,8 @@ namespace BetterBuiltWorkouts.Models
 
 
         [Required]
-        [Name(50, ErrorMessage = "Name must be less that 50 characters.")]
+        //[Name(50, ErrorMessage = "Name must be less that 50 characters.")]
+        [StringLength(50, ErrorMessage = "Exercise name must be less than 50 characters.")]
         public string Name { get; set; }
 
 
