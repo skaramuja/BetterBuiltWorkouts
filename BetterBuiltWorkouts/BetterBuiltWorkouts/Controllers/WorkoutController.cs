@@ -7,19 +7,17 @@ namespace BetterBuiltWorkouts.Controllers
 {
     public class WorkoutController : Controller
     {
-        private Repository<Exercise> exerciseData { get; set; }
-        private Repository<ExerciseType> exerciseTypeData { get; set; }
+        private WorkoutUnitOfWork data { get; set; }
 
         public WorkoutController(ApplicationDbContext ctx)
         {
-            exerciseData = new Repository<Exercise>(ctx);
-            exerciseTypeData = new Repository<ExerciseType>(ctx);
+            data = new WorkoutUnitOfWork(ctx);
         }
 
         public IActionResult Details(int id)
         {
-            var exercise = exerciseData.GetIntId(id);
-            ViewBag.ExerciseType = exerciseTypeData.GetStringId(exercise.ExerciseTypeID);
+            var exercise = data.GetExercise(id);
+            ViewBag.ExerciseType = data.GetExerciseType(exercise.ExerciseTypeID);
             return View(exercise);
         }
 
@@ -38,34 +36,17 @@ namespace BetterBuiltWorkouts.Controllers
         [Route("Exercises-Workout")]
         public IActionResult Exercises(ExerciseListViewModel model)
         {
-            var exerciseTypes = exerciseTypeData.List(new QueryOptions<ExerciseType>
-                {
-                    OrderBy = o => o.ExerciseTypeID
-                });
+            var exerciseTypes = data.ListOfExercises(model.ActiveExerciseType);
+            model.ExerciseTypes = data.ListAllExerciseTypes().ToList();
+            model.Exercises = exerciseTypes.ToList();
 
-            model.ExerciseTypes = exerciseTypes.ToList();
-
-            // Code duplication here. #TODO
-            if (model.ActiveExerciseType != "all")
-                {
-                    model.Exercises = exerciseData.List(new QueryOptions<Exercise> {
-                        Where = x => x.ExerciseTypeID == model.ActiveExerciseType
-                    }).ToList();
-                }
-            else
-                {
-                    model.Exercises = exerciseData.List(new QueryOptions<Exercise>
-                    {
-                    }).ToList();
-                }
-   
             return View(model);
         }
 
         [HttpGet]
         public ViewResult CreateExercise()
         {
-            ViewBag.Types = exerciseTypeData.List(new QueryOptions<ExerciseType> { });
+            ViewBag.Types = data.ListAllExerciseTypes().ToList();
             Exercise model = new Exercise();
             return View(model);
         }
@@ -77,13 +58,13 @@ namespace BetterBuiltWorkouts.Controllers
             if (ModelState.IsValid)
             {
                 model.CreatedBy = User.Identity.Name;
-                exerciseData.Insert(model);
-                exerciseData.Save();
+                data.InsertExercise(model);
+                data.Save();
                 return RedirectToAction("Details", new { id = model.ExerciseId });
             }
             else
             {
-                ViewBag.Types = exerciseTypeData.List(new QueryOptions<ExerciseType> { });
+                ViewBag.Types = data.ListAllExerciseTypes().ToList();
                 ModelState.AddModelError("", "There are errors in the form.");
                 return View(model);
             }
