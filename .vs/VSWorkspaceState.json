@@ -3,15 +3,8 @@
     "",
     "\\BetterBuiltWorkouts",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas\\Admin",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Areas\\Admin\\Controllers",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Controllers",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Shared",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\wwwroot",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\wwwroot\\css"
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Data"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\wwwroot\\css\\site.css",
+  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Data\\Repository.cs",
   "PreviewInSolutionExplorer": false
 }

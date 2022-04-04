@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using BetterBuiltWorkouts.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using BetterBuiltWorkouts.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace BetterBuiltWorkouts.Data
 {
