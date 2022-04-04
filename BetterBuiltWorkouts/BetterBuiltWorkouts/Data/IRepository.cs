@@ -10,8 +10,6 @@ namespace BetterBuiltWorkouts.Data
         void Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
-        void Save(); // this will be removed when I implament the UOW pattern
-
     }
 
 }

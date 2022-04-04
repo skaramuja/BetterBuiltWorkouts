@@ -42,7 +42,5 @@ namespace BetterBuiltWorkouts.Data
 
         public void Update(T entity) => dbset.Update(entity);
 
-        public void Save() => context.SaveChanges();
-
     }
 }

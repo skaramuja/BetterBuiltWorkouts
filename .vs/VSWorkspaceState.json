@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\BetterBuiltWorkouts",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Data"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts.sln",
+  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Data\\Repository.cs",
   "PreviewInSolutionExplorer": false
 }
