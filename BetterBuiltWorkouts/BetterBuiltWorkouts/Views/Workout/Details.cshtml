@@ -18,4 +18,11 @@
     <p>Time: @Model.Time</p>
     <p>Note: @Model.Note</p>
 
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="ExerciseId" />
+
+        <button type="submit" class="btn btn-primary">Delete</button>
+        <a asp-controller="Workout" asp-action="Edit" asp-route-id="@Model.ExerciseId" class="btn btn-primary">Edit</a>
+        <a asp-controller="Workout" asp-action="Exercises" class="btn btn-primary">Cancel</a>
+    </form>
 </div>
