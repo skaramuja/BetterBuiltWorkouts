@@ -1,18 +1,19 @@
 ﻿@model Exercise
 
 @{
-    ViewBag.Title = "Create Your Exercise";
+    string title = ViewBag.Verb + " Your Exercise";
+    ViewBag.Title = title;;
 }
 
 <div class="container form-container">
 
-    <h1>Create New Exercise</h1>
+    <h1>@ViewBag.Title</h1>
 
     <br />
 
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <form method="post" asp-action="CreateExercise" asp-controller="Workout">
+    <form method="post" asp-action="Edit" asp-controller="Workout">
 
 
         <div class="row">
@@ -133,7 +134,8 @@
 
         <div class="row">
             <div class="offset-5 col-sm-7">
-                <button type="submit" class="btn btn-primary">Create Exercise</button>
+                <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+                <a asp-controller="Workout" asp-action="Exercises" class="btn btn-primary">Cancel</a>
             </div>
         </div>
 

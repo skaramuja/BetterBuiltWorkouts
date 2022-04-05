@@ -18,6 +18,7 @@ namespace BetterBuiltWorkouts.Controllers
         {
             var exercise = data.GetExercise(id);
             ViewBag.ExerciseType = data.GetExerciseType(exercise.ExerciseTypeID);
+            ViewBag.Types = data.ListAllExerciseTypes().ToList();
             return View(exercise);
         }
 
@@ -25,6 +26,51 @@ namespace BetterBuiltWorkouts.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Exercise exercise)
+        {
+            data.DeleteExercise(exercise);
+            data.Save();
+            return RedirectToAction("Exercises", "Workout");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            ViewBag.Verb = "Edit";
+            ViewBag.Action = "Save";
+            ViewBag.Types = data.ListAllExerciseTypes().ToList();
+            Exercise exercise = data.GetExercise(id);
+            return View(exercise);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Exercise exercise)
+        {
+            if (ModelState.IsValid)
+            {
+                if (exercise.ExerciseId == 0)
+                {
+                    exercise.CreatedBy = User.Identity.Name;
+                    data.Exercises.Insert(exercise);
+                }
+                else
+                {
+                    data.Exercises.Update(exercise);
+                } 
+                data.Save();
+                return RedirectToAction("Exercises", "Workout");
+            }
+            else
+            {
+                ViewBag.Verb = (exercise.ExerciseId == 0) ? "Create" : "Edit";
+                ViewBag.Action = (exercise.ExerciseId == 0) ? "Create" : "Save";
+                ViewBag.Types = data.ListAllExerciseTypes().ToList();
+                return View(exercise);
+
+            }
         }
 
         [Route("Perform-Workout")]
@@ -46,28 +92,9 @@ namespace BetterBuiltWorkouts.Controllers
         [HttpGet]
         public ViewResult CreateExercise()
         {
+            ViewBag.Action = "Create";
             ViewBag.Types = data.ListAllExerciseTypes().ToList();
-            Exercise model = new Exercise();
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult CreateExercise(Exercise model)
-        {
-
-            if (ModelState.IsValid)
-            {
-                model.CreatedBy = User.Identity.Name;
-                data.InsertExercise(model);
-                data.Save();
-                return RedirectToAction("Details", new { id = model.ExerciseId });
-            }
-            else
-            {
-                ViewBag.Types = data.ListAllExerciseTypes().ToList();
-                ModelState.AddModelError("", "There are errors in the form.");
-                return View(model);
-            }
+            return View("Edit", new Exercise());
         }
     }
 }
