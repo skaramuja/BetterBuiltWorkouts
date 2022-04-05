@@ -6,7 +6,7 @@ using System;
 
 namespace BetterBuiltWorkouts.Data
 {
-    // IdentityDbContext inherits from the normal DbContext class but add additional items needed for AA 
+    // IdentityDbContext inherits from the normal DbContext class but adds additional items needed for AA 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -16,6 +16,7 @@ namespace BetterBuiltWorkouts.Data
 
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<ExerciseType> ExerciseTypes { get; set; }
+        public DbSet<Plan> Plans { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
