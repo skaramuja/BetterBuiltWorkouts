@@ -40,7 +40,7 @@ namespace BetterBuiltWorkouts.Data
 
         public virtual void Insert(T entity) => dbset.Add(entity);
 
-        public void Update(T entity) => dbset.Update(entity);
+        public virtual void Update(T entity) => dbset.Update(entity);
 
     }
 }

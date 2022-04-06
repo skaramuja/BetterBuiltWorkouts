@@ -7,10 +7,10 @@ namespace BetterBuiltWorkouts.Models
 {
     public class Plan
     {
-        public Plan()
-        {
-            Exercises = new List<Exercise>();
-        }
+        //public Plan()
+        //{
+        //    Exercises = new List<Exercise>();
+        //}
 
         public int PlanId { get; set; }
 

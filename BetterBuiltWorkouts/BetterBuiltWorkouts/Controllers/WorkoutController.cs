@@ -33,9 +33,7 @@ namespace BetterBuiltWorkouts.Controllers
         public IActionResult PlanDetails(int id)
         {
             var model = data.GetPlan(id);
-            //model.Exer
-            //ViewBag.ExerciseType = data.GetExerciseType(exercise.ExerciseTypeID);
-            //ViewBag.Types = data.ListAllExerciseTypes().ToList();
+            model.ExercisePlans = data.ListOfExercisePlans(id);
             return View(model);
         }
 

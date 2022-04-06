@@ -16,11 +16,17 @@ namespace BetterBuiltWorkouts.Data
 
 
         // ExerciseType model
-        IEnumerable<ExerciseType> ListOfExerciseTypes(QueryOptions<ExerciseType> options);
+        //IEnumerable<ExerciseType> ListOfExerciseTypes(QueryOptions<ExerciseType> options);
 
         IEnumerable<ExerciseType> ListAllExerciseTypes();
 
         ExerciseType GetExerciseType(string id);
+
+
+
+        // ExercisePlan
+        IEnumerable<ExercisePlan> ListAllExercisePlans();
+
 
         // Plan model
         IEnumerable<Plan> ListOfPlans();

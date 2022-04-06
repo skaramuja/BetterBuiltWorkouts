@@ -11,10 +11,10 @@
     <p>Times completed: @Model.TimesCompleted</p>
     <p>Started: @Model.Start.ToString()</p>
     <p>Ended: @Model.End.ToString()</p>
-    @*@foreach(Exercise pExercise in Model)
+    @foreach(ExercisePlan pExercise in Model.ExercisePlans)
             {
                 <p>Exercise: @pExercise</p>
-            }*@
+            }
 
     <form asp-action="Delete" method="post">
         <input type="hidden" asp-for="PlanId" />

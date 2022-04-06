@@ -4,7 +4,8 @@ using System.Linq;
 
 namespace BetterBuiltWorkouts.Data
 {
-    public class WorkoutUnitOfWork : IWorkoutUnitOfWork
+    //public class WorkoutUnitOfWork : IWorkoutUnitOfWork
+    public class WorkoutUnitOfWork
     {
         private ApplicationDbContext context { get; set; }
         public WorkoutUnitOfWork(ApplicationDbContext ctx) => context = ctx;
@@ -24,6 +25,7 @@ namespace BetterBuiltWorkouts.Data
             }
         }
 
+        // Retruning all Exercises or only ones of the activeType
         public IEnumerable<Exercise> ListOfExercises(string activeType)
         {
             if (activeType != "all")
@@ -38,6 +40,14 @@ namespace BetterBuiltWorkouts.Data
                 return Exercises.List(new QueryOptions<Exercise> { });   
             }
         }
+
+        //public IEnumerable<Exercise> ListOfPlanExercises(int planId)
+        //{
+        //    return Exercises.List(new QueryOptions<ExercisePlan>
+        //    {
+        //        Includes = "Exercises"
+        //    }).ToList();
+        //}
 
         public Exercise GetExercise(int id)
         {
@@ -60,36 +70,29 @@ namespace BetterBuiltWorkouts.Data
         }
 
 
-
-        // ExerciseType Section
-        private Repository<ExerciseType> exerciseTypeData;
-        public Repository<ExerciseType> ExerciseTypes
+        // ExercisePlan section
+        private Repository<ExercisePlan> exercisePlanData;
+        public Repository<ExercisePlan> ExercisePlans
         {
             get
             {
-                if (exerciseTypeData == null)
+                if(exercisePlanData == null)
                 {
-                    exerciseTypeData = new Repository<ExerciseType>(context);
+                    exercisePlanData = new Repository<ExercisePlan>(context);
                 }
-                return exerciseTypeData;
+                return exercisePlanData;
             }
         }
 
-        public IEnumerable<ExerciseType> ListOfExerciseTypes(QueryOptions<ExerciseType> options)
+        public ICollection<ExercisePlan> ListOfExercisePlans(int planId)
         {
-            return ExerciseTypes.List(options);
-        }
-
-        public IEnumerable<ExerciseType> ListAllExerciseTypes()
-        {
-            return ExerciseTypes.List(new QueryOptions<ExerciseType> { });
+            return ExercisePlans.List(new QueryOptions<ExercisePlan>
+            {
+                Where = ep => ep.PlanId == planId
+            }).ToList();
         }
 
 
-        public ExerciseType GetExerciseType(string id)
-        {
-            return ExerciseTypes.GetStringId(id);
-        }
 
         // Plan section
         private Repository<Plan> planData;
@@ -115,21 +118,45 @@ namespace BetterBuiltWorkouts.Data
             return Plans.GetIntId(id);
         }
 
-        void IWorkoutUnitOfWork.InsertPlan(Plan entity)
+        public void InsertPlan(Plan entity)
         {
             Plans.Insert(entity);
         }
 
-        void IWorkoutUnitOfWork.UpdatePlan(Plan entity)
+        public void UpdatePlan(Plan entity)
         {
             Plans.Update(entity);
         }
 
-        void IWorkoutUnitOfWork.DeletePlan(Plan entity)
+        public void DeletePlan(Plan entity)
         {
             Plans.Delete(entity);
         }
 
+
+        // ExerciseType Section
+        private Repository<ExerciseType> exerciseTypeData;
+        public Repository<ExerciseType> ExerciseTypes
+        {
+            get
+            {
+                if (exerciseTypeData == null)
+                {
+                    exerciseTypeData = new Repository<ExerciseType>(context);
+                }
+                return exerciseTypeData;
+            }
+        }
+
+        public IEnumerable<ExerciseType> ListAllExerciseTypes()
+        {
+            return ExerciseTypes.List(new QueryOptions<ExerciseType> { });
+        }
+
+        public ExerciseType GetExerciseType(string id)
+        {
+            return ExerciseTypes.GetStringId(id);
+        }
 
         public void Save()
         {

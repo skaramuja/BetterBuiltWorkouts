@@ -7,7 +7,6 @@ namespace BetterBuiltWorkouts.Models
     {
         public List<Plan> Plans { get; set; }
 
-
-        public List<Exercise> Exercises;
+        public List<Exercise> Exercises { get; set; }
     }
 }
