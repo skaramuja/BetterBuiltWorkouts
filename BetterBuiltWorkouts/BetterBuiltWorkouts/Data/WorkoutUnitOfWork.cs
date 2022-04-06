@@ -9,6 +9,7 @@ namespace BetterBuiltWorkouts.Data
         private ApplicationDbContext context { get; set; }
         public WorkoutUnitOfWork(ApplicationDbContext ctx) => context = ctx;
 
+
         // Exercise section
         private Repository<Exercise> exerciseData;
         public Repository<Exercise> Exercises
@@ -90,10 +91,49 @@ namespace BetterBuiltWorkouts.Data
             return ExerciseTypes.GetStringId(id);
         }
 
+        // Plan section
+        private Repository<Plan> planData;
+        public Repository<Plan> Plans
+        {
+            get
+            {
+                if (planData == null)
+                {
+                    planData = new Repository<Plan>(context);
+                }
+                return planData;
+            }
+        }
+
+        public IEnumerable<Plan> ListOfPlans()
+        {
+            return Plans.List(new QueryOptions<Plan> { Includes = "ExercisePlans"});
+        }
+
+        public Plan GetPlan(int id)
+        {
+            return Plans.GetIntId(id);
+        }
+
+        void IWorkoutUnitOfWork.InsertPlan(Plan entity)
+        {
+            Plans.Insert(entity);
+        }
+
+        void IWorkoutUnitOfWork.UpdatePlan(Plan entity)
+        {
+            Plans.Update(entity);
+        }
+
+        void IWorkoutUnitOfWork.DeletePlan(Plan entity)
+        {
+            Plans.Delete(entity);
+        }
+
+
         public void Save()
         {
             context.SaveChanges();
         }
-
     }
 }

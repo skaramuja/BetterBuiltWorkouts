@@ -7,6 +7,10 @@ namespace BetterBuiltWorkouts.Models
 {
     public class Plan
     {
+        public Plan()
+        {
+            Exercises = new List<Exercise>();
+        }
 
         public int PlanId { get; set; }
 
@@ -16,11 +20,16 @@ namespace BetterBuiltWorkouts.Models
 
         public int? TimesCompleted { get; set; }
 
-        IEnumerable<Exercise> Exercises { get; set; }
+        public int? ExerciseId { get; set; }
 
-        DateTime Start { get; set; }
+        List<Exercise> Exercises { get; set; }
 
-        DateTime End { get; set; }
+        public DateTime Start { get; set; }
+
+        public DateTime End { get; set; }
+
+        // Navagation property
+        public ICollection<ExercisePlan> ExercisePlans { get; set; }
 
     }
 }

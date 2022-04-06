@@ -22,10 +22,21 @@ namespace BetterBuiltWorkouts.Controllers
             return View(exercise);
         }
 
-        [Route("Create-Workout")]
-        public IActionResult Create()
+        [Route("CreatePlan-Workout")]
+        public IActionResult CreatePlan()
         {
-            return View();
+            PlanListViewModel model = new PlanListViewModel{ Plans = data.ListOfPlans().ToList() };
+            model.Exercises = data.ListOfExercises("all").ToList();
+            return View(model);
+        }
+
+        public IActionResult PlanDetails(int id)
+        {
+            var model = data.GetPlan(id);
+            //model.Exer
+            //ViewBag.ExerciseType = data.GetExerciseType(exercise.ExerciseTypeID);
+            //ViewBag.Types = data.ListAllExerciseTypes().ToList();
+            return View(model);
         }
 
         [HttpPost]
@@ -73,11 +84,24 @@ namespace BetterBuiltWorkouts.Controllers
             }
         }
 
+
+        [HttpGet]
+        public ViewResult CreateExercise()
+        {
+            ViewBag.Action = "Create";
+            ViewBag.Types = data.ListAllExerciseTypes().ToList();
+            return View("Edit", new Exercise());
+        }
+
+
+
         [Route("Perform-Workout")]
         public IActionResult Perform()
         {
             return View();
         }
+
+
 
         [Route("Exercises-Workout")]
         public IActionResult Exercises(ExerciseListViewModel model)
@@ -89,12 +113,5 @@ namespace BetterBuiltWorkouts.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public ViewResult CreateExercise()
-        {
-            ViewBag.Action = "Create";
-            ViewBag.Types = data.ListAllExerciseTypes().ToList();
-            return View("Edit", new Exercise());
-        }
     }
 }

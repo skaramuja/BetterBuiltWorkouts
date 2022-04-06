@@ -22,6 +22,13 @@ namespace BetterBuiltWorkouts.Data
 
         ExerciseType GetExerciseType(string id);
 
+        // Plan model
+        IEnumerable<Plan> ListOfPlans();
+        Plan GetPlan(int id);
+        void InsertPlan(Plan entity);
+        void UpdatePlan(Plan entity);
+        void DeletePlan(Plan entity);
+
         // General Context Save
         void Save();
     }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace BetterBuiltWorkouts.Data
 {
@@ -17,6 +18,7 @@ namespace BetterBuiltWorkouts.Data
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<ExerciseType> ExerciseTypes { get; set; }
         public DbSet<Plan> Plans { get; set; }
+        public DbSet<ExercisePlan> ExercisePlans { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -110,6 +112,35 @@ namespace BetterBuiltWorkouts.Data
                     UserId = user3Id
                 }
                 );
+            // ExercisePlan: set composit primary key
+            builder.Entity<ExercisePlan>()
+                .HasKey(ep => new { ep.ExerciseId, ep.PlanId });
+
+            // ExercisePlan: set foreign key
+            builder.Entity<ExercisePlan>().HasOne(ep => ep.Exercise)
+                .WithMany(e => e.ExercisePlans)
+                .HasForeignKey(ep => ep.ExerciseId);
+            builder.Entity<ExercisePlan>().HasOne(ep => ep.Plan)
+                .WithMany(p => p.ExercisePlans)
+                .HasForeignKey(ep => ep.PlanId);
+
+            builder.Entity<ExercisePlan>().HasData(
+                new ExercisePlan { PlanId = 1, ExerciseId = 1 },
+                new ExercisePlan { PlanId = 1, ExerciseId = 2 },
+                new ExercisePlan { PlanId = 1, ExerciseId = 3 },
+                new ExercisePlan { PlanId = 2, ExerciseId = 4 },
+                new ExercisePlan { PlanId = 2, ExerciseId = 5 },
+                new ExercisePlan { PlanId = 2, ExerciseId = 6 },
+                new ExercisePlan { PlanId = 3, ExerciseId = 7 },
+                new ExercisePlan { PlanId = 3, ExerciseId = 8 },
+                new ExercisePlan { PlanId = 3, ExerciseId = 9 }
+                );
+
+            builder.Entity<Plan>().HasData(
+                new Plan { PlanId = 1, Name = "Default Plan 1", CreatedBy = "Better Built Systems"},
+                new Plan { PlanId = 2, Name = "Default Plan 2", CreatedBy = "Better Built Systems" },
+                new Plan { PlanId = 3, Name = "Default Plan 3", CreatedBy = "Better Built Systems" }
+                );
 
             builder.Entity<ExerciseType>().HasData(
               new ExerciseType { ExerciseTypeID = "aerobic", Name = "Aerobic" },
@@ -117,8 +148,8 @@ namespace BetterBuiltWorkouts.Data
               new ExerciseType { ExerciseTypeID = "streching", Name = "Stretching" },
               new ExerciseType { ExerciseTypeID = "balance", Name = "Balance" },
               new ExerciseType { ExerciseTypeID = "other", Name = "Other" }
-
           );
+
             builder.Entity<Exercise>().HasData(
                 new
                 {

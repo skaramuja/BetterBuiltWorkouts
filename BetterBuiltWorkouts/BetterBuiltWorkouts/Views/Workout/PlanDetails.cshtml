@@ -1,0 +1,26 @@
+﻿@model Plan
+@{ 
+    ViewBag.Title = "Plan Details";
+}
+
+<div class="container form-container">
+
+    <h1>@ViewBag.PlanId</h1>
+    <p>Name: @Model.Name</p>
+    <p>Created By: @Model.CreatedBy</p>
+    <p>Times completed: @Model.TimesCompleted</p>
+    <p>Started: @Model.Start.ToString()</p>
+    <p>Ended: @Model.End.ToString()</p>
+    @*@foreach(Exercise pExercise in Model)
+            {
+                <p>Exercise: @pExercise</p>
+            }*@
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="PlanId" />
+
+        <button type="submit" class="btn btn-primary">Delete</button>
+        <a asp-controller="Workout" asp-action="Edit" asp-route-id="@Model.PlanId" class="btn btn-primary">Edit</a>
+        <a asp-controller="Workout" asp-action="Exercises" class="btn btn-primary">Cancel</a>
+    </form>
+</div>
