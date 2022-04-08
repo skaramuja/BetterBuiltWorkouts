@@ -117,12 +117,14 @@ namespace BetterBuiltWorkouts.Data
                 .HasKey(ep => new { ep.ExerciseId, ep.PlanId });
 
             // ExercisePlan: set foreign key
-            builder.Entity<ExercisePlan>().HasOne(ep => ep.Exercise)
-                .WithMany(e => e.ExercisePlans)
-                .HasForeignKey(ep => ep.ExerciseId);
-            builder.Entity<ExercisePlan>().HasOne(ep => ep.Plan)
-                .WithMany(p => p.ExercisePlans)
-                .HasForeignKey(ep => ep.PlanId);
+            builder.Entity<ExercisePlan>()
+                .HasOne(e => e.Exercise)
+                .WithMany(ep => ep.ExercisePlans)
+                .HasForeignKey(ei => ei.ExerciseId);
+            builder.Entity<ExercisePlan>()
+                .HasOne(p => p.Plan)
+                .WithMany(ep => ep.ExercisePlans)
+                .HasForeignKey(pi => pi.PlanId);
 
             builder.Entity<ExercisePlan>().HasData(
                 new ExercisePlan { PlanId = 1, ExerciseId = 1 },

@@ -4,8 +4,7 @@ using System.Linq;
 
 namespace BetterBuiltWorkouts.Data
 {
-    //public class WorkoutUnitOfWork : IWorkoutUnitOfWork
-    public class WorkoutUnitOfWork
+    public class WorkoutUnitOfWork : IWorkoutUnitOfWork
     {
         private ApplicationDbContext context { get; set; }
         public WorkoutUnitOfWork(ApplicationDbContext ctx) => context = ctx;
@@ -40,14 +39,6 @@ namespace BetterBuiltWorkouts.Data
                 return Exercises.List(new QueryOptions<Exercise> { });   
             }
         }
-
-        //public IEnumerable<Exercise> ListOfPlanExercises(int planId)
-        //{
-        //    return Exercises.List(new QueryOptions<ExercisePlan>
-        //    {
-        //        Includes = "Exercises"
-        //    }).ToList();
-        //}
 
         public Exercise GetExercise(int id)
         {
@@ -84,15 +75,6 @@ namespace BetterBuiltWorkouts.Data
             }
         }
 
-        public ICollection<ExercisePlan> ListOfExercisePlans(int planId)
-        {
-            return ExercisePlans.List(new QueryOptions<ExercisePlan>
-            {
-                Where = ep => ep.PlanId == planId
-            }).ToList();
-        }
-
-
 
         // Plan section
         private Repository<Plan> planData;
@@ -110,12 +92,16 @@ namespace BetterBuiltWorkouts.Data
 
         public IEnumerable<Plan> ListOfPlans()
         {
-            return Plans.List(new QueryOptions<Plan> { Includes = "ExercisePlans"});
+            return Plans.List(new QueryOptions<Plan> { Includes = "ExercisePlans.Exercise" });
         }
 
         public Plan GetPlan(int id)
         {
-            return Plans.GetIntId(id);
+            return Plans.GetOne(new QueryOptions<Plan>
+            {
+                Includes = "ExercisePlans.Exercise",
+                Where = i => i.PlanId == id
+            });
         }
 
         public void InsertPlan(Plan entity)

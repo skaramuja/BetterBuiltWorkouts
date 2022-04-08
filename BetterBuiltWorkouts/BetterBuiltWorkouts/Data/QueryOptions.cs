@@ -17,6 +17,5 @@ namespace BetterBuiltWorkouts.Data
 
         public bool HasWhere => Where != null;
         public bool HasOrderBy => OrderBy != null;
-
     }
 }

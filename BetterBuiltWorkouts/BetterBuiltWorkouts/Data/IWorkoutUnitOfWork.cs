@@ -25,7 +25,7 @@ namespace BetterBuiltWorkouts.Data
 
 
         // ExercisePlan
-        IEnumerable<ExercisePlan> ListAllExercisePlans();
+        //IEnumerable<ExercisePlan> ListAllExercisePlans();
 
 
         // Plan model

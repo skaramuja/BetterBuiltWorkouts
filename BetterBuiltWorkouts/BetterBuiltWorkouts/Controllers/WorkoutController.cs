@@ -26,14 +26,12 @@ namespace BetterBuiltWorkouts.Controllers
         public IActionResult CreatePlan()
         {
             PlanListViewModel model = new PlanListViewModel{ Plans = data.ListOfPlans().ToList() };
-            model.Exercises = data.ListOfExercises("all").ToList();
             return View(model);
         }
 
         public IActionResult PlanDetails(int id)
         {
             var model = data.GetPlan(id);
-            model.ExercisePlans = data.ListOfExercisePlans(id);
             return View(model);
         }
 

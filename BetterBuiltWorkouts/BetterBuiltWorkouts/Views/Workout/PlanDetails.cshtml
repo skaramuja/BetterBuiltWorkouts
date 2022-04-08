@@ -5,15 +5,14 @@
 
 <div class="container form-container">
 
-    <h1>@ViewBag.PlanId</h1>
     <p>Name: @Model.Name</p>
     <p>Created By: @Model.CreatedBy</p>
     <p>Times completed: @Model.TimesCompleted</p>
     <p>Started: @Model.Start.ToString()</p>
     <p>Ended: @Model.End.ToString()</p>
-    @foreach(ExercisePlan pExercise in Model.ExercisePlans)
+    @foreach(var pExercise in Model.ExercisePlans)
             {
-                <p>Exercise: @pExercise</p>
+                <p>Exercise: @pExercise.Exercise.Name</p>
             }
 
     <form asp-action="Delete" method="post">

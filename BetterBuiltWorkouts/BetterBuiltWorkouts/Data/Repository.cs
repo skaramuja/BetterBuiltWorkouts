@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace BetterBuiltWorkouts.Data
 {
     public class Repository<T> : IRepository<T> where T : class
@@ -35,6 +36,21 @@ namespace BetterBuiltWorkouts.Data
         public virtual void Delete(T entity) => dbset.Remove(entity);
 
         public virtual T GetIntId(int id) => dbset.Find(id);
+
+        public virtual T GetOne(QueryOptions<T> options)
+        {
+            IQueryable<T> query = dbset;
+            foreach (string include in options.GetIncludes())
+            {
+                query = query.Include(include);
+            }
+            if (options.HasWhere)
+            {
+                query = query.Where(options.Where);
+            }
+    
+            return query.FirstOrDefault<T>();
+        }
 
         public virtual T GetStringId(string id) => dbset.Find(id);
 
