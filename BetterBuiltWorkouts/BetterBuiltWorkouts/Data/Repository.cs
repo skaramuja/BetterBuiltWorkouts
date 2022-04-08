@@ -33,10 +33,6 @@ namespace BetterBuiltWorkouts.Data
             return query.ToList();
         }
 
-        public virtual void Delete(T entity) => dbset.Remove(entity);
-
-        public virtual T GetIntId(int id) => dbset.Find(id);
-
         public virtual T GetOne(QueryOptions<T> options)
         {
             IQueryable<T> query = dbset;
@@ -52,11 +48,10 @@ namespace BetterBuiltWorkouts.Data
             return query.FirstOrDefault<T>();
         }
 
-        public virtual T GetStringId(string id) => dbset.Find(id);
-
         public virtual void Insert(T entity) => dbset.Add(entity);
 
         public virtual void Update(T entity) => dbset.Update(entity);
 
+        public virtual void Delete(T entity) => dbset.Remove(entity);
     }
 }

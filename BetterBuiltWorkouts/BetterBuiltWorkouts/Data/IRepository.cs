@@ -5,8 +5,8 @@ namespace BetterBuiltWorkouts.Data
     public interface IRepository<T> where T : class
     {
         IEnumerable<T> List(QueryOptions<T> options);
-        T GetIntId(int id);
-        T GetStringId(string id);
+
+        T GetOne(QueryOptions<T> options);
         void Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
