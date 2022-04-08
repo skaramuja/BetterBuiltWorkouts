@@ -15,11 +15,11 @@
                 <p>Exercise: @pExercise.Exercise.Name</p>
             }
 
-    <form asp-action="Delete" method="post">
+    <form asp-action="PlanDelete" method="post">
         <input type="hidden" asp-for="PlanId" />
 
         <button type="submit" class="btn btn-primary">Delete</button>
-        <a asp-controller="Workout" asp-action="Edit" asp-route-id="@Model.PlanId" class="btn btn-primary">Edit</a>
-        <a asp-controller="Workout" asp-action="Exercises" class="btn btn-primary">Cancel</a>
+        <a asp-controller="Workout" asp-action="PlanEdit" asp-route-id="@Model.PlanId" class="btn btn-primary">Edit</a>
+        <a asp-controller="Workout" asp-action="CreatePlan" class="btn btn-primary">Cancel</a>
     </form>
 </div>
