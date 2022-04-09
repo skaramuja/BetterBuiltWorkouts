@@ -15,12 +15,18 @@ namespace BetterBuiltWorkouts.Data
         void DeleteExercise(Exercise entity);
 
 
-        // ExerciseType model
-        IEnumerable<ExerciseType> ListOfExerciseTypes(QueryOptions<ExerciseType> options);
+        // Plan model
+        IEnumerable<Plan> ListOfPlans();
+        Plan GetPlan(int id);
+        void InsertPlan(Plan entity);
+        void UpdatePlan(Plan entity);
+        void DeletePlan(Plan entity);
 
+
+        // ExerciseType model
+        ExerciseType GetExerciseType(string id);
         IEnumerable<ExerciseType> ListAllExerciseTypes();
 
-        ExerciseType GetExerciseType(string id);
 
         // General Context Save
         void Save();

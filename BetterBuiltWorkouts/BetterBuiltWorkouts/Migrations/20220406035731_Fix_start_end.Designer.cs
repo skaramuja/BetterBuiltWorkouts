@@ -4,14 +4,16 @@ using BetterBuiltWorkouts.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BetterBuiltWorkouts.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220406035731_Fix_start_end")]
+    partial class Fix_start_end
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,9 +94,9 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "205e80e2-e8a1-4dde-9432-89ac12885cda",
+                            Id = "abe57003-0b83-4ca6-b3c9-8472cb58deea",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "101d61ae-0415-4793-ae34-c6493ad4f26a",
+                            ConcurrencyStamp = "212bf5ec-25da-43ab-973f-beded69630ba",
                             Email = "drewxcom@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Drew",
@@ -102,17 +104,17 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DREWXCOM@GMAIL.COM",
                             NormalizedUserName = "DREWXCOM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKz+6PK5V/m4uMbS5yg0syjhKruw7hlO7SjmJGz47Q6ZDZN0rm8GSmXoVC+NWZmD9Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDonWXtM9TFsTLjEQa0dfCxhle1sdLpaFOXfLIYBlavZp9eu3mRovvNVtxkNc6+QTA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "456f60a6-1cbe-49fa-a416-29c07cf7689f",
+                            SecurityStamp = "8fff8e0f-a8d2-4525-92d3-30de0517a8ca",
                             TwoFactorEnabled = false,
                             UserName = "drewxcom"
                         },
                         new
                         {
-                            Id = "a0ce16cb-50fc-4e19-89fc-cdd148caadec",
+                            Id = "316bd4fc-eceb-492e-abe8-06eb0d6a324f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "25f59aa7-6d4b-41a6-b037-6de76a6493d4",
+                            ConcurrencyStamp = "ad6a6fd8-4e1a-4699-a1b3-3cb43b8cc942",
                             Email = "hale.l.c91@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Cody",
@@ -120,17 +122,17 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "HALE.L.C91@GMAIL.COM",
                             NormalizedUserName = "CHALE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBIZ44QBmXfYEpaICjw96A/3WcTZqF43cPZdCpZCB6zJkfmFfIkJU587I6EJMIVQpQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAlzznCZ70SoqXjqkeM+TRHSgs59jJ/k+Wl5vFWipwrxxepWtRFkN4Crodyl/ygR5g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0bda0909-8c9d-4b60-9bf7-847458f28db8",
+                            SecurityStamp = "fbc7ca5b-cc90-4cd4-a4ac-d423adf28cb7",
                             TwoFactorEnabled = false,
                             UserName = "chale"
                         },
                         new
                         {
-                            Id = "124337c5-8436-41ce-9fb7-baec7cadb915",
+                            Id = "8c7b88b3-6863-4e6e-967c-00fac9afb6aa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f25d8f69-a7ae-4582-a2f3-89367fe44f92",
+                            ConcurrencyStamp = "3eca8f41-14bf-450e-9f41-0dfdd5fe9539",
                             Email = "Karamuja.sabina@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Sabina",
@@ -138,9 +140,9 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KARAMUJA.SABINA@GMAIL.COM",
                             NormalizedUserName = "SKARAMUJA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB8pJzJbEaGjOxOQ3TjNwTwWCtGx+0pscOHHv75Pk/wuzLY7OLBIbD9HHTcvH56caA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELZqmC9ncKle8fhdKra3Fi9/Feh6+RWkgHcuy39xzZsNqkRmRVQTR9T6rYpNeGu/FA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "006c3f6b-bc67-4046-81c9-ae7e875e34d6",
+                            SecurityStamp = "bf858138-f9b7-4f2e-a86a-d432dcbf7169",
                             TwoFactorEnabled = false,
                             UserName = "skaramuja"
                         });
@@ -846,15 +848,15 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28b58671-8609-4d31-9948-59d4c1344491",
-                            ConcurrencyStamp = "28b58671-8609-4d31-9948-59d4c1344491",
+                            Id = "4d14c42e-61b6-4c73-a0f5-97f926691788",
+                            ConcurrencyStamp = "4d14c42e-61b6-4c73-a0f5-97f926691788",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0fb25e70-24b9-4c98-b19a-d16eefc28514",
-                            ConcurrencyStamp = "0fb25e70-24b9-4c98-b19a-d16eefc28514",
+                            Id = "4e59cab6-123e-49be-8314-447834545cd6",
+                            ConcurrencyStamp = "4e59cab6-123e-49be-8314-447834545cd6",
                             Name = "Suspended",
                             NormalizedName = "SUSPENDED"
                         });
@@ -947,18 +949,18 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "205e80e2-e8a1-4dde-9432-89ac12885cda",
-                            RoleId = "28b58671-8609-4d31-9948-59d4c1344491"
+                            UserId = "abe57003-0b83-4ca6-b3c9-8472cb58deea",
+                            RoleId = "4d14c42e-61b6-4c73-a0f5-97f926691788"
                         },
                         new
                         {
-                            UserId = "a0ce16cb-50fc-4e19-89fc-cdd148caadec",
-                            RoleId = "28b58671-8609-4d31-9948-59d4c1344491"
+                            UserId = "316bd4fc-eceb-492e-abe8-06eb0d6a324f",
+                            RoleId = "4d14c42e-61b6-4c73-a0f5-97f926691788"
                         },
                         new
                         {
-                            UserId = "124337c5-8436-41ce-9fb7-baec7cadb915",
-                            RoleId = "28b58671-8609-4d31-9948-59d4c1344491"
+                            UserId = "8c7b88b3-6863-4e6e-967c-00fac9afb6aa",
+                            RoleId = "4d14c42e-61b6-4c73-a0f5-97f926691788"
                         });
                 });
 

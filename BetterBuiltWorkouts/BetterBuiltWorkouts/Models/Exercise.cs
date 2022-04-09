@@ -58,5 +58,8 @@ namespace BetterBuiltWorkouts.Models
         [StringLength(500, ErrorMessage = "Note must be less than 500 characters long.")]
         public string  Note { get; set; }
 
+        // Navigation property
+        public List<ExercisePlan> ExercisePlans { get; set; }
+
     }
 }

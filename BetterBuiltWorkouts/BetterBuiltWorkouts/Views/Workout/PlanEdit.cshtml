@@ -1,0 +1,59 @@
+﻿@model Plan
+
+@{
+    string title = ViewBag.Verb + " Your Plan";
+    ViewBag.Title = title;
+}
+
+<div class="container form-container">
+
+    <h1>@ViewBag.Title</h1>
+
+    <br />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <form method="post" asp-action="PlanEdit" asp-controller="Workout">
+
+
+        <div class="row">
+            <span asp-validation-for="Name" class="text-danger col offset-sm-2"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2 text-right"><label>Name:</label></div>
+            <div class="col-sm-7">
+                <input asp-for="Name" class="form-control" />
+            </div>
+        </div>
+
+        @foreach (ExercisePlan ep in @Model.ExercisePlans)
+        {
+        @*<div class="row">
+            <span asp-validation-for="@Model.ExercisePlans" class="text-danger col offset-sm-2"></span>
+        </div>*@
+        <div class="form-group row">
+            <label asp-for="@ep.ExerciseId" class="col-sm-2 text-right">Exercise:</label>
+            <select asp-for="@ep.ExerciseId" class="col-sm-7 rounded ml-1 mr-5 ">
+                <option value="">select an exercise</option>
+                @foreach (Exercise e in @ViewBag.Exercises)
+                {
+                    <option value="@e.ExerciseTypeID">@e.Name</option>
+                }
+            </select>
+        </div>
+        }
+
+
+        <input type="hidden" asp-for="PlanId" />
+
+        <div class="row">
+            <div class="offset-5 col-sm-7">
+                <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+                <a asp-controller="Workout" asp-action="CreatePlan" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
