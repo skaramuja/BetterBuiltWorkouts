@@ -9,9 +9,9 @@ namespace BetterBuiltWorkouts.Controllers
     {
         private WorkoutUnitOfWork data { get; set; }
 
-        public WorkoutController(ApplicationDbContext ctx)
+        public WorkoutController(IRepository<Exercise> exerciseRepository, IRepository<Plan> planRepository, IRepository<ExerciseType> exerciseTypeRepository)
         {
-            data = new WorkoutUnitOfWork(ctx);
+            data = new WorkoutUnitOfWork(exerciseRepository, planRepository, exerciseTypeRepository);
         }
 
         // Plan Section

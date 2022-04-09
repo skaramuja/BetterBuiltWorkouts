@@ -8,6 +8,7 @@ namespace BetterBuiltWorkouts.Data
 
         T GetOne(QueryOptions<T> options);
         void Insert(T entity);
+        void SaveChanges();
         void Update(T entity);
         void Delete(T entity);
     }

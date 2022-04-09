@@ -6,23 +6,16 @@ namespace BetterBuiltWorkouts.Data
 {
     public class WorkoutUnitOfWork : IWorkoutUnitOfWork
     {
-        private ApplicationDbContext context { get; set; }
-        public WorkoutUnitOfWork(ApplicationDbContext ctx) => context = ctx;
+        public WorkoutUnitOfWork(IRepository<Exercise> exerciseRepository, IRepository<Plan> planRepository, IRepository<ExerciseType> exerciseTypeRepository)
+        {
+            this.Exercises = exerciseRepository;
+            this.Plans = planRepository;
+            this.ExerciseTypes = exerciseTypeRepository;
+        }
 
 
         // Exercise section
-        private Repository<Exercise> exerciseData;
-        public Repository<Exercise> Exercises
-        {
-            get
-            {
-                if (exerciseData == null)
-                {
-                    exerciseData = new Repository<Exercise>(context);
-                }
-                return exerciseData;
-            }
-        }
+        public IRepository<Exercise> Exercises { get; set; }
 
         public IEnumerable<Exercise> ListOfExercises(string activeType)
         {
@@ -65,18 +58,7 @@ namespace BetterBuiltWorkouts.Data
 
 
         // Plan section
-        private Repository<Plan> planData;
-        public Repository<Plan> Plans
-        {
-            get
-            {
-                if (planData == null)
-                {
-                    planData = new Repository<Plan>(context);
-                }
-                return planData;
-            }
-        }
+        public IRepository<Plan> Plans { get; set; }
 
         public IEnumerable<Plan> ListOfPlans()
         {
@@ -109,18 +91,7 @@ namespace BetterBuiltWorkouts.Data
 
 
         // ExerciseType Section
-        private Repository<ExerciseType> exerciseTypeData;
-        public Repository<ExerciseType> ExerciseTypes
-        {
-            get
-            {
-                if (exerciseTypeData == null)
-                {
-                    exerciseTypeData = new Repository<ExerciseType>(context);
-                }
-                return exerciseTypeData;
-            }
-        }
+        public IRepository<ExerciseType> ExerciseTypes { get; set; }
 
         public ExerciseType GetExerciseType(string id)
         {
@@ -140,7 +111,9 @@ namespace BetterBuiltWorkouts.Data
         // UnitOfWork Save
         public void Save()
         {
-            context.SaveChanges();
+            Plans.SaveChanges();
+            Exercises.SaveChanges();
+            ExerciseTypes.SaveChanges();
         }
     }
 }

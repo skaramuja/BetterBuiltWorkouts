@@ -15,6 +15,11 @@ namespace BetterBuiltWorkouts.Data
             dbset = context.Set<T>();
         }
 
+        public void SaveChanges()
+        {
+            context.SaveChanges();
+        }
+
         public virtual IEnumerable<T> List(QueryOptions<T> options)
         {
             IQueryable<T> query = dbset;
