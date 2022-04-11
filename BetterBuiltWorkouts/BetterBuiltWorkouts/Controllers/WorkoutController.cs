@@ -9,27 +9,31 @@ namespace BetterBuiltWorkouts.Controllers
     {
         private WorkoutUnitOfWork data { get; set; }
 
-        public WorkoutController(IRepository<Exercise> exerciseRepository, IRepository<Plan> planRepository, IRepository<ExerciseType> exerciseTypeRepository)
+        public WorkoutController(ApplicationDbContext ctx)
         {
-            data = new WorkoutUnitOfWork(exerciseRepository, planRepository, exerciseTypeRepository);
+            data = new WorkoutUnitOfWork(ctx);
         }
+        //public WorkoutController(IRepository<Exercise> exerciseRepository, IRepository<Plan> planRepository, IRepository<ExerciseType> exerciseTypeRepository)
+        //{
+        //    data = new WorkoutUnitOfWork(exerciseRepository, planRepository, exerciseTypeRepository);
+        //}
 
         // Plan Section
         [Route("CreatePlan-Workout")]
-        public IActionResult CreatePlan()
+        public IActionResult CreatePlan()//tested
         {
             PlanListViewModel model = new PlanListViewModel{ Plans = data.ListOfPlans().ToList() };
             return View(model);
         }
 
-        public IActionResult PlanDetails(int id)
+        public IActionResult PlanDetails(int id)//tested
         {
             var model = data.GetPlan(id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult PlanDelete(Plan plan)
+        public IActionResult PlanDelete(Plan plan)//tested
         {
             data.DeletePlan(plan);
             data.Save();
