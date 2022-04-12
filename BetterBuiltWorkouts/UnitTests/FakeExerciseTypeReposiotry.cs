@@ -17,7 +17,7 @@ namespace BetterBuiltWorkoutsTest
 
         public ExerciseType GetOne(QueryOptions<ExerciseType> options)
         {
-            throw new NotImplementedException();
+            return new ExerciseType();
         }
 
         public void Insert(ExerciseType entity)
@@ -27,7 +27,7 @@ namespace BetterBuiltWorkoutsTest
 
         public IEnumerable<ExerciseType> List(QueryOptions<ExerciseType> options)
         {
-            throw new NotImplementedException();
+            return new List<ExerciseType>();
         }
 
         public void SaveChanges()

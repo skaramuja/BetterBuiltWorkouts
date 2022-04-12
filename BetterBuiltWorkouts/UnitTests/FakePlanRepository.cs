@@ -22,7 +22,7 @@ namespace BetterBuiltWorkoutsTest
 
         public void Insert(Plan entity)
         {
-            throw new NotImplementedException();
+            //pass
         }
 
         public IEnumerable<Plan> List(QueryOptions<Plan> options)

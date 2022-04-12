@@ -13,12 +13,12 @@ namespace BetterBuiltWorkoutsTest
     {
         public void Delete(Exercise entity)
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public Exercise GetOne(QueryOptions<Exercise> options)
         {
-            throw new NotImplementedException();
+            return new Exercise();
         }
 
         public void Insert(Exercise entity)
@@ -28,7 +28,7 @@ namespace BetterBuiltWorkoutsTest
 
         public IEnumerable<Exercise> List(QueryOptions<Exercise> options)
         {
-            throw new NotImplementedException();
+            return new List<Exercise>();
         }
 
         public void SaveChanges()
