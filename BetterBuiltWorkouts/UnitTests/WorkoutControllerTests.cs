@@ -11,13 +11,15 @@ namespace BetterBuiltWorkoutsTest
     public class WorkoutControllerTests
     {
         private WorkoutController _controller;
-        private FakePlanRepository _fakePlan;
+        private FakePlanRepository _fakePlanRepo;
+        private FakeExerciseRepository _fakeExerciseRepo;
+        private FakeExerciseTypeReposiotry _fakeExerciseTypeRepo;
         public WorkoutControllerTests()
         {
-            var exerciseRepository = new FakeExerciseRepository();
-            _fakePlan = new FakePlanRepository();
-            var exerciseTypeReposiotry = new FakeExerciseTypeReposiotry();
-            _controller = new WorkoutController(exerciseRepository, _fakePlan, exerciseTypeReposiotry);
+            _fakeExerciseRepo = new FakeExerciseRepository();
+            _fakePlanRepo = new FakePlanRepository();
+            _fakeExerciseTypeRepo = new FakeExerciseTypeReposiotry();
+            _controller = new WorkoutController(_fakeExerciseRepo, _fakePlanRepo, _fakeExerciseTypeRepo);
         }
         [Fact]
         public void CreatePlanActionMethod_ReturnsAViewResult()
