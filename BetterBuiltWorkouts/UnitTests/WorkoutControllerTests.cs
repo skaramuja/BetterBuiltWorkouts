@@ -14,7 +14,7 @@ namespace BetterBuiltWorkoutsTest
     public class WorkoutControllerTests
     {
 
-        // Artical reference
+        // Article reference
         //https://mariliisjaago.com/2021/04/19/mocking-with-xunit-and-moq/
 
         public IWorkoutUnitOfWork GetUnitOfWork()
@@ -49,9 +49,9 @@ namespace BetterBuiltWorkoutsTest
             unit.Setup(m => m.Exercises).Returns(exerciseRepo.Object); // Trying to do the same type of thing as the GetUnitOfWork but having the same issues.
             var controller = new WorkoutController(unit.Object);
             //ACT
-            var result = controller.Details(1).ViewData.Model as Exercise; // This was also listed in the book but might not be understanding how this works (or doesn't work)
-
-            Assert.IsType<ActionResult>(result); // Also confused by this. 
+            //var result = controller.Details(1).ViewData.Model as Exercise; // This was also listed in the book but might not be understanding how this works (or doesn't work). I assume this can be used to 
+            var result = controller.Details(1);
+            Assert.IsType<IActionResult>(result); // Also confused by this. 
 
         }
 
