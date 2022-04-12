@@ -19,21 +19,11 @@ namespace BetterBuiltWorkoutsTest
 
         public IWorkoutUnitOfWork GetUnitOfWork()
         {
-            // setup Exercise Repository
-            var exerciseRepo = new Mock<IRepository<Exercise>>();
-            exerciseRepo.Setup(e => e.Get(It.IsAny<int>()))
-                .Returns(new Exercise { ExerciseId = 1, Name = "Test Exercise" });
-
-            // setup Plan Repository
-            var planRepo = new Mock<IRepository<Plan>>();
-            planRepo.Setup(e => e.Get(It.IsAny<QueryOptions<Plan>>()))
-                .Returns(new Plan { PlanId = 1, Name = "Plan one" });
        
 
             // Setup unit of work
             var unit = new Mock<IWorkoutUnitOfWork>();
-            unit.Setup(m => m.Exercises).Returns(exerciseRepo.Object); // I have no idea why this doesn't work. This looks to be 
-            unit.Setup(m => m.Plans).Returns(planRepo.Object);         // exactally what the book is showing. 
+            unit.Setup(e => e.GetExercise(It.IsAny<int>())).Returns(new Exercise());
             return unit.Object;
 
         }
@@ -42,17 +32,12 @@ namespace BetterBuiltWorkoutsTest
         public void DetailsActionMethod_ModelIsANExerciseObject()
         {
             //ARRANGE
-            var exerciseRepo = new Mock<IRepository<Exercise>>();
-            exerciseRepo.Setup(m => m.Get(It.IsAny<int>()))
-                .Returns(new Exercise());
-            var unit = new Mock<IWorkoutUnitOfWork>();
-            unit.Setup(m => m.Exercises).Returns(exerciseRepo.Object); // Trying to do the same type of thing as the GetUnitOfWork but having the same issues.
-            var controller = new WorkoutController(unit.Object);
-            //ACT
-            //var result = controller.Details(1).ViewData.Model as Exercise; // This was also listed in the book but might not be understanding how this works (or doesn't work). I assume this can be used to 
-            var result = controller.Details(1);
-            Assert.IsType<IActionResult>(result); // Also confused by this. 
 
+            var controller = new WorkoutController(GetUnitOfWork());
+            //ACT
+            var result = controller.Details(1);
+            ViewResult vr = Assert.IsType<ViewResult>(result); // Also confused by this. 
+            Exercise model = Assert.IsType<Exercise>(vr.Model);
         }
 
 
