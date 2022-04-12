@@ -21,7 +21,7 @@ namespace BetterBuiltWorkouts.Data
         // Exercise section
         //public IRepository<Exercise> Exercises { get; set; }
         private Repository<Exercise> exerciseData;
-        public Repository<Exercise> Exercises
+        public IRepository<Exercise> Exercises
         {
             get
             {
@@ -72,7 +72,7 @@ namespace BetterBuiltWorkouts.Data
         // Plan section
         //public IRepository<Plan> Plans { get; set; }
         private Repository<Plan> planData;
-        public Repository<Plan> Plans
+        public IRepository<Plan> Plans
         {
             get
             {
@@ -113,7 +113,7 @@ namespace BetterBuiltWorkouts.Data
         // ExerciseType Section
         //public IRepository<ExerciseType> ExerciseTypes { get; set; }
         private Repository<ExerciseType> exerciseTypeData;
-        public Repository<ExerciseType> ExerciseTypes
+        public IRepository<ExerciseType> ExerciseTypes
         {
             get
             {
