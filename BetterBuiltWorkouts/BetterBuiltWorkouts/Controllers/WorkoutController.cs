@@ -7,12 +7,13 @@ namespace BetterBuiltWorkouts.Controllers
 {
     public class WorkoutController : Controller
     {
-        private WorkoutUnitOfWork data { get; set; }
+        private IWorkoutUnitOfWork data { get; set; }
+        public WorkoutController(IWorkoutUnitOfWork unit) => data = unit;
 
-        public WorkoutController(ApplicationDbContext ctx)
-        {
-            data = new WorkoutUnitOfWork(ctx);
-        }
+        //public WorkoutController(ApplicationDbContext ctx)
+        //{
+        //    data = new WorkoutUnitOfWork(ctx);
+        //}
         //public WorkoutController(IRepository<Exercise> exerciseRepository, IRepository<Plan> planRepository, IRepository<ExerciseType> exerciseTypeRepository)
         //{
         //    data = new WorkoutUnitOfWork(exerciseRepository, planRepository, exerciseTypeRepository);

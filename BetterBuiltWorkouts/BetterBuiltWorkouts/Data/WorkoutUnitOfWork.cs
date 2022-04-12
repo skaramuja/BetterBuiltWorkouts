@@ -50,11 +50,7 @@ namespace BetterBuiltWorkouts.Data
 
         public Exercise GetExercise(int id)
         {
-            return  Exercises.GetOne(new QueryOptions<Exercise>
-            {
-                Includes = "ExerciseType",
-                Where = i => i.ExerciseId == id
-            });
+            return  Exercises.Get(id);
         }
 
         public void InsertExercise(Exercise entity)
@@ -95,11 +91,7 @@ namespace BetterBuiltWorkouts.Data
 
         public Plan GetPlan(int id)
         {
-            return Plans.GetOne(new QueryOptions<Plan>
-            {
-                Includes = "ExercisePlans.Exercise",
-                Where = i => i.PlanId == id
-            });
+            return Plans.Get(new QueryOptions<Plan> { Includes = "ExercisePlans.Exercise", Where = p => p.PlanId == id });
         }
 
         public void InsertPlan(Plan entity)
@@ -135,10 +127,7 @@ namespace BetterBuiltWorkouts.Data
 
         public ExerciseType GetExerciseType(string id)
         {
-            return ExerciseTypes.GetOne(new QueryOptions<ExerciseType>
-            {
-                Where = i => i.ExerciseTypeID == id
-            });
+            return ExerciseTypes.Get(id);
         }
 
         public IEnumerable<ExerciseType> ListAllExerciseTypes()
