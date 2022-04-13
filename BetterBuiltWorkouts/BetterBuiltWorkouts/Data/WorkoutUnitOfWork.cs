@@ -6,12 +6,6 @@ namespace BetterBuiltWorkouts.Data
 {
     public class WorkoutUnitOfWork : IWorkoutUnitOfWork
     {
-        //public WorkoutUnitOfWork(IRepository<Exercise> exerciseRepository, IRepository<Plan> planRepository, IRepository<ExerciseType> exerciseTypeRepository)
-        //{
-        //    this.Exercises = exerciseRepository;
-        //    this.Plans = planRepository;
-        //    this.ExerciseTypes = exerciseTypeRepository;
-        //}
 
         private ApplicationDbContext context { get; set; }
         public WorkoutUnitOfWork(ApplicationDbContext ctx) => context = ctx;
@@ -19,7 +13,6 @@ namespace BetterBuiltWorkouts.Data
 
 
         // Exercise section
-        //public IRepository<Exercise> Exercises { get; set; }
         private Repository<Exercise> exerciseData;
         public Repository<Exercise> Exercises
         {
@@ -70,7 +63,6 @@ namespace BetterBuiltWorkouts.Data
 
 
         // Plan section
-        //public IRepository<Plan> Plans { get; set; }
         private Repository<Plan> planData;
         public Repository<Plan> Plans
         {
@@ -111,7 +103,6 @@ namespace BetterBuiltWorkouts.Data
 
 
         // ExerciseType Section
-        //public IRepository<ExerciseType> ExerciseTypes { get; set; }
         private Repository<ExerciseType> exerciseTypeData;
         public Repository<ExerciseType> ExerciseTypes
         {
@@ -141,9 +132,7 @@ namespace BetterBuiltWorkouts.Data
         public void Save()
         {
             context.SaveChanges();
-            //Plans.SaveChanges();
-            //Exercises.SaveChanges();
-            //ExerciseTypes.SaveChanges();
+
         }
     }
 }

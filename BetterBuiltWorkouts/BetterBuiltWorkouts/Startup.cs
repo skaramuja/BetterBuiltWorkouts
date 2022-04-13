@@ -35,10 +35,6 @@ namespace BetterBuiltWorkouts
 
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IWorkoutUnitOfWork, WorkoutUnitOfWork>();
-            //services.AddScoped<ApplicationDbContext, ApplicationDbContext>();
-            //services.AddScoped<IRepository<Exercise>, Repository<Exercise>>();
-            //services.AddScoped<IRepository<Plan>, Repository<Plan>>();
-            //services.AddScoped<IRepository<ExerciseType>, Repository<ExerciseType>>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => {
                 // Change these options back to make more secure

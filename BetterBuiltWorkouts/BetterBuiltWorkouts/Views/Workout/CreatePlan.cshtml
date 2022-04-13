@@ -6,10 +6,10 @@
 <div class="row">
 
     <div class="col-sm-9">
-        <ul class="list-inline">
+        <div class="list-inline">
             @foreach (Plan userPlan in Model.Plans)
             {
-                <li>
+                <div class="item-link">
 
                     <a asp-action="PlanDetails" asp-route-id="@userPlan.PlanId">
                         <div style="{display: flex, flex-direction: column}">
@@ -18,8 +18,8 @@
                             @userPlan.Name
                         </div>
                     </a>
-                </li>
+                </div>
             }
-        </ul>
+        </div>
     </div>
 </div>
