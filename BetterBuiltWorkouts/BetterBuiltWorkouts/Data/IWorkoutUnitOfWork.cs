@@ -7,7 +7,7 @@ namespace BetterBuiltWorkouts.Data
     {
 
         // Exercise model
-        Repository<Exercise> Exercises { get; }
+        IRepository<Exercise> Exercises { get; }
         IEnumerable<Exercise> ListOfExercises(string activeType);
 
         Exercise GetExercise(int id);
@@ -17,7 +17,7 @@ namespace BetterBuiltWorkouts.Data
 
 
         // Plan model
-        Repository<Plan> Plans { get; }
+        IRepository<Plan> Plans { get; }
         IEnumerable<Plan> ListOfPlans();
         Plan GetPlan(int id);
         void InsertPlan(Plan entity);
@@ -26,7 +26,7 @@ namespace BetterBuiltWorkouts.Data
 
 
         // ExerciseType model
-        Repository<ExerciseType> ExerciseTypes { get; }
+        IRepository<ExerciseType> ExerciseTypes { get; }
         ExerciseType GetExerciseType(string id);
         IEnumerable<ExerciseType> ListAllExerciseTypes();
 

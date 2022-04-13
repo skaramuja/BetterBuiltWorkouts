@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BetterBuiltWorkoutsTest
 {
-    public class FakeExerciseTypeReposiotry //: IRepository<ExerciseType>
+    public class FakeExerciseTypeReposiotry : IRepository<ExerciseType>
     {
         public void Delete(ExerciseType entity)
         {
@@ -36,6 +36,41 @@ namespace BetterBuiltWorkoutsTest
         }
 
         public void Update(ExerciseType entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository<ExerciseType>.Delete(ExerciseType entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        ExerciseType IRepository<ExerciseType>.Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        ExerciseType IRepository<ExerciseType>.Get(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        ExerciseType IRepository<ExerciseType>.Get(QueryOptions<ExerciseType> options)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository<ExerciseType>.Insert(ExerciseType entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<ExerciseType> IRepository<ExerciseType>.List(QueryOptions<ExerciseType> options)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository<ExerciseType>.Update(ExerciseType entity)
         {
             throw new NotImplementedException();
         }
