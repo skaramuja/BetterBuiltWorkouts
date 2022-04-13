@@ -21,20 +21,20 @@ namespace BetterBuiltWorkouts.Controllers
 
         // Plan Section
         [Route("CreatePlan-Workout")]
-        public IActionResult CreatePlan()//tested
+        public IActionResult CreatePlan()
         {
             PlanListViewModel model = new PlanListViewModel{ Plans = data.ListOfPlans().ToList() };
             return View(model);
         }
 
-        public IActionResult PlanDetails(int id)//tested
+        public IActionResult PlanDetails(int id)
         {
             var model = data.GetPlan(id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult PlanDelete(Plan plan)//tested
+        public IActionResult PlanDelete(Plan plan)
         {
             data.DeletePlan(plan);
             data.Save();
@@ -58,7 +58,7 @@ namespace BetterBuiltWorkouts.Controllers
             {
                 if (plan.PlanId == 0)
                 {
-                    //plan.CreatedBy = User.Identity.Name;
+                    plan.CreatedBy = User.Identity.Name;
                     data.Plans.Insert(plan);
                 }
                 else
