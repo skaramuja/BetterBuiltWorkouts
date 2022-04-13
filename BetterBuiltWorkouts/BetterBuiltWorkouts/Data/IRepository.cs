@@ -6,9 +6,12 @@ namespace BetterBuiltWorkouts.Data
     {
         IEnumerable<T> List(QueryOptions<T> options);
 
-        T GetOne(QueryOptions<T> options);
+        T Get(int id);
+
+        T Get(string id);
+        T Get(QueryOptions<T> options);
         void Insert(T entity);
-        void SaveChanges();
+        //void SaveChanges();
         void Update(T entity);
         void Delete(T entity);
     }

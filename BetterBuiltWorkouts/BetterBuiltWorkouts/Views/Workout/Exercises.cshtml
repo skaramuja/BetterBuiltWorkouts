@@ -18,15 +18,15 @@
         </div>
     </div>
     <div class="col-sm-9">
-        <ul class="list-inline">
+        <div class="list-inline">
             @foreach (Exercise exercise in Model.Exercises)
             {
                 @*<li class="list-inline-item">*@
-                <li>
+                <div class="item-link">
 
                 <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
                     @*<img src="~/images/@exercise.Image"*@
-                    <div style="{display: flex, flex-direction: column}">
+                    <div>
 
                         <img src="~/images/default-img.webp"
                              width=60
@@ -37,8 +37,8 @@
                         @exercise.Name
                     </div>
                 </a>
-                </li>
+                </div>
             }
-        </ul>
+        </div>
     </div>
 </div>

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 namespace BetterBuiltWorkouts.Data
 {
-    interface IWorkoutUnitOfWork
+    public interface IWorkoutUnitOfWork
     {
 
         // Exercise model
+        Repository<Exercise> Exercises { get; }
         IEnumerable<Exercise> ListOfExercises(string activeType);
 
         Exercise GetExercise(int id);
@@ -16,6 +17,7 @@ namespace BetterBuiltWorkouts.Data
 
 
         // Plan model
+        Repository<Plan> Plans { get; }
         IEnumerable<Plan> ListOfPlans();
         Plan GetPlan(int id);
         void InsertPlan(Plan entity);
@@ -24,6 +26,7 @@ namespace BetterBuiltWorkouts.Data
 
 
         // ExerciseType model
+        Repository<ExerciseType> ExerciseTypes { get; }
         ExerciseType GetExerciseType(string id);
         IEnumerable<ExerciseType> ListAllExerciseTypes();
 

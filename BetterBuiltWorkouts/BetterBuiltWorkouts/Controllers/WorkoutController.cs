@@ -7,12 +7,8 @@ namespace BetterBuiltWorkouts.Controllers
 {
     public class WorkoutController : Controller
     {
-        private WorkoutUnitOfWork data { get; set; }
-
-        public WorkoutController(IRepository<Exercise> exerciseRepository, IRepository<Plan> planRepository, IRepository<ExerciseType> exerciseTypeRepository)
-        {
-            data = new WorkoutUnitOfWork(exerciseRepository, planRepository, exerciseTypeRepository);
-        }
+        private IWorkoutUnitOfWork data { get; set; }
+        public WorkoutController(IWorkoutUnitOfWork unit) => data = unit;
 
         // Plan Section
         [Route("CreatePlan-Workout")]
@@ -53,7 +49,7 @@ namespace BetterBuiltWorkouts.Controllers
             {
                 if (plan.PlanId == 0)
                 {
-                    //plan.CreatedBy = User.Identity.Name;
+                    plan.CreatedBy = User.Identity.Name;
                     data.Plans.Insert(plan);
                 }
                 else

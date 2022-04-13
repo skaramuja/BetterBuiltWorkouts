@@ -15,10 +15,10 @@ namespace BetterBuiltWorkouts.Data
             dbset = context.Set<T>();
         }
 
-        public void SaveChanges()
-        {
-            context.SaveChanges();
-        }
+        //public void SaveChanges()
+        //{
+        //    context.SaveChanges();
+        //}
 
         public virtual IEnumerable<T> List(QueryOptions<T> options)
         {
@@ -38,7 +38,11 @@ namespace BetterBuiltWorkouts.Data
             return query.ToList();
         }
 
-        public virtual T GetOne(QueryOptions<T> options)
+        public virtual T Get(int id) => dbset.Find(id);
+
+        public virtual T Get(string id) => dbset.Find(id);
+
+        public virtual T Get(QueryOptions<T> options)
         {
             IQueryable<T> query = dbset;
             foreach (string include in options.GetIncludes())
@@ -49,8 +53,11 @@ namespace BetterBuiltWorkouts.Data
             {
                 query = query.Where(options.Where);
             }
-    
-            return query.FirstOrDefault<T>();
+            if (options.HasOrderBy)
+            {
+                query = query.OrderBy(options.OrderBy);
+            }
+            return query.FirstOrDefault();
         }
 
         public virtual void Insert(T entity) => dbset.Add(entity);

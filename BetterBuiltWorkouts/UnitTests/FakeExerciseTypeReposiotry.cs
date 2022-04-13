@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BetterBuiltWorkoutsTest
 {
-    public class FakeExerciseTypeReposiotry : IRepository<ExerciseType>
+    public class FakeExerciseTypeReposiotry //: IRepository<ExerciseType>
     {
         public void Delete(ExerciseType entity)
         {

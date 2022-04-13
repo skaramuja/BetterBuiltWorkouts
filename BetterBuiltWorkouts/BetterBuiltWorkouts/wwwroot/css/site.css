@@ -45,11 +45,26 @@ a {
     text-decoration: none;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
+.list-inline {
+    display: flex;
+    flex-wrap:wrap;
 }
+
+.item-link {
+    background-color: rgba(128, 128, 128, 0.8);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+    color: white;
+}
+    .item-link a div {
+        color: white;
+    }
+    /* Sticky footer styles
+-------------------------------------------------- */
+    html {
+        font-size: 14px;
+    }
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -85,7 +100,7 @@ body {
     background-image: url("../images/home-bkg.webp");
     background-repeat: no-repeat;
     background-position-x: center;
-    max-height: 91vh;
+    max-height: 100vh;
 }
 .footer {
   position: absolute;
