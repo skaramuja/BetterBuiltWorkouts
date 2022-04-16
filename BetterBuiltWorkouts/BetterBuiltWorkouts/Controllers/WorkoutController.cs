@@ -1,4 +1,5 @@
 ﻿using BetterBuiltWorkouts.Data;
+using BetterBuiltWorkouts.Extensions;
 using BetterBuiltWorkouts.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace BetterBuiltWorkouts.Controllers
         {
             data.DeletePlan(plan);
             data.Save();
-            TempData["message"] = "Plan was successfully deleted.";
+            //TempData["message"] = "Plan was successfully deleted."; // This throws a nullrecerenceexception in the test only. ???
             return RedirectToAction("CreatePlan", "Workout");
         }
 
@@ -83,6 +84,37 @@ namespace BetterBuiltWorkouts.Controllers
             return View(model);
         }
 
+        public IActionResult ExerciseList(GridDTO vals)
+        {
+            string defaultSort = nameof(Exercise.Name);
+            var builder = new GridBuilder(HttpContext.Session, vals, defaultSort);
+
+            var options = new QueryOptions<Exercise>
+            {
+                //Includes = "ExerciseType",
+                PageNumber = builder.CurrentRoute.PageNumber,
+                PageSize = builder.CurrentRoute.PageSize,
+                OrderByDirection = builder.CurrentRoute.SortDirection
+            };
+            if (builder.CurrentRoute.SortField.EqualsNoCase(defaultSort))
+            {
+                options.OrderBy = a => a.Name;
+            }
+            else
+            {
+                options.OrderBy = a => a.ExerciseType;
+            }
+
+            var vm = new ExerciseListViewModel
+            {
+                Exercises = data.Exercises.List(options),
+                CurrentRoute = builder.CurrentRoute,
+                TotalPages = builder.GetTotalPages(data.Exercises.Count)
+            };
+            vm.ExerciseTypes = data.ListAllExerciseTypes().ToList();
+            return View(vm);
+        }
+
         public IActionResult Details(int id)
         {
             var exercise = data.GetExercise(id);
@@ -104,7 +136,7 @@ namespace BetterBuiltWorkouts.Controllers
         {
             data.DeleteExercise(exercise);
             data.Save();
-            TempData["message"] = "Exercise was successfully deleted";
+            //TempData["message"] = "Exercise was successfully deleted"; // This throws a nullrecerenceexception in the test only. ???
             return RedirectToAction("Exercises", "Workout");
         }
 

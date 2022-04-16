@@ -11,7 +11,7 @@ namespace BetterBuiltWorkouts.Data
         T Get(string id);
         T Get(QueryOptions<T> options);
         void Insert(T entity);
-        //void SaveChanges();
+
         void Update(T entity);
         void Delete(T entity);
     }

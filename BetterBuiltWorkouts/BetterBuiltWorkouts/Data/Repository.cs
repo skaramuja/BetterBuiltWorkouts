@@ -15,21 +15,12 @@ namespace BetterBuiltWorkouts.Data
             dbset = context.Set<T>();
         }
 
+        private int? count;
+        public int Count => count ?? dbset.Count();
+
         public virtual IEnumerable<T> List(QueryOptions<T> options)
         {
-            IQueryable<T> query = dbset;
-            foreach(string include in options.GetIncludes())
-            {
-                query = query.Include(include);
-            }
-            if (options.HasWhere)
-            {
-                query = query.Where(options.Where);
-            }
-            if (options.HasOrderBy)
-            {
-                query = query.OrderBy(options.OrderBy);
-            }
+            IQueryable<T> query = BuildQuery(options);
             return query.ToList();
         }
 
@@ -39,19 +30,7 @@ namespace BetterBuiltWorkouts.Data
 
         public virtual T Get(QueryOptions<T> options)
         {
-            IQueryable<T> query = dbset;
-            foreach (string include in options.GetIncludes())
-            {
-                query = query.Include(include);
-            }
-            if (options.HasWhere)
-            {
-                query = query.Where(options.Where);
-            }
-            if (options.HasOrderBy)
-            {
-                query = query.OrderBy(options.OrderBy);
-            }
+            IQueryable<T> query = BuildQuery(options);
             return query.FirstOrDefault();
         }
 
@@ -60,5 +39,38 @@ namespace BetterBuiltWorkouts.Data
         public virtual void Update(T entity) => dbset.Update(entity);
 
         public virtual void Delete(T entity) => dbset.Remove(entity);
+
+        private IQueryable<T> BuildQuery(QueryOptions<T> options)
+        {
+            IQueryable<T> query = dbset;
+            foreach(string include in options.GetIncludes())
+            {
+                query = query.Include(include);
+            }
+            if(options.HasWhere)
+            {
+                foreach (var clause in options.WhereClauses)
+                {
+                    query = query.Where(clause);
+                }
+                count = query.Count();
+            }
+            if (options.HasOrderBy)
+            {
+                if (options.OrderByDirection == "asc")
+                {
+                    query = query.OrderBy(options.OrderBy);
+                }
+                else
+                {
+                    query = query.OrderByDescending(options.OrderBy);
+                }
+            }
+            if (options.HasPaging)
+            {
+                query = query.PageBy(options.PageNumber, options.PageSize);
+            }
+            return query;
+        }
     }
 }

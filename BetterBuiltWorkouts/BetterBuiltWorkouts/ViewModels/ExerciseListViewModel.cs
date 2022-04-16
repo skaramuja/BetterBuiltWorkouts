@@ -1,11 +1,12 @@
-﻿using System;
+﻿using BetterBuiltWorkouts.Data;
+using System;
 using System.Collections.Generic;
 
 namespace BetterBuiltWorkouts.Models
 {
     public class ExerciseListViewModel : ExerciseViewModel
     {
-        public List<Exercise> Exercises { get; set; }
+        public IEnumerable<Exercise> Exercises { get; set; }
 
         private List<ExerciseType> exerciseTypes;
         public List<ExerciseType> ExerciseTypes
@@ -18,6 +19,9 @@ namespace BetterBuiltWorkouts.Models
                     new ExerciseType { ExerciseTypeID = "all", Name = "All" });
             }
         }
+        public RouteDictonary CurrentRoute { get; set; }
+        public int TotalPages { get; set; }
+
         public string CheckActiveExerciseType(string g) =>
             g.ToLower() == ActiveExerciseType.ToLower() ? "active" : "";
     }

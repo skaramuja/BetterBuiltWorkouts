@@ -1,0 +1,44 @@
+﻿@model ExerciseListViewModel
+@{
+    ViewData["Title"] = "Build Your Exercise";
+}
+
+<h1><a asp-action="CreateExercise" class="btn btn-success">Add a new Exercise</a></h1>
+<div class="row">
+    <div class="col-sm-3">
+        <h3 class="mt-3">ExerciseType</h3>
+        <div class="list-group">
+            @foreach (ExerciseType exerciseType in Model.ExerciseTypes)
+            {
+                <a asp-action="Exercises"
+                   asp-route-activeExerciseType="@exerciseType.ExerciseTypeID"
+                   class="list-group-item 
+                       @Model.CheckActiveExerciseType(exerciseType.ExerciseTypeID)">@exerciseType.Name</a>
+            }
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="list-inline">
+            @foreach (Exercise exercise in Model.Exercises)
+            {
+                @*<li class="list-inline-item">*@
+                <div class="item-link">
+
+                <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
+                    @*<img src="~/images/@exercise.Image"*@
+                    <div>
+
+                        <img src="~/images/default-img.webp"
+                             width=60
+                             height=40
+                             alt="@exercise.Name"
+                             title="@exercise.Name" />
+
+                        @exercise.Name
+                    </div>
+                </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

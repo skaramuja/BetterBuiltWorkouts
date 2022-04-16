@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BetterBuiltWorkouts"
+    "\\BetterBuiltWorkouts",
+    "\\BetterBuiltWorkouts\\UnitTests"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts.sln",
+  "SelectedNode": "\\BetterBuiltWorkouts\\UnitTests\\WorkoutControllerTests.cs",
   "PreviewInSolutionExplorer": false
 }
