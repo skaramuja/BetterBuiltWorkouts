@@ -29,6 +29,7 @@ namespace BetterBuiltWorkouts.Controllers
         {
             data.DeletePlan(plan);
             data.Save();
+            TempData["message"] = "Plan was successfully deleted.";
             return RedirectToAction("CreatePlan", "Workout");
         }
 
@@ -51,10 +52,12 @@ namespace BetterBuiltWorkouts.Controllers
                 {
                     plan.CreatedBy = User.Identity.Name;
                     data.Plans.Insert(plan);
+                    TempData["message"] = $"{plan.Name} was successfully added.";
                 }
                 else
                 {
                     data.Plans.Update(plan);
+                    TempData["message"] = $"{plan.Name} was successfully updated.";
                 }
                 data.Save();
                 return RedirectToAction("CreatePlan", "Workout");
@@ -77,7 +80,6 @@ namespace BetterBuiltWorkouts.Controllers
             var exerciseTypes = data.ListOfExercises(model.ActiveExerciseType);
             model.ExerciseTypes = data.ListAllExerciseTypes().ToList();
             model.Exercises = exerciseTypes.ToList();
-
             return View(model);
         }
 
@@ -102,6 +104,7 @@ namespace BetterBuiltWorkouts.Controllers
         {
             data.DeleteExercise(exercise);
             data.Save();
+            TempData["message"] = "Exercise was successfully deleted";
             return RedirectToAction("Exercises", "Workout");
         }
 
@@ -124,10 +127,12 @@ namespace BetterBuiltWorkouts.Controllers
                 {
                     exercise.CreatedBy = User.Identity.Name;
                     data.Exercises.Insert(exercise);
+                    TempData["message"] = $"{exercise.Name} was successfully added.";
                 }
                 else
                 {
                     data.Exercises.Update(exercise);
+                    TempData["message"] = $"{exercise.Name} was successfully Updated.";
                 } 
                 data.Save();
                 return RedirectToAction("Exercises", "Workout");
