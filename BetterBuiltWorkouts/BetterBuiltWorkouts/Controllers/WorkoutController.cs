@@ -30,7 +30,7 @@ namespace BetterBuiltWorkouts.Controllers
         {
             data.DeletePlan(plan);
             data.Save();
-            //TempData["message"] = "Plan was successfully deleted."; // This throws a nullrecerenceexception in the test only. ???
+            //TempData["message"] = "Plan was successfully deleted."; // This throws a nullreferenceexception in the test only. ???
             return RedirectToAction("CreatePlan", "Workout");
         }
 
@@ -75,34 +75,29 @@ namespace BetterBuiltWorkouts.Controllers
 
 
         // Exercise section
-        [Route("Exercises-Workout")]
-        public IActionResult Exercises(ExerciseListViewModel model)
-        {
-            var exerciseTypes = data.ListOfExercises(model.ActiveExerciseType);
-            model.ExerciseTypes = data.ListAllExerciseTypes().ToList();
-            model.Exercises = exerciseTypes.ToList();
-            return View(model);
-        }
+        //[Route("Exercises-Workout")]
+        //public IActionResult Exercises(ExerciseListViewModel model)
+        //{
+        //    var exerciseTypes = data.ListOfExercises(model.ActiveExerciseType);
+        //    model.ExerciseTypes = data.ListAllExerciseTypes().ToList();
+        //    model.Exercises = exerciseTypes.ToList();
+        //    return View(model);
+        //}
 
         public IActionResult ExerciseList(GridDTO vals)
         {
             string defaultSort = nameof(Exercise.Name);
             var builder = new GridBuilder(HttpContext.Session, vals, defaultSort);
-
             var options = new QueryOptions<Exercise>
             {
-  
                 PageNumber = builder.CurrentRoute.PageNumber,
                 PageSize = builder.CurrentRoute.PageSize
-                //OrderByDirection = builder.CurrentRoute.SortDirection
             };
 
             if (vals.FilterBy != "all")
             {
                 options.Where = et => et.ExerciseTypeID == vals.FilterBy;
-
             }
-
             var vm = new ExerciseListViewModel
             {
                 Exercises = data.Exercises.List(options),
@@ -134,8 +129,8 @@ namespace BetterBuiltWorkouts.Controllers
         {
             data.DeleteExercise(exercise);
             data.Save();
-            //TempData["message"] = "Exercise was successfully deleted"; // This throws a nullrecerenceexception in the test only. ???
-            return RedirectToAction("Exercises", "Workout");
+            //TempData["message"] = "Exercise was successfully deleted"; // This throws a nullreferenceexception in the test only. ???
+            return RedirectToAction("ExerciseList", "Workout");
         }
 
         [HttpGet]
@@ -165,7 +160,7 @@ namespace BetterBuiltWorkouts.Controllers
                     TempData["message"] = $"{exercise.Name} was successfully Updated.";
                 } 
                 data.Save();
-                return RedirectToAction("Exercises", "Workout");
+                return RedirectToAction("ExerciseList", "Workout");
             }
             else
             {
