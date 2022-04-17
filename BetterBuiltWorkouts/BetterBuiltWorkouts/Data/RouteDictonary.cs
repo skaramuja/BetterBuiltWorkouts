@@ -22,33 +22,39 @@ namespace BetterBuiltWorkouts.Data
             set => this[nameof(GridDTO.PageSize)] = value.ToString();
         }
 
-        public string SortField
+        public string FilterBy
         {
-            get => Get(nameof(GridDTO.SortField));
-            set => this[nameof(GridDTO.SortField)] = value;
+            get => Get(nameof(GridDTO.FilterBy));
+            set => this[nameof(GridDTO.FilterBy)] = value;
         }
 
-        public string SortDirection
-        {
-            get => Get(nameof(GridDTO.SortDirection));
-            set => this[nameof(GridDTO.SortDirection)] = value;
-        }
+        //public string SortField
+        //{
+        //    get => Get(nameof(GridDTO.SortField));
+        //    set => this[nameof(GridDTO.SortField)] = value;
+        //}
+
+        //public string SortDirection
+        //{
+        //    get => Get(nameof(GridDTO.SortDirection));
+        //    set => this[nameof(GridDTO.SortDirection)] = value;
+        //}
 
         private string Get(string key) => Keys.Contains(key) ? this[key] : null;
 
-        public void SetSortAndDirection(string fieldName, RouteDictonary current)
-        {
-            this[nameof(GridDTO.SortField)] = fieldName;
-            if (current.SortField.EqualsNoCase(fieldName) &&
-                current.SortDirection == "asc")
-            {
-                this[nameof(GridDTO.SortDirection)] = "desc";
-            }
-            else
-            {
-                this[nameof(GridDTO.SortDirection)] = "asc";
-            }
-        }
+        //public void SetSortAndDirection(string fieldName, RouteDictonary current)
+        //{
+        //    this[nameof(GridDTO.SortField)] = fieldName;
+        //    if (current.SortField.EqualsNoCase(fieldName) &&
+        //        current.SortDirection == "asc")
+        //    {
+        //        this[nameof(GridDTO.SortDirection)] = "desc";
+        //    }
+        //    else
+        //    {
+        //        this[nameof(GridDTO.SortDirection)] = "asc";
+        //    }
+        //}
 
         public RouteDictonary Clone()
         {

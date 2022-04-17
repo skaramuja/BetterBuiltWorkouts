@@ -27,8 +27,9 @@ namespace BetterBuiltWorkouts.Data
             routes = new RouteDictonary();
             routes.PageNumber = values.PageNumber;
             routes.PageSize = values.PageSize;
-            routes.SortField = values.SortField;
-            routes.SortDirection = values.SortDirection;
+            routes.FilterBy = values.FilterBy;
+            //routes.SortField = values.SortField;
+            //routes.SortDirection = values.SortDirection;
 
             SaveRouteSegments();
         }

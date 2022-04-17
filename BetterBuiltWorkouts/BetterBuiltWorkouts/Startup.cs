@@ -82,7 +82,9 @@ namespace BetterBuiltWorkouts
                     pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "",
-                    pattern: "{controller=Workout}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}");
+                    //pattern: "{controller=Workout}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}");
+                    pattern: "{controller=Workout}/{action}/page/{pagenumber}/size/{pagesize}/filterby/{filterby}");
+
                 //This will be implemented later after we create some workouts
                 endpoints.MapControllerRoute(
                     name: "workouts",

@@ -10,10 +10,8 @@
         <div class="list-group">
             @foreach (ExerciseType exerciseType in Model.ExerciseTypes)
             {
-                <a asp-action="Exercises"
-                   asp-route-activeExerciseType="@exerciseType.ExerciseTypeID"
-                   class="list-group-item 
-                       @Model.CheckActiveExerciseType(exerciseType.ExerciseTypeID)">@exerciseType.Name</a>
+
+                <my-filter-link number="@Model.CurrentRoute.PageNumber" current="@Model.CurrentRoute" filter-by="@exerciseType.ExerciseTypeID">@exerciseType.Name</my-filter-link>
             }
         </div>
     </div>
@@ -22,7 +20,7 @@
             @foreach (Exercise exercise in Model.Exercises)
             {
                 @*<li class="list-inline-item">*@
-                <div class="item-link">
+            <div class="item-link">
 
                 <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
                     @*<img src="~/images/@exercise.Image"*@
@@ -37,8 +35,17 @@
                         @exercise.Name
                     </div>
                 </a>
-                </div>
+            </div>
             }
         </div>
+    </div>
+    <div class="col-sm-9 offset-sm-3">
+
+    @{ 
+        for(int i = 1; i <= Model.TotalPages; i++)
+            {
+                <my-paging-link number="@i" current="@Model.CurrentRoute" />
+            }
+    }
     </div>
 </div>

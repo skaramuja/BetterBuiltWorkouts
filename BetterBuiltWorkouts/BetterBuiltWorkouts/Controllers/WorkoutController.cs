@@ -91,18 +91,16 @@ namespace BetterBuiltWorkouts.Controllers
 
             var options = new QueryOptions<Exercise>
             {
-                //Includes = "ExerciseType",
+  
                 PageNumber = builder.CurrentRoute.PageNumber,
-                PageSize = builder.CurrentRoute.PageSize,
-                OrderByDirection = builder.CurrentRoute.SortDirection
+                PageSize = builder.CurrentRoute.PageSize
+                //OrderByDirection = builder.CurrentRoute.SortDirection
             };
-            if (builder.CurrentRoute.SortField.EqualsNoCase(defaultSort))
+
+            if (vals.FilterBy != "all")
             {
-                options.OrderBy = a => a.Name;
-            }
-            else
-            {
-                options.OrderBy = a => a.ExerciseType;
+                options.Where = et => et.ExerciseTypeID == vals.FilterBy;
+
             }
 
             var vm = new ExerciseListViewModel

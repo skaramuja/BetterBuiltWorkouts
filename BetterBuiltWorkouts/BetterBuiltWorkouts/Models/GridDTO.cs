@@ -9,7 +9,8 @@ namespace BetterBuiltWorkouts.Models
     {
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 20;
-        public string SortField { get; set; }
-        public string SortDirection { get; set; } = "asc";
+
+        public string FilterBy { get; set; } = "all";
+
     }
 }
