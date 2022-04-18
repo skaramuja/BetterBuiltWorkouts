@@ -1,0 +1,24 @@
+﻿@model ExerciseListViewModel
+
+    <div class="list-inline">
+        @foreach (Exercise exercise in Model.Exercises)
+        {
+            @*<li class="list-inline-item">*@
+            <div class="item-link">
+
+                <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
+                    @*<img src="~/images/@exercise.Image"*@
+                    <div class="text-primary">
+
+                        <img src="~/images/default-img.webp"
+                             width=60
+                             height=40
+                             alt="@exercise.Name"
+                             title="@exercise.Name" />
+
+                        @exercise.Name
+                    </div>
+                </a>
+            </div>
+        }
+    </div>

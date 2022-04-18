@@ -3,9 +3,11 @@
     "",
     "\\BetterBuiltWorkouts",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Components",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Controllers",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Models",
     "\\BetterBuiltWorkouts\\UnitTests"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Models\\GridDTO.cs",
+  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Controllers\\WorkoutController.cs",
   "PreviewInSolutionExplorer": false
 }
