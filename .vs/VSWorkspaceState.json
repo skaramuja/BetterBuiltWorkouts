@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\BetterBuiltWorkouts",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Models",
     "\\BetterBuiltWorkouts\\UnitTests"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts\\UnitTests\\WorkoutControllerTests.cs",
+  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Models\\GridDTO.cs",
   "PreviewInSolutionExplorer": false
 }

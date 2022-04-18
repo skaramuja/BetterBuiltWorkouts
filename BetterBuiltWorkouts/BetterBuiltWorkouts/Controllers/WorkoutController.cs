@@ -73,30 +73,22 @@ namespace BetterBuiltWorkouts.Controllers
             }
         }
 
-
         // Exercise section
-        //[Route("Exercises-Workout")]
-        //public IActionResult Exercises(ExerciseListViewModel model)
-        //{
-        //    var exerciseTypes = data.ListOfExercises(model.ActiveExerciseType);
-        //    model.ExerciseTypes = data.ListAllExerciseTypes().ToList();
-        //    model.Exercises = exerciseTypes.ToList();
-        //    return View(model);
-        //}
-
         public IActionResult ExerciseList(GridDTO vals)
         {
             string defaultSort = nameof(Exercise.Name);
-            var builder = new GridBuilder(HttpContext.Session, vals, defaultSort);
+            var builder = new GridBuilder(HttpContext.Session, vals, defaultSort); 
             var options = new QueryOptions<Exercise>
             {
                 PageNumber = builder.CurrentRoute.PageNumber,
                 PageSize = builder.CurrentRoute.PageSize
-            };
+              };
+            options.Where = e => e.CreatedBy != User.Identity.Name;
 
             if (vals.FilterBy != "all")
             {
                 options.Where = et => et.ExerciseTypeID == vals.FilterBy;
+                
             }
             var vm = new ExerciseListViewModel
             {
@@ -122,6 +114,16 @@ namespace BetterBuiltWorkouts.Controllers
             ViewBag.Action = "Create";
             ViewBag.Types = data.ListAllExerciseTypes().ToList();
             return View("Edit", new Exercise());
+        }
+
+        [HttpGet]
+        public ViewResult CopyExercise(int id)
+        {
+            ViewBag.Action = "Copy";
+            ViewBag.Types = data.ListAllExerciseTypes().ToList();
+            Exercise exercise = data.GetExercise(id);
+            exercise.ExerciseId = 0;
+            return View("Edit", exercise);
         }
 
         [HttpPost]
