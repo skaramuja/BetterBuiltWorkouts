@@ -1,7 +1,6 @@
 ﻿@model ExerciseListViewModel
 @{
     ViewData["Title"] = "Build Your Exercise";
-
 }
 
 <h1><a asp-action="CreateExercise" class="btn btn-success">Add a new Exercise</a></h1>
@@ -11,19 +10,22 @@
         <div class="list-group">
             @foreach (ExerciseType exerciseType in Model.ExerciseTypes)
             {
-                <a asp-action="Exercises"
-                   asp-route-activeExerciseType="@exerciseType.ExerciseTypeID"
-                   class="list-group-item 
-                       @Model.CheckActiveExerciseType(exerciseType.ExerciseTypeID)">@exerciseType.Name</a>
+
+                <my-filter-link number="@Model.CurrentRoute.PageNumber" current="@Model.CurrentRoute" filter-by="@exerciseType.ExerciseTypeID">@exerciseType.Name</my-filter-link>
             }
         </div>
     </div>
     <div class="col-sm-9">
+        <div class="border border-primary">
+
+        <h3 class="text-primary">User Created Exercises:</h3>
+        <vc:user-exercises user-name="@User.Identity.Name" exercise-type-id="@Model.CurrentRoute.FilterBy"></vc:user-exercises>
+        </div>
         <div class="list-inline">
             @foreach (Exercise exercise in Model.Exercises)
             {
                 @*<li class="list-inline-item">*@
-                <div class="item-link">
+            <div class="item-link">
 
                 <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
                     @*<img src="~/images/@exercise.Image"*@
@@ -38,9 +40,17 @@
                         @exercise.Name
                     </div>
                 </a>
-                </div>
+            </div>
             }
         </div>
     </div>
+    <div class="col-sm-9 offset-sm-3">
 
+    @{ 
+        for(int i = 1; i <= Model.TotalPages; i++)
+            {
+                <my-paging-link number="@i" current="@Model.CurrentRoute" />
+            }
+    }
+    </div>
 </div>

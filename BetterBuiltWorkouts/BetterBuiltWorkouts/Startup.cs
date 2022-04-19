@@ -47,7 +47,8 @@ namespace BetterBuiltWorkouts
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddControllersWithViews();
         }
 
@@ -67,18 +68,23 @@ namespace BetterBuiltWorkouts
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapAreaControllerRoute(
                     name: "admin",
                     areaName: "Admin",
                     pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "",
+                    //pattern: "{controller=Workout}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}");
+                    pattern: "{controller=Workout}/{action}/page/{pagenumber}/size/{pagesize}/filterby/{filterby}");
+
                 //This will be implemented later after we create some workouts
                 endpoints.MapControllerRoute(
                     name: "workouts",
