@@ -3,11 +3,12 @@
     "",
     "\\BetterBuiltWorkouts",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Components",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Controllers",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Models",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views",
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Workout",
     "\\BetterBuiltWorkouts\\UnitTests"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Controllers\\WorkoutController.cs",
+  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Workout\\ExerciseList.cshtml",
   "PreviewInSolutionExplorer": false
 }

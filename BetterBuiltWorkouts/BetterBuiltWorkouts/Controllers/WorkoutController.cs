@@ -158,6 +158,7 @@ namespace BetterBuiltWorkouts.Controllers
                 }
                 else
                 {
+                    exercise.CreatedBy = User.Identity.Name;
                     data.Exercises.Update(exercise);
                     TempData["message"] = $"{exercise.Name} was successfully Updated.";
                 } 
