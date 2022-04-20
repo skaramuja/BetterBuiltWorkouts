@@ -4,11 +4,10 @@
     "\\BetterBuiltWorkouts",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Controllers",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Models",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Workout",
     "\\BetterBuiltWorkouts\\UnitTests"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Workout\\ExerciseList.cshtml",
+  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts.sln",
   "PreviewInSolutionExplorer": false
 }

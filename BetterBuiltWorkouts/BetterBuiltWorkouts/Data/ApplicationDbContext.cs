@@ -15,10 +15,9 @@ namespace BetterBuiltWorkouts.Data
         {
         }
 
+        public DbSet<Plan> Plans { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<ExerciseType> ExerciseTypes { get; set; }
-        public DbSet<Plan> Plans { get; set; }
-        public DbSet<ExercisePlan> ExercisePlans { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -83,7 +82,7 @@ namespace BetterBuiltWorkouts.Data
             };
 
             PasswordHasher<ApplicationUser> u1 = new PasswordHasher<ApplicationUser>();
-            user1.PasswordHash = u1.HashPassword(user1, "crawford1!Drew");
+            user1.PasswordHash = u1.HashPassword(user1, "Drew");
 
             PasswordHasher<ApplicationUser> u2 = new PasswordHasher<ApplicationUser>();
             user2.PasswordHash = u2.HashPassword(user2, "hale1!Cody");
@@ -110,47 +109,19 @@ namespace BetterBuiltWorkouts.Data
                 {
                     RoleId = adminRoleId,
                     UserId = user3Id
-                }
-                );
-            // ExercisePlan: set composit primary key
-            builder.Entity<ExercisePlan>()
-                .HasKey(ep => new { ep.ExerciseId, ep.PlanId });
-
-            // ExercisePlan: set foreign key
-            builder.Entity<ExercisePlan>()
-                .HasOne(e => e.Exercise)
-                .WithMany(ep => ep.ExercisePlans)
-                .HasForeignKey(ei => ei.ExerciseId);
-            builder.Entity<ExercisePlan>()
-                .HasOne(p => p.Plan)
-                .WithMany(ep => ep.ExercisePlans)
-                .HasForeignKey(pi => pi.PlanId);
-
-            builder.Entity<ExercisePlan>().HasData(
-                new ExercisePlan { PlanId = 1, ExerciseId = 1 },
-                new ExercisePlan { PlanId = 1, ExerciseId = 2 },
-                new ExercisePlan { PlanId = 1, ExerciseId = 3 },
-                new ExercisePlan { PlanId = 2, ExerciseId = 4 },
-                new ExercisePlan { PlanId = 2, ExerciseId = 5 },
-                new ExercisePlan { PlanId = 2, ExerciseId = 6 },
-                new ExercisePlan { PlanId = 3, ExerciseId = 7 },
-                new ExercisePlan { PlanId = 3, ExerciseId = 8 },
-                new ExercisePlan { PlanId = 3, ExerciseId = 9 }
-                );
+                });
 
             builder.Entity<Plan>().HasData(
-                new Plan { PlanId = 1, Name = "Default Plan 1", CreatedBy = "Better Built Systems"},
-                new Plan { PlanId = 2, Name = "Default Plan 2", CreatedBy = "Better Built Systems" },
-                new Plan { PlanId = 3, Name = "Default Plan 3", CreatedBy = "Better Built Systems" }
+                new Plan { PlanId = 1, Name = "Example Plan 1", CreatedBy = "Better Built Systems" },
+                new Plan { PlanId = 2, Name = "Example Plan 2", CreatedBy = "Better Built Systems" },
+                new Plan { PlanId = 3, Name = "Example Plan 3", CreatedBy = "Better Built Systems" }
                 );
 
-            builder.Entity<ExerciseType>().HasData(
-              new ExerciseType { ExerciseTypeID = "aerobic", Name = "Aerobic" },
-              new ExerciseType { ExerciseTypeID = "strength_training", Name = "Strength Training" },
-              new ExerciseType { ExerciseTypeID = "streching", Name = "Stretching" },
-              new ExerciseType { ExerciseTypeID = "balance", Name = "Balance" },
-              new ExerciseType { ExerciseTypeID = "other", Name = "Other" }
-          );
+            builder.Entity<Exercise>()
+                .HasOne<Plan>(p => p.Plan)
+                .WithMany(e => e.Exercises)
+                .HasForeignKey(p => p.PlanId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Exercise>().HasData(
                 new
@@ -158,7 +129,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 1,
                     Name = "Back Extension",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "BackExtension.png"
                 },
                 new
@@ -166,7 +137,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 2,
                     Name = "Basketball",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Basketball.png"
                 },
                 new
@@ -174,7 +145,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 3,
                     Name = "Bench Press",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "BenchPress.png"
                 },
                 new
@@ -182,7 +153,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 4,
                     Name = "Bicep Curl",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "BicepCurl.png"
                 },
                 new
@@ -190,7 +161,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 5,
                     Name = "Biking",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Biking.png"
                 },
                 new
@@ -198,7 +169,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 6,
                     Name = "Brisk Walking",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "BriskWalking.png"
                 },
                 new
@@ -206,7 +177,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 7,
                     Name = "Cardio Class",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "CardioClass.png"
                 },
                 new
@@ -214,7 +185,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 8,
                     Name = "Cardio Machine",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "CardioMachine.png"
                 },
                 new
@@ -222,7 +193,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 9,
                     Name = "Chest Fly",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "ChestFly.png"
                 },
                 new
@@ -230,7 +201,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 10,
                     Name = "Crunches",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Crunches.png"
                 },
                 new
@@ -238,7 +209,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 11,
                     Name = "Dancing",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Dancing.png"
                 },
                 new
@@ -246,7 +217,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 12,
                     Name = "Deadlift",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Deadlift.png"
                 },
                 new
@@ -254,7 +225,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 13,
                     Name = "Gardening and Weeding",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "GardeningAndWeeding.png"
                 },
                 new
@@ -262,7 +233,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 14,
                     Name = "Golf",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Golf.png"
                 },
                 new
@@ -270,7 +241,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 15,
                     Name = "High-Intensity Interval Training",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "HighIntensityIntervalTraining.png"
                 },
                 new
@@ -278,7 +249,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 16,
                     Name = "Hiking",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Hiking.png"
                 },
                 new
@@ -286,7 +257,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 17,
                     Name = "Jogging or Running",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "JoggingOrRunning.png"
                 },
                 new
@@ -294,7 +265,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 18,
                     Name = "Lateral Raise",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "LateralRaise.png"
                 },
                 new
@@ -302,7 +273,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 19,
                     Name = "Leg Curl",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "LegCurl.png"
                 },
                 new
@@ -310,7 +281,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 20,
                     Name = "Leg Extension",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "LegExtension.png"
                 },
                 new
@@ -318,7 +289,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 21,
                     Name = "Leg Press",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "LegPress.png"
                 },
                 new
@@ -326,7 +297,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 22,
                     Name = "Lunge",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Lunge.png"
                 },
                 new
@@ -334,7 +305,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 23,
                     Name = "Lifting Weights",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "LiftingWeights.png"
                 },
                 new
@@ -342,7 +313,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 24,
                     Name = "Pilates",
                     ExerciseTypeID = "balance",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Pilates.png"
                 },
                 new
@@ -350,7 +321,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 25,
                     Name = "Pull-down",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "PullDown.png"
                 },
                 new
@@ -358,7 +329,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 26,
                     Name = "Pull-up",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "PullUp.png"
                 },
                 new
@@ -366,7 +337,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 27,
                     Name = "Push-ups",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "PushUps.png"
                 },
                 new
@@ -374,7 +345,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 28,
                     Name = "Resistance Exercise with Elastic Bands or Tubes",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "ResistanceExercise.png"
                 },
                 new
@@ -382,7 +353,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 29,
                     Name = "Rowing",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Rowing.png"
                 },
                 new
@@ -390,7 +361,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 30,
                     Name = "Seated Calf Raise",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "SeatedCalfRaise.png"
                 },
                 new
@@ -398,7 +369,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 31,
                     Name = "Shoulder Press",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "ShoulderPress.png"
                 },
                 new
@@ -406,7 +377,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 32,
                     Name = "Shoulder Shrug",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "ShoulderShrug.png"
                 },
                 new
@@ -414,7 +385,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 33,
                     Name = "Soccer",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Soccer.png"
                 },
                 new
@@ -422,7 +393,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 34,
                     Name = "Squat",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Squat.png"
                 },
                 new
@@ -430,7 +401,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 35,
                     Name = "Stairs",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Stairs.png"
                 },
                 new
@@ -438,7 +409,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 36,
                     Name = "Standing Calf Raise",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "StandingCalfRaise.png"
                 },
                 new
@@ -446,7 +417,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 37,
                     Name = "Strength Class",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "StrengthClass.png"
                 },
                 new
@@ -454,7 +425,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 38,
                     Name = "Swimming",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Swimming.png"
                 },
                 new
@@ -462,7 +433,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 39,
                     Name = "Tai Chi",
                     ExerciseTypeID = "balance",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "TaiChi.png"
                 },
                 new
@@ -470,7 +441,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 40,
                     Name = "Tennis",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Tennis.png"
                 },
                 new
@@ -478,7 +449,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 41,
                     Name = "Tricep Extension",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "TricepExtension.png"
                 },
                 new
@@ -486,7 +457,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 42,
                     Name = "Ultimate Frisbee",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "UltimateFrisbee.png"
                 },
                 new
@@ -494,7 +465,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 43,
                     Name = "Upright Row",
                     ExerciseTypeID = "strength_training",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "UprightRow.png"
                 },
                 new
@@ -502,7 +473,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 44,
                     Name = "Volleyball",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Volleyball.png"
                 },
                 new
@@ -510,7 +481,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 45,
                     Name = "Walking with a Stroller",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "WalkingWithStroller.png"
                 },
                 new
@@ -518,7 +489,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 46,
                     Name = "Yoga",
                     ExerciseTypeID = "aerobic",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "Yoga.png"
                 },
                 new
@@ -526,7 +497,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 47,
                     Name = "Calf Stretch",
                     ExerciseTypeID = "streching",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "CalfStretch.png"
                 },
                 new
@@ -534,7 +505,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 48,
                     Name = "Hamstring Stretch",
                     ExerciseTypeID = "streching",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "HamstringStretch.png"
                 },
                 new
@@ -542,7 +513,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 49,
                     Name = "Quadriceps Stretch",
                     ExerciseTypeID = "streching",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "QuadricepsStretch.png"
                 },
                 new
@@ -550,7 +521,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 50,
                     Name = "Hip Flexors Stretch",
                     ExerciseTypeID = "streching",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "HipFlexorsStretch.png"
                 },
                 new
@@ -558,7 +529,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 51,
                     Name = "Knee-to-Chest Stretch",
                     ExerciseTypeID = "streching",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "KneeToChestStretch.png"
                 },
                 new
@@ -566,7 +537,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 52,
                     Name = "Shoulder Stretch",
                     ExerciseTypeID = "streching",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "ShoulderStretch.png"
                 },
                 new
@@ -574,7 +545,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 53,
                     Name = "Neck Stretch",
                     ExerciseTypeID = "streching",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "NeckStretch.png"
                 },
                 new
@@ -582,7 +553,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 54,
                     Name = "Tightrope Walk",
                     ExerciseTypeID = "balance",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "TightropeWalk.png"
                 },
                 new
@@ -590,7 +561,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 55,
                     Name = "Flamingo Stand",
                     ExerciseTypeID = "balance",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "FlamingoStand.png"
                 },
                 new
@@ -598,7 +569,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 56,
                     Name = "Heel-to-Toe Walk",
                     ExerciseTypeID = "balance",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "HeelToToeWalk.png"
                 },
                 new
@@ -606,10 +577,109 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseId = 57,
                     Name = "Banded Triplanar Toe Taps",
                     ExerciseTypeID = "balance",
-                    IsPublic = true,
+                    CreatedBy = "Better Built Systems",
                     Image = "BandedTriplanarToeTaps.png"
+                },
+                new
+                {
+                    ExerciseId = 58,
+                    Name = "Bench Press",
+                    ExerciseTypeID = "strength_training",
+                    CreatedBy = "Better Built Systems",
+                    Image = "BenchPress.png",
+                    PlanId = 1
+                },
+                new
+                {
+                    ExerciseId = 59,
+                    Name = "Bicep Curl",
+                    ExerciseTypeID = "strength_training",
+                    CreatedBy = "Better Built Systems",
+                    Image = "BicepCurl.png",
+                    PlanId = 1
+                },
+                new
+                {
+                    ExerciseId = 60,
+                    Name = "Chest Fly",
+                    ExerciseTypeID = "strength_training",
+                    CreatedBy = "Better Built Systems",
+                    Image = "ChestFly.png",
+                    PlanId = 1
+                },
+                new
+                {
+                    ExerciseId = 61,
+                    Name = "Biking",
+                    ExerciseTypeID = "aerobic",
+                    CreatedBy = "Better Built Systems",
+                    Image = "Biking.png",
+                    PlanId = 2
+                },
+                new
+                {
+                    ExerciseId = 62,
+                    Name = "Swimming",
+                    ExerciseTypeID = "aerobic",
+                    CreatedBy = "Better Built Systems",
+                    Image = "Swimming.png",
+                    PlanId = 2
+                },
+                new
+                {
+                    ExerciseId = 63,
+                    Name = "Jogging or Running",
+                    ExerciseTypeID = "aerobic",
+                    CreatedBy = "Better Built Systems",
+                    Image = "JoggingOrRunning.png",
+                    PlanId = 2
+                },
+                new
+                {
+                    ExerciseId = 64,
+                    Name = "Hip Flexors Stretch",
+                    ExerciseTypeID = "streching",
+                    CreatedBy = "Better Built Systems",
+                    Image = "HipFlexorsStretch.png",
+                    PlanId = 3
+                },
+                new
+                {
+                    ExerciseId = 65,
+                    Name = "Knee-to-Chest Stretch",
+                    ExerciseTypeID = "streching",
+                    CreatedBy = "Better Built Systems",
+                    Image = "KneeToChestStretch.png",
+                    PlanId = 3
+                },
+                new
+                {
+                    ExerciseId = 66,
+                    Name = "Shoulder Stretch",
+                    ExerciseTypeID = "streching",
+                    CreatedBy = "Better Built Systems",
+                    Image = "ShoulderStretch.png",
+                    PlanId = 3
+                },
+                new
+                {
+                    ExerciseId = 67,
+                    Name = "Neck Stretch",
+                    ExerciseTypeID = "streching",
+                    CreatedBy = "Better Built Systems",
+                    Image = "NeckStretch.png",
+                    PlanId = 3
                 }
-            );
+                );
+
+                  builder.Entity<ExerciseType>().HasData(
+                      new ExerciseType { ExerciseTypeID = "aerobic", Name = "Aerobic" },
+                      new ExerciseType { ExerciseTypeID = "strength_training", Name = "Strength Training" },
+                      new ExerciseType { ExerciseTypeID = "streching", Name = "Stretching" },
+                      new ExerciseType { ExerciseTypeID = "balance", Name = "Balance" },
+                      new ExerciseType { ExerciseTypeID = "other", Name = "Other" }
+                );
+
 
         }
     }

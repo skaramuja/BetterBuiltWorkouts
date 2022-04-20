@@ -20,19 +20,15 @@ namespace BetterBuiltWorkouts.Models
         [Required(ErrorMessage = "Please select an Exercise type.")]
         public string ExerciseTypeID { get; set; }
 
+
         [RegularExpression(@"^.*\.(jpg|JPG|gif|GIF|webp|WEBP)$", ErrorMessage = "JPG, GIF and Webp images only.")]
         public string Image { get; set; }
-
-
-        // If the user wants to share the exercise publicly 
-        public bool IsPublic { get; set; }
 
 
         public string CreatedBy { get; set; }
 
 
         // For exercises that have a specific distance
-        //[DistanceAttribute(10)]
         [StringLength(25, ErrorMessage = "Distance must be less than 25 characters longs.")]
         public string Distance { get; set; }
 
@@ -42,7 +38,6 @@ namespace BetterBuiltWorkouts.Models
         public string Time { get; set; }
 
 
-        //[WeightAttribute(50)]
         [StringLength(50, ErrorMessage = "Weight must be less that 50 characters long.")]
         public string Weight { get; set; }
 
@@ -51,15 +46,13 @@ namespace BetterBuiltWorkouts.Models
         public string Reps { get; set; }
 
 
-        // For optional video link
-        public string Link { get; set; }
-
 
         [StringLength(500, ErrorMessage = "Note must be less than 500 characters long.")]
         public string  Note { get; set; }
 
-        // Navigation property
-        public List<ExercisePlan> ExercisePlans { get; set; }
+        public Plan Plan { get; set; }
+
+        public int? PlanId { get; set; }
 
     }
 }

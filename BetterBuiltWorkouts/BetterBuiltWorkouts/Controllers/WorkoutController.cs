@@ -2,6 +2,7 @@
 using BetterBuiltWorkouts.Extensions;
 using BetterBuiltWorkouts.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BetterBuiltWorkouts.Controllers
@@ -11,12 +12,25 @@ namespace BetterBuiltWorkouts.Controllers
         private IWorkoutUnitOfWork data { get; set; }
         public WorkoutController(IWorkoutUnitOfWork unit) => data = unit;
 
+
+
         // Plan Section
-        [Route("CreatePlan-Workout")]
-        public IActionResult CreatePlan()
+        public IActionResult PlanList()
         {
-            PlanListViewModel model = new PlanListViewModel{ Plans = data.ListOfPlans().ToList() };
+            PlanListViewModel model = new PlanListViewModel { Plans = data.ListOfPlans().ToList() };
             return View(model);
+        }
+
+
+        [HttpGet]
+        public ViewResult CopyPlan(int id)
+        {
+            ViewBag.Action = "Copy";
+            ViewBag.Exercises = data.ListOfExercises("all").ToList();
+            Plan plan = data.GetPlan(id);
+            PlanViewModel model = new PlanViewModel { Plan = plan };
+            //model.Plan.PlanId = 0;
+            return View("PlanEdit", model);
         }
 
         public IActionResult PlanDetails(int id)
@@ -31,7 +45,7 @@ namespace BetterBuiltWorkouts.Controllers
             data.DeletePlan(plan);
             data.Save();
             //TempData["message"] = "Plan was successfully deleted."; // This throws a nullreferenceexception in the test only. ???
-            return RedirectToAction("CreatePlan", "Workout");
+            return RedirectToAction("PlanList", "Workout");
         }
 
         [HttpGet]
@@ -41,27 +55,34 @@ namespace BetterBuiltWorkouts.Controllers
             ViewBag.Action = "Save";
             ViewBag.Exercises = data.ListOfExercises("all");
             Plan plan = data.GetPlan(id);
-            return View(plan);
+            PlanViewModel model = new PlanViewModel { Plan = plan };
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult PlanEdit(Plan plan)
+        public IActionResult PlanEdit(PlanViewModel plan)
         {
             if (ModelState.IsValid)
             {
                 if (plan.PlanId == 0)
                 {
+                    var clone = new CloneModel(data, plan, User.Identity.Name.ToString());
+                    plan = clone.CloneExercises();
                     plan.CreatedBy = User.Identity.Name;
                     data.Plans.Insert(plan);
+                    data.Save();
+                    //clone.UpdateExercises(plan.Exercises, plan.PlanId);
                     TempData["message"] = $"{plan.Name} was successfully added.";
                 }
                 else
                 {
+                    plan.CreatedBy = User.Identity.Name;
                     data.Plans.Update(plan);
+                    data.Save();
                     TempData["message"] = $"{plan.Name} was successfully updated.";
                 }
-                data.Save();
-                return RedirectToAction("CreatePlan", "Workout");
+                    //data.Save();
+                return RedirectToAction("PlanList", "Workout");
             }
             else
             {
@@ -69,8 +90,23 @@ namespace BetterBuiltWorkouts.Controllers
                 ViewBag.Action = "Save";
                 ViewBag.Exercises = data.ListOfExercises("all");
                 return View(plan);
-
             }
+        }
+
+        [HttpGet]
+        public IActionResult CreatePlan()
+        {
+            int numOfExercises = 3;
+            Plan plan = new Plan() { Name = "" };
+            List<Exercise> exercises = new List<Exercise>();
+            for(int i =0; i < numOfExercises; i++)
+            {
+                exercises.Add(new Exercise() { Name = "" });
+            }
+            plan.Exercises = exercises;
+            ViewBag.Exercises = data.ListOfExercises("all");
+            ViewBag.Action = "Create";
+            return View("PlanEdit", new PlanViewModel() { Plan = plan });
         }
 
         // Exercise section

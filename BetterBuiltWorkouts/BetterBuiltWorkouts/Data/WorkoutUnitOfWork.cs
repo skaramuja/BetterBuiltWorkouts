@@ -32,7 +32,8 @@ namespace BetterBuiltWorkouts.Data
             {
                 return Exercises.List(new QueryOptions<Exercise>
                 {
-                    Where = x => x.ExerciseTypeID == activeType
+                    Where = x => x.ExerciseTypeID == activeType && x.PlanId == null,
+                    OrderBy = x => x.Name
                 }).ToList();
             }
             else
@@ -43,7 +44,11 @@ namespace BetterBuiltWorkouts.Data
 
         public Exercise GetExercise(int id)
         {
-            return  Exercises.Get(id);
+            return  Exercises.Get(new QueryOptions<Exercise>
+            {
+                Includes = "ExerciseType",
+                Where = e => e.ExerciseId == id
+            });
         }
 
         public void InsertExercise(Exercise entity)
@@ -78,12 +83,12 @@ namespace BetterBuiltWorkouts.Data
 
         public IEnumerable<Plan> ListOfPlans()
         {
-            return Plans.List(new QueryOptions<Plan> { Includes = "ExercisePlans.Exercise" });
+            return Plans.List(new QueryOptions<Plan> { });
         }
 
         public Plan GetPlan(int id)
         {
-            return Plans.Get(new QueryOptions<Plan> { Includes = "ExercisePlans.Exercise", Where = p => p.PlanId == id });
+            return Plans.Get(new QueryOptions<Plan> { Includes = "Exercises, Exercises.ExerciseType", Where = p => p.PlanId == id });
         }
 
         public void InsertPlan(Plan entity)

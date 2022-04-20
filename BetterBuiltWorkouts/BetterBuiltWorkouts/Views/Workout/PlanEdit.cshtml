@@ -1,4 +1,4 @@
-﻿@model Plan
+﻿@model PlanViewModel
 
 @{
     string title = ViewBag.Verb + " Your Plan";
@@ -11,7 +11,7 @@
 
     <br />
 
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="All" class="text-danger"></div>
 
     <form method="post" asp-action="PlanEdit" asp-controller="Workout">
 
@@ -22,37 +22,43 @@
         <div class="form-group row">
             <div class="col-sm-2 text-right"><label>Name:</label></div>
             <div class="col-sm-7">
-                <input asp-for="Name" class="form-control" />
+                @*<input asp-for="@Model.Name" value="@Model.Name" class="form-control" />*@
+                <input asp-for="@Model.Plan.Name" value="@Model.Plan.Name" class="form-control" />
             </div>
         </div>
-
-        @for(int i = 0; i < @Model.ExercisePlans.Count; i++)
+        @*@for (int i = 0; i < @Model.Exercises.Count; i++)*@
+        @for (int i = 0; i < @Model.Plan.Exercises.Count; i++)
         {
-            // Going to need to rethink the way the data is stored for this. A many-to-many isn't allowing me to 
-            // store more than one of the same type of exercise in a plan. Would be nice to have
-            // a plan with (for example) one exercise followed by the same exercise with different number of reps. 
-        @*<div class="row">
-            <span asp-validation-for="@Model.ExercisePlans" class="text-danger col offset-sm-2"></span>
-        </div>*@
-        <div class="form-group row">
-            <label asp-for="@Model.ExercisePlans[i].ExerciseId" class="col-sm-2 text-right">Exercise:</label>
-            <select asp-for="@Model.ExercisePlans[i].ExerciseId" class="col-sm-7 rounded ml-1 mr-5 ">
-                <option value="">select an exercise</option>
-                @foreach (Exercise e in @ViewBag.Exercises)
-                {
-                    <option value="@e.ExerciseId">@e.Name</option>
-                }
-            </select>
-        </div>
+            <div class="form-group row">
+                <label asp-for="@Model.Plan.Exercises[i].ExerciseId" class="col-sm-2 text-right">Exercise:</label>
+                <select asp-for="@Model.Plan.Exercises[i].ExerciseId" class="col-sm-7 rounded ml-1 mr-5 ">
+                    <option value="@Model.Plan.Exercises[i].ExerciseId">@Model.Plan.Exercises[i].Name</option>
+                    @foreach (Exercise e in @ViewBag.Exercises)
+                    {
+                        <option value="@e.ExerciseId">@e.Name</option>
+                    }
+                </select>
+            </div>
         }
 
 
-        <input type="hidden" asp-for="PlanId" />
+        @{ if (ViewBag.Action == "Copy")
+            {
+
+                <input type="hidden" asp-for="@Model.Plan.PlanId" value="0" />
+            }
+            else
+            {
+                <input type="hidden" asp-for="@Model.Plan.PlanId" value="@Model.Plan.PlanId" />
+
+            }
+
+        }
 
         <div class="row">
             <div class="offset-5 col-sm-7">
                 <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
-                <a asp-controller="Workout" asp-action="CreatePlan" class="btn btn-primary">Cancel</a>
+                <a asp-controller="Workout" asp-action="PlanList" class="btn btn-primary">Cancel</a>
             </div>
         </div>
 
