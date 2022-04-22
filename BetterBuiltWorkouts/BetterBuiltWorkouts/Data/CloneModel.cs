@@ -11,13 +11,11 @@ namespace BetterBuiltWorkouts.Data
         private IWorkoutUnitOfWork context;
         private PlanViewModel model;
         private List<Exercise> ClonedExercises = new List<Exercise>();
-        private string user;
 
-        public CloneModel(IWorkoutUnitOfWork data, PlanViewModel viewModel, string thisUser)
+
+        public CloneModel(IWorkoutUnitOfWork data)
         {
             context = data;
-            model = viewModel;
-            user = thisUser;
         }
 
         public PlanViewModel CloneExercises()
@@ -26,7 +24,6 @@ namespace BetterBuiltWorkouts.Data
             {
                 var newExercise = context.GetExercise(exercise.ExerciseId);
                 newExercise.ExerciseId = 0;
-                newExercise.CreatedBy = user;
                 context.InsertExercise(newExercise);
                 context.Save();
                 ClonedExercises.Add(newExercise);
@@ -37,11 +34,21 @@ namespace BetterBuiltWorkouts.Data
             return model;
         }
 
+        public Exercise CloneExercise(Exercise old, string user)
+        {
+            var newExercise = context.GetExercise(old.ExerciseId);
+            newExercise.ExerciseId = 0;
+            newExercise.CreatedBy = user;
+            context.InsertExercise(newExercise);
+            context.Save();
+            return newExercise;
+        }
+
         public void UpdateExercises(List<Exercise> exercises, int planId)
         {
             foreach(Exercise exercise in exercises)
             {
-                exercise.ExerciseId = planId;
+                exercise.PlanId = planId;
                 context.UpdateExercise(exercise);
                 context.Save();
             }
