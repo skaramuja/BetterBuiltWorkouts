@@ -19,8 +19,6 @@ namespace BetterBuiltWorkouts.Controllers
         }
 
 
-
-
         // Plan Section
         public IActionResult PlanList()
         {
@@ -39,10 +37,19 @@ namespace BetterBuiltWorkouts.Controllers
         public ViewResult CopyPlan(int id)
         {
             ViewBag.Action = "Copy";
-            ViewBag.Exercises = data.ListOfExercises("all").ToList();
+
             Plan plan = data.GetPlan(id);
-            PlanViewModel model = new PlanViewModel { PlanName = "New Plan" };
-            //model.Plan.PlanId = 0;
+            PlanViewModel model = new PlanViewModel { 
+                PlanName = "New Plan",
+                PlanId = 0,
+                Exercises = data.ListOfExercises("all").ToList(),
+                Exercise1 = plan.Exercises[0].Name,
+                Exercise1Id = plan.Exercises[0].ExerciseId,
+                Exercise2 = plan.Exercises[1].Name,
+                Exercise2Id = plan.Exercises[1].ExerciseId,
+                Exercise3 = plan.Exercises[2].Name,
+                Exercise3Id = plan.Exercises[2].ExerciseId
+            };
             return View("PlanEdit", model);
         }
 
@@ -67,13 +74,17 @@ namespace BetterBuiltWorkouts.Controllers
             ViewBag.Verb = "Edit";
             ViewBag.Action = "Save";
             Plan plan = data.GetPlan(id);
-            PlanViewModel model = new PlanViewModel { 
-                PlanName = "New Plan", 
+            PlanViewModel model = new PlanViewModel {
+                PlanName = plan.Name,
+                PlanId = plan.PlanId,
                 Exercises = data.ListOfExercises("all").ToList(),
+                Exercise1 = plan.Exercises[0].Name,
+                Exercise1Id = plan.Exercises[0].ExerciseId,
+                Exercise2 = plan.Exercises[1].Name,
+                Exercise2Id = plan.Exercises[1].ExerciseId,
+                Exercise3 = plan.Exercises[2].Name,
+                Exercise3Id = plan.Exercises[2].ExerciseId
             };
-            model.Exercise1 = plan.Exercises[0].ExerciseTypeID;
-            model.Exercise2 = plan.Exercises[1].ExerciseTypeID;
-            model.Exercise3 = plan.Exercises[2].ExerciseTypeID;
             return View(model);
         }
 
@@ -82,35 +93,41 @@ namespace BetterBuiltWorkouts.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (plan.PlanId == 0)
+                List<Exercise> newExercises = new List<Exercise>();
+                var newExercise1 = clone.CloneExercise(data.GetExercise(plan.Exercise1Id), plan.CreatedBy);
+                newExercises.Add(newExercise1);
+                newExercises[0].PlanId = null;
+                var newExercise2 = clone.CloneExercise(data.GetExercise(plan.Exercise2Id), plan.CreatedBy);
+                newExercises.Add(newExercise2);
+                newExercises[1].PlanId = null;
+                var newExercise3 = clone.CloneExercise(data.GetExercise(plan.Exercise3Id), plan.CreatedBy);
+                newExercises.Add(newExercise3);
+                newExercises[2].PlanId = null;
+                if (plan.PlanId != 0) //Edit existing
                 {
-                    List<Exercise> newExercises = new List<Exercise>();
-                    var newExercise1 = clone.CloneExercise(data.GetExercise(int.Parse(plan.Exercise1)), plan.CreatedBy);
-                    newExercises.Add(newExercise1);
-                    var newExercise2 = clone.CloneExercise(data.GetExercise(int.Parse(plan.Exercise2)), plan.CreatedBy);
-                    newExercises.Add(newExercise2);
-                    var newExercise3 = clone.CloneExercise(data.GetExercise(int.Parse(plan.Exercise3)), plan.CreatedBy);
-                    newExercises.Add(newExercise3);
+                    TempData["message"] = $"{plan.Name} was successfully Updated.";
 
-                    Plan newPlan = new Plan()
-                    {
-                        Exercises = newExercises,
-                        CreatedBy = plan.CreatedBy,
-                        Name = plan.PlanName
-                    };
-                    data.Plans.Insert(newPlan);
+
+                    var oldPlan = data.GetPlan(plan.PlanId);
+                    data.DeletePlan(oldPlan);
                     data.Save();
-                    clone.UpdateExercises(newPlan.Exercises, newPlan.PlanId);
-                    TempData["message"] = $"{newPlan.Name} was successfully added.";
                 }
-                else
+                else // Add new
                 {
-                    plan.CreatedBy = User.Identity.Name;
-                    data.Plans.Update(plan);
-                    data.Save();
-                    TempData["message"] = $"{plan.Name} was successfully updated.";
+                    TempData["message"] = $"{plan.PlanName} was successfully added.";
                 }
-                    //data.Save();
+
+                Plan newPlan = new Plan()
+                {
+                    Exercises = newExercises,
+                    CreatedBy = plan.CreatedBy,
+                    Name = plan.PlanName
+                };
+
+                data.Plans.Insert(newPlan);
+                data.Save();
+                clone.UpdateExercises(newPlan.Exercises, newPlan.PlanId);
+                data.Save();
                 return RedirectToAction("PlanList", "Workout");
             }
             else

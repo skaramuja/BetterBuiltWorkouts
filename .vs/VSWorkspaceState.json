@@ -5,9 +5,8 @@
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Controllers",
     "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views",
-    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Workout",
-    "\\BetterBuiltWorkouts\\UnitTests"
+    "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Workout"
   ],
-  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts.sln",
+  "SelectedNode": "\\BetterBuiltWorkouts\\BetterBuiltWorkouts\\Views\\Workout\\PlanEdit.cshtml",
   "PreviewInSolutionExplorer": false
 }
