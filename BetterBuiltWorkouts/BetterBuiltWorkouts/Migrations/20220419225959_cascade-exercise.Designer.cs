@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BetterBuiltWorkouts.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220407175912_model-many-update")]
-    partial class modelmanyupdate
+    [Migration("20220419225959_cascade-exercise")]
+    partial class cascadeexercise
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,9 +94,9 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "205e80e2-e8a1-4dde-9432-89ac12885cda",
+                            Id = "fceaf3a3-ff99-42e6-8d10-b11b42288c96",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "101d61ae-0415-4793-ae34-c6493ad4f26a",
+                            ConcurrencyStamp = "aa0a64f4-76b2-4d3c-9caf-0641b16fbb09",
                             Email = "drewxcom@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Drew",
@@ -104,17 +104,17 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DREWXCOM@GMAIL.COM",
                             NormalizedUserName = "DREWXCOM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKz+6PK5V/m4uMbS5yg0syjhKruw7hlO7SjmJGz47Q6ZDZN0rm8GSmXoVC+NWZmD9Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJkCqDRb5F5TE0LH2OnmykiLIHnb/+11qTzjtiaxtvtwSy2L7cyEN4y2aYfkBKzO4Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "456f60a6-1cbe-49fa-a416-29c07cf7689f",
+                            SecurityStamp = "c10739d8-1b51-419f-bf93-99f99f2f507a",
                             TwoFactorEnabled = false,
                             UserName = "drewxcom"
                         },
                         new
                         {
-                            Id = "a0ce16cb-50fc-4e19-89fc-cdd148caadec",
+                            Id = "9c40a624-6363-4272-aadc-4925653e6d23",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "25f59aa7-6d4b-41a6-b037-6de76a6493d4",
+                            ConcurrencyStamp = "7182ee06-aa15-4de6-9746-89448f2d8583",
                             Email = "hale.l.c91@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Cody",
@@ -122,17 +122,17 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "HALE.L.C91@GMAIL.COM",
                             NormalizedUserName = "CHALE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBIZ44QBmXfYEpaICjw96A/3WcTZqF43cPZdCpZCB6zJkfmFfIkJU587I6EJMIVQpQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGmSceuZjCA7kucs3fnS587TdTKea3/6NerUdHtfz5IIC8LFvIWermWlwAe3xjJI4g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0bda0909-8c9d-4b60-9bf7-847458f28db8",
+                            SecurityStamp = "272af3f1-7237-46fa-9718-72e2a20bf5fa",
                             TwoFactorEnabled = false,
                             UserName = "chale"
                         },
                         new
                         {
-                            Id = "124337c5-8436-41ce-9fb7-baec7cadb915",
+                            Id = "263913a3-9deb-4331-85c7-d0db39175713",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f25d8f69-a7ae-4582-a2f3-89367fe44f92",
+                            ConcurrencyStamp = "cc40be50-db3e-4fbf-b7c3-ad19cc1f31a2",
                             Email = "Karamuja.sabina@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Sabina",
@@ -140,9 +140,9 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KARAMUJA.SABINA@GMAIL.COM",
                             NormalizedUserName = "SKARAMUJA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB8pJzJbEaGjOxOQ3TjNwTwWCtGx+0pscOHHv75Pk/wuzLY7OLBIbD9HHTcvH56caA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEZWQJd8zyDzo1NhZpghpT+Qv8lJeDPfoQ8HFaSb4GWJs6THmrZ+473Th8JldQmEtQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "006c3f6b-bc67-4046-81c9-ae7e875e34d6",
+                            SecurityStamp = "84620331-a961-48ec-a49f-71d107cb4cff",
                             TwoFactorEnabled = false,
                             UserName = "skaramuja"
                         });
@@ -169,12 +169,6 @@ namespace BetterBuiltWorkouts.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsPublic")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -183,6 +177,9 @@ namespace BetterBuiltWorkouts.Migrations
                     b.Property<string>("Note")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<int?>("PlanId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Reps")
                         .HasMaxLength(25)
@@ -200,525 +197,555 @@ namespace BetterBuiltWorkouts.Migrations
 
                     b.HasIndex("ExerciseTypeID");
 
+                    b.HasIndex("PlanId");
+
                     b.ToTable("Exercises");
 
                     b.HasData(
                         new
                         {
                             ExerciseId = 1,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "BackExtension.png",
-                            IsPublic = true,
                             Name = "Back Extension"
                         },
                         new
                         {
                             ExerciseId = 2,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Basketball.png",
-                            IsPublic = true,
                             Name = "Basketball"
                         },
                         new
                         {
                             ExerciseId = 3,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "BenchPress.png",
-                            IsPublic = true,
                             Name = "Bench Press"
                         },
                         new
                         {
                             ExerciseId = 4,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "BicepCurl.png",
-                            IsPublic = true,
                             Name = "Bicep Curl"
                         },
                         new
                         {
                             ExerciseId = 5,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Biking.png",
-                            IsPublic = true,
                             Name = "Biking"
                         },
                         new
                         {
                             ExerciseId = 6,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "BriskWalking.png",
-                            IsPublic = true,
                             Name = "Brisk Walking"
                         },
                         new
                         {
                             ExerciseId = 7,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "CardioClass.png",
-                            IsPublic = true,
                             Name = "Cardio Class"
                         },
                         new
                         {
                             ExerciseId = 8,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "CardioMachine.png",
-                            IsPublic = true,
                             Name = "Cardio Machine"
                         },
                         new
                         {
                             ExerciseId = 9,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "ChestFly.png",
-                            IsPublic = true,
                             Name = "Chest Fly"
                         },
                         new
                         {
                             ExerciseId = 10,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "Crunches.png",
-                            IsPublic = true,
                             Name = "Crunches"
                         },
                         new
                         {
                             ExerciseId = 11,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Dancing.png",
-                            IsPublic = true,
                             Name = "Dancing"
                         },
                         new
                         {
                             ExerciseId = 12,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "Deadlift.png",
-                            IsPublic = true,
                             Name = "Deadlift"
                         },
                         new
                         {
                             ExerciseId = 13,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "GardeningAndWeeding.png",
-                            IsPublic = true,
                             Name = "Gardening and Weeding"
                         },
                         new
                         {
                             ExerciseId = 14,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Golf.png",
-                            IsPublic = true,
                             Name = "Golf"
                         },
                         new
                         {
                             ExerciseId = 15,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "HighIntensityIntervalTraining.png",
-                            IsPublic = true,
                             Name = "High-Intensity Interval Training"
                         },
                         new
                         {
                             ExerciseId = 16,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Hiking.png",
-                            IsPublic = true,
                             Name = "Hiking"
                         },
                         new
                         {
                             ExerciseId = 17,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "JoggingOrRunning.png",
-                            IsPublic = true,
                             Name = "Jogging or Running"
                         },
                         new
                         {
                             ExerciseId = 18,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "LateralRaise.png",
-                            IsPublic = true,
                             Name = "Lateral Raise"
                         },
                         new
                         {
                             ExerciseId = 19,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "LegCurl.png",
-                            IsPublic = true,
                             Name = "Leg Curl"
                         },
                         new
                         {
                             ExerciseId = 20,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "LegExtension.png",
-                            IsPublic = true,
                             Name = "Leg Extension"
                         },
                         new
                         {
                             ExerciseId = 21,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "LegPress.png",
-                            IsPublic = true,
                             Name = "Leg Press"
                         },
                         new
                         {
                             ExerciseId = 22,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "Lunge.png",
-                            IsPublic = true,
                             Name = "Lunge"
                         },
                         new
                         {
                             ExerciseId = 23,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "LiftingWeights.png",
-                            IsPublic = true,
                             Name = "Lifting Weights"
                         },
                         new
                         {
                             ExerciseId = 24,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "balance",
                             Image = "Pilates.png",
-                            IsPublic = true,
                             Name = "Pilates"
                         },
                         new
                         {
                             ExerciseId = 25,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "PullDown.png",
-                            IsPublic = true,
                             Name = "Pull-down"
                         },
                         new
                         {
                             ExerciseId = 26,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "PullUp.png",
-                            IsPublic = true,
                             Name = "Pull-up"
                         },
                         new
                         {
                             ExerciseId = 27,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "PushUps.png",
-                            IsPublic = true,
                             Name = "Push-ups"
                         },
                         new
                         {
                             ExerciseId = 28,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "ResistanceExercise.png",
-                            IsPublic = true,
                             Name = "Resistance Exercise with Elastic Bands or Tubes"
                         },
                         new
                         {
                             ExerciseId = 29,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Rowing.png",
-                            IsPublic = true,
                             Name = "Rowing"
                         },
                         new
                         {
                             ExerciseId = 30,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "SeatedCalfRaise.png",
-                            IsPublic = true,
                             Name = "Seated Calf Raise"
                         },
                         new
                         {
                             ExerciseId = 31,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "ShoulderPress.png",
-                            IsPublic = true,
                             Name = "Shoulder Press"
                         },
                         new
                         {
                             ExerciseId = 32,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "ShoulderShrug.png",
-                            IsPublic = true,
                             Name = "Shoulder Shrug"
                         },
                         new
                         {
                             ExerciseId = 33,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Soccer.png",
-                            IsPublic = true,
                             Name = "Soccer"
                         },
                         new
                         {
                             ExerciseId = 34,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "Squat.png",
-                            IsPublic = true,
                             Name = "Squat"
                         },
                         new
                         {
                             ExerciseId = 35,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Stairs.png",
-                            IsPublic = true,
                             Name = "Stairs"
                         },
                         new
                         {
                             ExerciseId = 36,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "StandingCalfRaise.png",
-                            IsPublic = true,
                             Name = "Standing Calf Raise"
                         },
                         new
                         {
                             ExerciseId = 37,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "StrengthClass.png",
-                            IsPublic = true,
                             Name = "Strength Class"
                         },
                         new
                         {
                             ExerciseId = 38,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Swimming.png",
-                            IsPublic = true,
                             Name = "Swimming"
                         },
                         new
                         {
                             ExerciseId = 39,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "balance",
                             Image = "TaiChi.png",
-                            IsPublic = true,
                             Name = "Tai Chi"
                         },
                         new
                         {
                             ExerciseId = 40,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Tennis.png",
-                            IsPublic = true,
                             Name = "Tennis"
                         },
                         new
                         {
                             ExerciseId = 41,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "TricepExtension.png",
-                            IsPublic = true,
                             Name = "Tricep Extension"
                         },
                         new
                         {
                             ExerciseId = 42,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "UltimateFrisbee.png",
-                            IsPublic = true,
                             Name = "Ultimate Frisbee"
                         },
                         new
                         {
                             ExerciseId = 43,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "strength_training",
                             Image = "UprightRow.png",
-                            IsPublic = true,
                             Name = "Upright Row"
                         },
                         new
                         {
                             ExerciseId = 44,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Volleyball.png",
-                            IsPublic = true,
                             Name = "Volleyball"
                         },
                         new
                         {
                             ExerciseId = 45,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "WalkingWithStroller.png",
-                            IsPublic = true,
                             Name = "Walking with a Stroller"
                         },
                         new
                         {
                             ExerciseId = 46,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "aerobic",
                             Image = "Yoga.png",
-                            IsPublic = true,
                             Name = "Yoga"
                         },
                         new
                         {
                             ExerciseId = 47,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "streching",
                             Image = "CalfStretch.png",
-                            IsPublic = true,
                             Name = "Calf Stretch"
                         },
                         new
                         {
                             ExerciseId = 48,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "streching",
                             Image = "HamstringStretch.png",
-                            IsPublic = true,
                             Name = "Hamstring Stretch"
                         },
                         new
                         {
                             ExerciseId = 49,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "streching",
                             Image = "QuadricepsStretch.png",
-                            IsPublic = true,
                             Name = "Quadriceps Stretch"
                         },
                         new
                         {
                             ExerciseId = 50,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "streching",
                             Image = "HipFlexorsStretch.png",
-                            IsPublic = true,
                             Name = "Hip Flexors Stretch"
                         },
                         new
                         {
                             ExerciseId = 51,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "streching",
                             Image = "KneeToChestStretch.png",
-                            IsPublic = true,
                             Name = "Knee-to-Chest Stretch"
                         },
                         new
                         {
                             ExerciseId = 52,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "streching",
                             Image = "ShoulderStretch.png",
-                            IsPublic = true,
                             Name = "Shoulder Stretch"
                         },
                         new
                         {
                             ExerciseId = 53,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "streching",
                             Image = "NeckStretch.png",
-                            IsPublic = true,
                             Name = "Neck Stretch"
                         },
                         new
                         {
                             ExerciseId = 54,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "balance",
                             Image = "TightropeWalk.png",
-                            IsPublic = true,
                             Name = "Tightrope Walk"
                         },
                         new
                         {
                             ExerciseId = 55,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "balance",
                             Image = "FlamingoStand.png",
-                            IsPublic = true,
                             Name = "Flamingo Stand"
                         },
                         new
                         {
                             ExerciseId = 56,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "balance",
                             Image = "HeelToToeWalk.png",
-                            IsPublic = true,
                             Name = "Heel-to-Toe Walk"
                         },
                         new
                         {
                             ExerciseId = 57,
+                            CreatedBy = "Better Built Systems",
                             ExerciseTypeID = "balance",
                             Image = "BandedTriplanarToeTaps.png",
-                            IsPublic = true,
                             Name = "Banded Triplanar Toe Taps"
-                        });
-                });
-
-            modelBuilder.Entity("BetterBuiltWorkouts.Models.ExercisePlan", b =>
-                {
-                    b.Property<int>("ExerciseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlanId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ExerciseId", "PlanId");
-
-                    b.HasIndex("PlanId");
-
-                    b.ToTable("ExercisePlans");
-
-                    b.HasData(
+                        },
                         new
                         {
-                            ExerciseId = 1,
+                            ExerciseId = 58,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "strength_training",
+                            Image = "BenchPress.png",
+                            Name = "Bench Press",
                             PlanId = 1
                         },
                         new
                         {
-                            ExerciseId = 2,
+                            ExerciseId = 59,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "strength_training",
+                            Image = "BicepCurl.png",
+                            Name = "Bicep Curl",
                             PlanId = 1
                         },
                         new
                         {
-                            ExerciseId = 3,
+                            ExerciseId = 60,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "strength_training",
+                            Image = "ChestFly.png",
+                            Name = "Chest Fly",
                             PlanId = 1
                         },
                         new
                         {
-                            ExerciseId = 4,
+                            ExerciseId = 61,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "aerobic",
+                            Image = "Biking.png",
+                            Name = "Biking",
                             PlanId = 2
                         },
                         new
                         {
-                            ExerciseId = 5,
+                            ExerciseId = 62,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "aerobic",
+                            Image = "Swimming.png",
+                            Name = "Swimming",
                             PlanId = 2
                         },
                         new
                         {
-                            ExerciseId = 6,
+                            ExerciseId = 63,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "aerobic",
+                            Image = "JoggingOrRunning.png",
+                            Name = "Jogging or Running",
                             PlanId = 2
                         },
                         new
                         {
-                            ExerciseId = 7,
+                            ExerciseId = 64,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "streching",
+                            Image = "HipFlexorsStretch.png",
+                            Name = "Hip Flexors Stretch",
                             PlanId = 3
                         },
                         new
                         {
-                            ExerciseId = 8,
+                            ExerciseId = 65,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "streching",
+                            Image = "KneeToChestStretch.png",
+                            Name = "Knee-to-Chest Stretch",
                             PlanId = 3
                         },
                         new
                         {
-                            ExerciseId = 9,
+                            ExerciseId = 66,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "streching",
+                            Image = "ShoulderStretch.png",
+                            Name = "Shoulder Stretch",
+                            PlanId = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 67,
+                            CreatedBy = "Better Built Systems",
+                            ExerciseTypeID = "streching",
+                            Image = "NeckStretch.png",
+                            Name = "Neck Stretch",
                             PlanId = 3
                         });
                 });
@@ -776,17 +803,11 @@ namespace BetterBuiltWorkouts.Migrations
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ExerciseId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("TimesCompleted")
-                        .HasColumnType("int");
 
                     b.HasKey("PlanId");
 
@@ -798,7 +819,7 @@ namespace BetterBuiltWorkouts.Migrations
                             PlanId = 1,
                             CreatedBy = "Better Built Systems",
                             End = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Default Plan 1",
+                            Name = "Example Plan 1",
                             Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -806,7 +827,7 @@ namespace BetterBuiltWorkouts.Migrations
                             PlanId = 2,
                             CreatedBy = "Better Built Systems",
                             End = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Default Plan 2",
+                            Name = "Example Plan 2",
                             Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -814,7 +835,7 @@ namespace BetterBuiltWorkouts.Migrations
                             PlanId = 3,
                             CreatedBy = "Better Built Systems",
                             End = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Default Plan 3",
+                            Name = "Example Plan 3",
                             Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -848,15 +869,15 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28b58671-8609-4d31-9948-59d4c1344491",
-                            ConcurrencyStamp = "28b58671-8609-4d31-9948-59d4c1344491",
+                            Id = "80d17830-47a0-40fe-a89b-05ffe4a901f8",
+                            ConcurrencyStamp = "80d17830-47a0-40fe-a89b-05ffe4a901f8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0fb25e70-24b9-4c98-b19a-d16eefc28514",
-                            ConcurrencyStamp = "0fb25e70-24b9-4c98-b19a-d16eefc28514",
+                            Id = "40622de6-d0aa-47f9-a3e6-b89b3156b92c",
+                            ConcurrencyStamp = "40622de6-d0aa-47f9-a3e6-b89b3156b92c",
                             Name = "Suspended",
                             NormalizedName = "SUSPENDED"
                         });
@@ -949,18 +970,18 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "205e80e2-e8a1-4dde-9432-89ac12885cda",
-                            RoleId = "28b58671-8609-4d31-9948-59d4c1344491"
+                            UserId = "fceaf3a3-ff99-42e6-8d10-b11b42288c96",
+                            RoleId = "80d17830-47a0-40fe-a89b-05ffe4a901f8"
                         },
                         new
                         {
-                            UserId = "a0ce16cb-50fc-4e19-89fc-cdd148caadec",
-                            RoleId = "28b58671-8609-4d31-9948-59d4c1344491"
+                            UserId = "9c40a624-6363-4272-aadc-4925653e6d23",
+                            RoleId = "80d17830-47a0-40fe-a89b-05ffe4a901f8"
                         },
                         new
                         {
-                            UserId = "124337c5-8436-41ce-9fb7-baec7cadb915",
-                            RoleId = "28b58671-8609-4d31-9948-59d4c1344491"
+                            UserId = "263913a3-9deb-4331-85c7-d0db39175713",
+                            RoleId = "80d17830-47a0-40fe-a89b-05ffe4a901f8"
                         });
                 });
 
@@ -991,24 +1012,12 @@ namespace BetterBuiltWorkouts.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ExerciseType");
-                });
-
-            modelBuilder.Entity("BetterBuiltWorkouts.Models.ExercisePlan", b =>
-                {
-                    b.HasOne("BetterBuiltWorkouts.Models.Exercise", "Exercise")
-                        .WithMany("ExercisePlans")
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BetterBuiltWorkouts.Models.Plan", "Plan")
-                        .WithMany("ExercisePlans")
+                        .WithMany("Exercises")
                         .HasForeignKey("PlanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("Exercise");
+                    b.Navigation("ExerciseType");
 
                     b.Navigation("Plan");
                 });
@@ -1064,11 +1073,6 @@ namespace BetterBuiltWorkouts.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BetterBuiltWorkouts.Models.Exercise", b =>
-                {
-                    b.Navigation("ExercisePlans");
-                });
-
             modelBuilder.Entity("BetterBuiltWorkouts.Models.ExerciseType", b =>
                 {
                     b.Navigation("Exercises");
@@ -1076,7 +1080,7 @@ namespace BetterBuiltWorkouts.Migrations
 
             modelBuilder.Entity("BetterBuiltWorkouts.Models.Plan", b =>
                 {
-                    b.Navigation("ExercisePlans");
+                    b.Navigation("Exercises");
                 });
 #pragma warning restore 612, 618
         }

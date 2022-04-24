@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
 namespace BetterBuiltWorkouts.Models
@@ -7,6 +8,8 @@ namespace BetterBuiltWorkouts.Models
     {
         public List<Plan> Plans { get; set; }
 
-        public List<Exercise> Exercises { get; set; }
+      
+        public List<Exercise> Exercise { get; set; }
+
     }
 }

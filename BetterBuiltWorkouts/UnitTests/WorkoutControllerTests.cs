@@ -32,7 +32,7 @@ namespace BetterBuiltWorkoutsTest
             //ARRANGE
             var controller = new WorkoutController(GetUnitOfWork());
             //ACT
-            var result = controller.CreatePlan();
+            var result = controller.PlanList();
             //ASSERT
             ViewResult vr = Assert.IsType<ViewResult>(result);
             PlanListViewModel model = Assert.IsType<PlanListViewModel>(vr.Model);
@@ -59,7 +59,7 @@ namespace BetterBuiltWorkoutsTest
             var result = controller.PlanDelete(new Plan());
             //ASSERT
             RedirectToActionResult vr = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal(nameof(controller.CreatePlan), vr.ActionName);
+            Assert.Equal(nameof(controller.PlanList), vr.ActionName);
         }
 
         [Fact]
@@ -81,36 +81,38 @@ namespace BetterBuiltWorkoutsTest
             var controller = new WorkoutController(GetUnitOfWork());
             controller.ModelState.AddModelError("", "Test error message.");
             //ACT
-            var result = controller.PlanEdit(new Plan());
+            var result = controller.PlanEdit(1);
             //ASSERT
             ViewResult vr = Assert.IsType<ViewResult>(result);
             Plan model = Assert.IsType<Plan>(vr.Model);
         }
 
         // I am unable to properly mock a user in the User.Identity.Name for this
+
         //[Fact]
-        //public void PlanEditActionMethodPostValid_ReturnsRedirectToAction_Moq()
+        // public void PlanEditActionMethodPostValid_ReturnsRedirectToAction_Moq()
+        // {
+        //     //ARRANGE
+        //     var controller = new WorkoutController(GetUnitOfWork());
+        //     //ACT
+        //     var result = controller.PlanEdit(new Plan());
+        //     //ASSERT
+        //     RedirectToActionResult vr = Assert.IsType<RedirectToActionResult>(result);
+        //     Assert.Equal(nameof(controller.CreatePlan), vr.ActionName);
+        // }
+
+        //[Fact]
+        //public void ExerciseListActionMethod_ModelIsAExerciseListViewModel_Moq()
         //{
         //    //ARRANGE
         //    var controller = new WorkoutController(GetUnitOfWork());
+        //    GridDTO grid = new GridDTO() { PageNumber = 1, PageSize = 5, FilterBy = "all" };
         //    //ACT
-        //    var result = controller.PlanEdit(new Plan());
+        //    var result = controller.ExerciseList(grid);
         //    //ASSERT
-        //    RedirectToActionResult vr = Assert.IsType<RedirectToActionResult>(result);
-        //    Assert.Equal(nameof(controller.CreatePlan), vr.ActionName);
+        //    ViewResult vr = Assert.IsType<ViewResult>(result);
+        //    ExerciseListViewModel model = Assert.IsType<ExerciseListViewModel>(vr.Model);
         //}
-
-        [Fact]
-        public void ExercisesActionMethod_ModelIsAExerciseListViewModel_Moq()
-        {
-            //ARRANGE
-            var controller = new WorkoutController(GetUnitOfWork());
-            //ACT
-            var result = controller.Exercises(new ExerciseListViewModel());
-            //ASSERT
-            ViewResult vr = Assert.IsType<ViewResult>(result);
-            ExerciseListViewModel model = Assert.IsType<ExerciseListViewModel>(vr.Model);
-        }
 
         [Fact]
         public void CreateExercisesActionMethod_ModelIsAExerciseModel_Moq()
@@ -145,7 +147,7 @@ namespace BetterBuiltWorkoutsTest
             var result = controller.Delete(new Exercise());
             //ASSERT
             RedirectToActionResult vr = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal(nameof(controller.Exercises), vr.ActionName);
+            Assert.Equal(nameof(controller.ExerciseList), vr.ActionName);
         }
 
         [Fact]

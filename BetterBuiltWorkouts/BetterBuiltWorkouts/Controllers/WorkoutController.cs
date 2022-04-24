@@ -2,6 +2,7 @@
 using BetterBuiltWorkouts.Extensions;
 using BetterBuiltWorkouts.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BetterBuiltWorkouts.Controllers
@@ -9,14 +10,47 @@ namespace BetterBuiltWorkouts.Controllers
     public class WorkoutController : Controller
     {
         private IWorkoutUnitOfWork data { get; set; }
-        public WorkoutController(IWorkoutUnitOfWork unit) => data = unit;
+        private CloneModel clone;
+        public WorkoutController(IWorkoutUnitOfWork unit)
+        { 
+            data = unit;
+            clone = new CloneModel(data);
+            
+        }
+
 
         // Plan Section
-        [Route("CreatePlan-Workout")]
+        public IActionResult PlanList()
+        {
+            PlanListViewModel model = new PlanListViewModel { Plans = data.ListOfPlans().ToList() };
+            return View(model);
+        }
+
+        [HttpGet]
         public IActionResult CreatePlan()
         {
-            PlanListViewModel model = new PlanListViewModel{ Plans = data.ListOfPlans().ToList() };
-            return View(model);
+            ViewBag.Action = "Create";
+            return View("PlanEdit", new PlanViewModel() { PlanName = "New Plan", Exercises = data.ListOfExercises("all").ToList() });
+        }
+
+        [HttpGet]
+        public ViewResult CopyPlan(int id)
+        {
+            ViewBag.Action = "Copy";
+
+            Plan plan = data.GetPlan(id);
+            PlanViewModel model = new PlanViewModel { 
+                PlanName = "New Plan",
+                PlanId = 0,
+                Exercises = data.ListOfExercises("all").ToList(),
+                Exercise1 = plan.Exercises[0].Name,
+                Exercise1Id = plan.Exercises[0].ExerciseId,
+                Exercise2 = plan.Exercises[1].Name,
+                Exercise2Id = plan.Exercises[1].ExerciseId,
+                Exercise3 = plan.Exercises[2].Name,
+                Exercise3Id = plan.Exercises[2].ExerciseId
+            };
+            return View("PlanEdit", model);
         }
 
         public IActionResult PlanDetails(int id)
@@ -31,7 +65,7 @@ namespace BetterBuiltWorkouts.Controllers
             data.DeletePlan(plan);
             data.Save();
             //TempData["message"] = "Plan was successfully deleted."; // This throws a nullreferenceexception in the test only. ???
-            return RedirectToAction("CreatePlan", "Workout");
+            return RedirectToAction("PlanList", "Workout");
         }
 
         [HttpGet]
@@ -39,29 +73,62 @@ namespace BetterBuiltWorkouts.Controllers
         {
             ViewBag.Verb = "Edit";
             ViewBag.Action = "Save";
-            ViewBag.Exercises = data.ListOfExercises("all");
             Plan plan = data.GetPlan(id);
-            return View(plan);
+            PlanViewModel model = new PlanViewModel {
+                PlanName = plan.Name,
+                PlanId = plan.PlanId,
+                Exercises = data.ListOfExercises("all").ToList(),
+                Exercise1 = plan.Exercises[0].Name,
+                Exercise1Id = plan.Exercises[0].ExerciseId,
+                Exercise2 = plan.Exercises[1].Name,
+                Exercise2Id = plan.Exercises[1].ExerciseId,
+                Exercise3 = plan.Exercises[2].Name,
+                Exercise3Id = plan.Exercises[2].ExerciseId
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult PlanEdit(Plan plan)
+        public IActionResult PlanEdit(PlanViewModel plan)
         {
             if (ModelState.IsValid)
             {
-                if (plan.PlanId == 0)
+                List<Exercise> newExercises = new List<Exercise>();
+                var newExercise1 = clone.CloneExercise(data.GetExercise(plan.Exercise1Id), plan.CreatedBy);
+                newExercises.Add(newExercise1);
+                newExercises[0].PlanId = null;
+                var newExercise2 = clone.CloneExercise(data.GetExercise(plan.Exercise2Id), plan.CreatedBy);
+                newExercises.Add(newExercise2);
+                newExercises[1].PlanId = null;
+                var newExercise3 = clone.CloneExercise(data.GetExercise(plan.Exercise3Id), plan.CreatedBy);
+                newExercises.Add(newExercise3);
+                newExercises[2].PlanId = null;
+                if (plan.PlanId != 0) //Edit existing
                 {
-                    plan.CreatedBy = User.Identity.Name;
-                    data.Plans.Insert(plan);
-                    TempData["message"] = $"{plan.Name} was successfully added.";
+                    TempData["message"] = $"{plan.Name} was successfully Updated.";
+
+
+                    var oldPlan = data.GetPlan(plan.PlanId);
+                    data.DeletePlan(oldPlan);
+                    data.Save();
                 }
-                else
+                else // Add new
                 {
-                    data.Plans.Update(plan);
-                    TempData["message"] = $"{plan.Name} was successfully updated.";
+                    TempData["message"] = $"{plan.PlanName} was successfully added.";
                 }
+
+                Plan newPlan = new Plan()
+                {
+                    Exercises = newExercises,
+                    CreatedBy = plan.CreatedBy,
+                    Name = plan.PlanName
+                };
+
+                data.Plans.Insert(newPlan);
                 data.Save();
-                return RedirectToAction("CreatePlan", "Workout");
+                clone.UpdateExercises(newPlan.Exercises, newPlan.PlanId);
+                data.Save();
+                return RedirectToAction("PlanList", "Workout");
             }
             else
             {
@@ -69,9 +136,10 @@ namespace BetterBuiltWorkouts.Controllers
                 ViewBag.Action = "Save";
                 ViewBag.Exercises = data.ListOfExercises("all");
                 return View(plan);
-
             }
         }
+
+
 
         // Exercise section
         public IActionResult ExerciseList(GridDTO vals)

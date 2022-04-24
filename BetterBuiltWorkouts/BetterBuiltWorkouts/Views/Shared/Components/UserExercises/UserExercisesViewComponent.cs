@@ -26,7 +26,7 @@ namespace BetterBuiltWorkouts.Views.Workout.Components
             }
             var userExercises = data.List(options);
             var model = new ExerciseListViewModel() { Exercises = userExercises };
-            return View("Default.cshtml", model);
+            return View("UserExercisesVC.cshtml", model);
         }
     }
 }
