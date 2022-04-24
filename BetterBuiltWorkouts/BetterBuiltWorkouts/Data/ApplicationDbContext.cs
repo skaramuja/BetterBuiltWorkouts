@@ -633,44 +633,7 @@ namespace BetterBuiltWorkouts.Data
                     CreatedBy = "Better Built Systems",
                     Image = "JoggingOrRunning.png",
                     PlanId = 2
-                },
-                new
-                {
-                    ExerciseId = 64,
-                    Name = "Hip Flexors Stretch",
-                    ExerciseTypeID = "streching",
-                    CreatedBy = "Better Built Systems",
-                    Image = "HipFlexorsStretch.png",
-                    PlanId = 3
-                },
-                new
-                {
-                    ExerciseId = 65,
-                    Name = "Knee-to-Chest Stretch",
-                    ExerciseTypeID = "streching",
-                    CreatedBy = "Better Built Systems",
-                    Image = "KneeToChestStretch.png",
-                    PlanId = 3
-                },
-                new
-                {
-                    ExerciseId = 66,
-                    Name = "Shoulder Stretch",
-                    ExerciseTypeID = "streching",
-                    CreatedBy = "Better Built Systems",
-                    Image = "ShoulderStretch.png",
-                    PlanId = 3
-                },
-                new
-                {
-                    ExerciseId = 67,
-                    Name = "Neck Stretch",
-                    ExerciseTypeID = "streching",
-                    CreatedBy = "Better Built Systems",
-                    Image = "NeckStretch.png",
-                    PlanId = 3
-                }
-                );
+                });
 
                   builder.Entity<ExerciseType>().HasData(
                       new ExerciseType { ExerciseTypeID = "aerobic", Name = "Aerobic" },
