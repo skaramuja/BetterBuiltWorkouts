@@ -1,6 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Perform Workout";
+﻿@model PlanListViewModel
+@{
+    ViewData["Title"] = "Workout Time";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to start a workout.</p>
+<div class="row">
+    <h1 class="col-sm-9 offset-sm-3">Pick the plan you want to do today.</h1>
+    <div class="col-sm-9 offset-sm-3">
+        <div class="list-inline">
+            @foreach (Plan userPlan in Model.Plans)
+            {
+                <div class="item-link">
+
+                    <a asp-action="Workout" asp-route-id="@userPlan.PlanId">
+                        <div style="{display: flex, flex-direction: column}">
+
+
+                            @userPlan.Name
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

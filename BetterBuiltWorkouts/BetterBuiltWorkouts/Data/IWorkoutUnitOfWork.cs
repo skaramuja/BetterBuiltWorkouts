@@ -24,6 +24,12 @@ namespace BetterBuiltWorkouts.Data
         void UpdatePlan(Plan entity);
         void DeletePlan(Plan entity);
 
+        // Workout model
+        Repository<Workout> Workouts { get; }
+        IEnumerable<Workout> ListOfWorkouts();
+        Workout GetWorkout(int id);
+        void InsertWorkout(Workout entity);
+        void DeleteWorkout(Workout entity);
 
         // ExerciseType model
         Repository<ExerciseType> ExerciseTypes { get; }

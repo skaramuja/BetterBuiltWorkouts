@@ -1,0 +1,32 @@
+﻿@model WorkoutViewModel
+@{
+    ViewData["Title"] = "Workout Time";
+}
+
+<div class="row text-white bg-secondary">
+    <h1 class="col-sm-9 offset-sm-3">Lets go!</h1>
+    <div class="col-sm-9 offset-sm-3">
+            @foreach (Exercise planExercise in @Model.Plan.Exercises)
+            {
+                <div class="col-sm-8">
+
+                    <h1>@planExercise.Name</h1>
+                    <p>@planExercise.Distance</p>
+                    <p>@planExercise.Time</p>
+                    <p>@planExercise.Reps</p>
+                    <p>@planExercise.Weight</p>
+                    <p>@planExercise.Note</p>
+
+                </div>
+                <div class="col-sm-2"><i class="fa fa-check" aria-hidden="true"></i></div>
+            }
+    <form asp-action="Finish" method="post">
+        <input asp-for="Workout.Start" type="hidden" value="@DateTime.Now" />
+        <input asp-for="Plan.Name" type="hidden" value="@Model.Plan.Name" />
+        <input asp-for="Plan.PlanId" type="hidden" value="@Model.Plan.PlanId" />
+        <input asp-for="Workout.CompletedBy" type="hidden" value="@User.Identity.Name" />
+
+        <button class="btn btn-success" type="submit">Finish</button>
+    </form>
+    </div>
+</div>

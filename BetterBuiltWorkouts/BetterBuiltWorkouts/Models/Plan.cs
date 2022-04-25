@@ -15,10 +15,6 @@ namespace BetterBuiltWorkouts.Models
 
         public string CreatedBy { get; set; }
 
-        public DateTime Start { get; set; }
-
-        public DateTime End { get; set; }
-
         [ValidateNever] 
         public List<Exercise> Exercises { get; set; }
 

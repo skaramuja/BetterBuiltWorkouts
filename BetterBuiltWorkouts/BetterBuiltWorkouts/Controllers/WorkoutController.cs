@@ -1,6 +1,7 @@
 ﻿using BetterBuiltWorkouts.Data;
 using BetterBuiltWorkouts.Extensions;
 using BetterBuiltWorkouts.Models;
+using BetterBuiltWorkouts.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -247,6 +248,33 @@ namespace BetterBuiltWorkouts.Controllers
         // Preform Section
         [Route("Perform-Workout")]
         public IActionResult Perform()
+        {
+            PlanListViewModel model = new PlanListViewModel { Plans = data.ListOfPlans().ToList() };
+            return View(model);
+        }
+
+        public IActionResult Workout(int id)
+        {
+            Plan plan = data.GetPlan(id);
+            WorkoutViewModel model = new WorkoutViewModel() { Plan = plan, Workout = new Workout() };
+            return View(model);
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Finish(WorkoutViewModel model)
+        {
+            Workout completed = model.Workout;
+            completed.End = System.DateTime.Now;
+            completed.PlanId = model.Plan.PlanId;
+            data.InsertWorkout(completed);
+            data.Save();
+            TempData["Time"] = (completed.End - completed.Start).ToString("T");
+            TempData["Plan"] = model.Plan.Name;
+            TempData["User"] = model.Workout.CompletedBy;
+            return RedirectToAction("Gratz");
+        }
+
+        public IActionResult Gratz()
         {
             return View();
         }

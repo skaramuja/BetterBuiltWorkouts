@@ -121,6 +121,8 @@ namespace BetterBuiltWorkouts.Data
             }
         }
 
+        //Repository<Workout> IWorkoutUnitOfWork.Workouts => throw new System.NotImplementedException();
+
         public ExerciseType GetExerciseType(string id)
         {
             return ExerciseTypes.Get(id);
@@ -131,6 +133,41 @@ namespace BetterBuiltWorkouts.Data
             return ExerciseTypes.List(new QueryOptions<ExerciseType> { });
         }
 
+
+        // Workout section
+
+        private Repository<Workout> workoutData;
+        public Repository<Workout> Workouts
+        {
+            get
+            {
+                if (workoutData == null)
+                {
+                    workoutData = new Repository<Workout>(context);
+                }
+                return workoutData;
+            }
+        }
+
+        public IEnumerable<Workout> ListOfWorkouts()
+        {
+            return Workouts.List(new QueryOptions<Workout> { });
+        }
+
+        public Workout GetWorkout(int id)
+        {
+            return Workouts.Get(new QueryOptions<Workout> { Includes = "Plans, Exercises, Exercises.ExerciseType", Where = p => p.WorkoutId == id });
+        }
+
+        public void InsertWorkout(Workout entity)
+        {
+            Workouts.Insert(entity);
+        }
+
+        public void DeleteWorkout(Workout entity)
+        {
+            Workouts.Delete(entity);
+        }
 
 
         // UnitOfWork Save
