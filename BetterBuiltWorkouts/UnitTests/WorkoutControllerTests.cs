@@ -10,6 +10,7 @@ using Moq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using System.Security.Principal;
 
 namespace BetterBuiltWorkoutsTest
 {
@@ -33,13 +34,43 @@ namespace BetterBuiltWorkoutsTest
             Mock<Repository<Exercise>> mockExerciseRepository = new Mock<Repository<Exercise>>(mockContext);
             mockExerciseRepository.Setup(e => e.Insert(It.IsAny<Exercise>()));
 
+            Mock<Repository<Plan>> mockPlanRepository = new Mock<Repository<Plan>>(mockContext);
+            mockPlanRepository.Setup(e => e.Insert(It.IsAny<Plan>()));
+
             // Setup unit of work
             var unit = new Mock<IWorkoutUnitOfWork>();
             unit.Setup(e => e.GetPlan(It.IsAny<int>())).Returns(plan);
             unit.Setup(e => e.GetExercise(It.IsAny<int>())).Returns(new Exercise());
             unit.Setup(e => e.Exercises).Returns(mockExerciseRepository.Object);
+            unit.Setup(e => e.Plans).Returns(mockPlanRepository.Object);
+
 
             return unit.Object;
+        }
+
+        public WorkoutController GetController()
+        {
+            var httpContext = new DefaultHttpContext();
+            var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
+            var con = new WorkoutController(GetUnitOfWork())
+            {
+                TempData = tempData
+
+            };
+            con.ControllerContext.HttpContext = httpContext;
+            con.ControllerContext.HttpContext.Session = new Mock<ISession>().Object;
+            //var tempDataProvider = new Mock<SessionStateTempDataProvider>();
+            //string[] roles = null;
+            //var fakeIdentity = new GenericIdentity("FakeUser");
+            //var principal = new GenericPrincipal(fakeIdentity, roles);
+
+            //var con = new WorkoutController(GetUnitOfWork());
+
+            //con.ControllerContext.HttpContext = new DefaultHttpContext();
+            //con.ControllerContext.HttpContext.Session = new Mock<ISession>().Object;
+            //con.ControllerContext.HttpContext.User = principal;
+            //con.TempData = new TempDataDictionary(new DefaultHttpContext(), tempDataProvider.Object);
+            return con;
         }
 
 
@@ -106,38 +137,37 @@ namespace BetterBuiltWorkoutsTest
 
         // I am unable to properly mock a user in the User.Identity.Name for this
 
-        //[Fact]
-        //public void PlanEditActionMethodPostValid_ReturnsRedirectToAction_Moq()
-        //{
-        //    //ARRANGE
-        //    var controller = new WorkoutController(GetUnitOfWork());
+        [Fact]
+        public void PlanEditActionMethodPostValid_ReturnsRedirectToAction_Moq()
+        {
+            //ARRANGE
+            var controller = GetController();
 
-        //    PlanViewModel model = new PlanViewModel();
-        //    model.PlanName = "Test";
+            PlanViewModel model = new PlanViewModel();
+            model.PlanName = "Test";
 
-        //    //ACT
-        //    var result = controller.PlanEdit(model);
-        //    //ASSERT
-        //    RedirectToActionResult vr = Assert.IsType<RedirectToActionResult>(result);
-        //    Assert.Equal(nameof(controller.CreatePlan), vr.ActionName);
-        //}
+            //ACT
+            var result = controller.PlanEdit(model);
+            //ASSERT
+            RedirectToActionResult vr = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal(nameof(controller.PlanList), vr.ActionName);
+        }
 
-        //[Fact]
-        //public void ExerciseListActionMethod_ModelIsAExerciseListViewModel_Moq()
-        //{
-        //    //ARRANGE
-        //    var controller = new WorkoutController(GetUnitOfWork());
+        [Fact]
+        public void ExerciseListActionMethod_ModelIsAExerciseListViewModel_Moq()
+        {
+            //ARRANGE
+            var controller = GetController();
 
-        //    controller.ControllerContext.HttpContext = new DefaultHttpContext();
-        //    controller.ControllerContext.HttpContext.Session = new Mock<ISession>().Object;
 
-        //    GridDTO grid = new GridDTO() { PageNumber = 1, PageSize = 5, FilterBy = "all" };
-        //    //ACT
-        //    var result = controller.ExerciseList(grid);
-        //    //ASSERT
-        //    ViewResult vr = Assert.IsType<ViewResult>(result);
-        //    ExerciseListViewModel model = Assert.IsType<ExerciseListViewModel>(vr.Model);
-        //}
+
+            GridDTO grid = new GridDTO() { PageNumber = 1, PageSize = 5, FilterBy = "all" };
+            //ACT
+            var result = controller.ExerciseList(grid);
+            //ASSERT
+            ViewResult vr = Assert.IsType<ViewResult>(result);
+            ExerciseListViewModel model = Assert.IsType<ExerciseListViewModel>(vr.Model);
+        }
 
         [Fact]
         public void CreateExercisesActionMethod_ModelIsAExerciseModel_Moq()
@@ -201,22 +231,19 @@ namespace BetterBuiltWorkoutsTest
         }
 
         // This test is not quite working yet.
-        //[Fact]
-        //public void EditActionMethodPostValid_ReturnsRedirectToAction_Moq()
-        //{
-        //    //ARRANGE
-        //    var controller = new WorkoutController(GetUnitOfWork());
-        //    controller.ControllerContext.HttpContext = new DefaultHttpContext();
-        //    controller.ControllerContext.HttpContext.Session = new Mock<ISession>().Object;
+        [Fact]
+        public void EditActionMethodPostValid_ReturnsRedirectToAction_Moq()
+        {
+            //ARRANGE
+            var controller = GetController();
+            Exercise model = new Exercise();
+            model.Name = "Test";
 
-        //    Exercise model = new Exercise();
-        //    model.Name = "Test";
-
-        //    //ACT
-        //    var result = controller.Edit(model);
-        //    //ASSERT
-        //    RedirectToActionResult vr = Assert.IsType<RedirectToActionResult>(result);
-        //}
+            //ACT
+            var result = controller.Edit(model);
+            //ASSERT
+            RedirectToActionResult vr = Assert.IsType<RedirectToActionResult>(result);
+        }
 
         [Fact]
     public void PerformMethod_ReturnsAViewResult_Moq()
