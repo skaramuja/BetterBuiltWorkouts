@@ -23,16 +23,21 @@ namespace BetterBuiltWorkoutsTest
             Exercise exercise1 = new Exercise();
             Exercise exercise2 = new Exercise();
 
+
+
             Plan plan = new Plan();
             plan.Exercises = new List<Exercise>();
             plan.Exercises.Add(exercise);
             plan.Exercises.Add(exercise1);
             plan.Exercises.Add(exercise2);
 
+
             ApplicationDbContext mockContext = new Mock<ApplicationDbContext>(new DbContextOptions<ApplicationDbContext>()).Object;
 
             Mock<Repository<Exercise>> mockExerciseRepository = new Mock<Repository<Exercise>>(mockContext);
             mockExerciseRepository.Setup(e => e.Insert(It.IsAny<Exercise>()));
+            
+         
 
             Mock<Repository<Plan>> mockPlanRepository = new Mock<Repository<Plan>>(mockContext);
             mockPlanRepository.Setup(e => e.Insert(It.IsAny<Plan>()));
@@ -43,6 +48,7 @@ namespace BetterBuiltWorkoutsTest
             unit.Setup(e => e.GetExercise(It.IsAny<int>())).Returns(new Exercise());
             unit.Setup(e => e.Exercises).Returns(mockExerciseRepository.Object);
             unit.Setup(e => e.Plans).Returns(mockPlanRepository.Object);
+
 
 
             return unit.Object;
@@ -59,17 +65,7 @@ namespace BetterBuiltWorkoutsTest
             };
             con.ControllerContext.HttpContext = httpContext;
             con.ControllerContext.HttpContext.Session = new Mock<ISession>().Object;
-            //var tempDataProvider = new Mock<SessionStateTempDataProvider>();
-            //string[] roles = null;
-            //var fakeIdentity = new GenericIdentity("FakeUser");
-            //var principal = new GenericPrincipal(fakeIdentity, roles);
 
-            //var con = new WorkoutController(GetUnitOfWork());
-
-            //con.ControllerContext.HttpContext = new DefaultHttpContext();
-            //con.ControllerContext.HttpContext.Session = new Mock<ISession>().Object;
-            //con.ControllerContext.HttpContext.User = principal;
-            //con.TempData = new TempDataDictionary(new DefaultHttpContext(), tempDataProvider.Object);
             return con;
         }
 
@@ -135,7 +131,6 @@ namespace BetterBuiltWorkoutsTest
             PlanViewModel model = Assert.IsType<PlanViewModel>(vr.Model);
         }
 
-        // I am unable to properly mock a user in the User.Identity.Name for this
 
         [Fact]
         public void PlanEditActionMethodPostValid_ReturnsRedirectToAction_Moq()
@@ -153,15 +148,13 @@ namespace BetterBuiltWorkoutsTest
             Assert.Equal(nameof(controller.PlanList), vr.ActionName);
         }
 
-        [Fact]
+        [Fact] // Giving up on this one. Just can't make it work
         public void ExerciseListActionMethod_ModelIsAExerciseListViewModel_Moq()
         {
             //ARRANGE
             var controller = GetController();
 
-
-
-            GridDTO grid = new GridDTO() { PageNumber = 1, PageSize = 5, FilterBy = "all" };
+            GridDTO grid = new GridDTO() { PageNumber = 1, PageSize = 2, FilterBy = "all" };
             //ACT
             var result = controller.ExerciseList(grid);
             //ASSERT
