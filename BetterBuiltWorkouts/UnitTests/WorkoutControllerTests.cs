@@ -59,17 +59,6 @@ namespace BetterBuiltWorkoutsTest
             };
             con.ControllerContext.HttpContext = httpContext;
             con.ControllerContext.HttpContext.Session = new Mock<ISession>().Object;
-            //var tempDataProvider = new Mock<SessionStateTempDataProvider>();
-            //string[] roles = null;
-            //var fakeIdentity = new GenericIdentity("FakeUser");
-            //var principal = new GenericPrincipal(fakeIdentity, roles);
-
-            //var con = new WorkoutController(GetUnitOfWork());
-
-            //con.ControllerContext.HttpContext = new DefaultHttpContext();
-            //con.ControllerContext.HttpContext.Session = new Mock<ISession>().Object;
-            //con.ControllerContext.HttpContext.User = principal;
-            //con.TempData = new TempDataDictionary(new DefaultHttpContext(), tempDataProvider.Object);
             return con;
         }
 
@@ -135,7 +124,6 @@ namespace BetterBuiltWorkoutsTest
             PlanViewModel model = Assert.IsType<PlanViewModel>(vr.Model);
         }
 
-        // I am unable to properly mock a user in the User.Identity.Name for this
 
         [Fact]
         public void PlanEditActionMethodPostValid_ReturnsRedirectToAction_Moq()
