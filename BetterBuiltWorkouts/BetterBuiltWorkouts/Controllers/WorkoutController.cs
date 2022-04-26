@@ -268,7 +268,7 @@ namespace BetterBuiltWorkouts.Controllers
             completed.PlanId = model.Plan.PlanId;
             data.InsertWorkout(completed);
             data.Save();
-            TempData["Time"] = (completed.End - completed.Start).ToString("T");
+            TempData["Time"] = (completed.End - completed.Start).ToString("hh':'mm':'ss");
             TempData["Plan"] = model.Plan.Name;
             TempData["User"] = model.Workout.CompletedBy;
             return RedirectToAction("Gratz");

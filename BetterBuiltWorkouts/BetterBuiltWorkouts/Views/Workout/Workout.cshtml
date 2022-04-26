@@ -2,31 +2,58 @@
 @{
     ViewData["Title"] = "Workout Time";
 }
+<div class="container">
 
-<div class="row text-white bg-secondary">
-    <h1 class="col-sm-9 offset-sm-3">Lets go!</h1>
-    <div class="col-sm-9 offset-sm-3">
-            @foreach (Exercise planExercise in @Model.Plan.Exercises)
-            {
-                <div class="col-sm-8">
+<div id="carouselExampleControls" class="carousel slide bg-secondary rounded" data-ride="carousel" data-interval="false">
+    <div class="carousel-inner">
+        @for (int i = 0; i < Model.Plan.Exercises.Count; i++)
+        {
 
-                    <h1>@planExercise.Name</h1>
-                    <p>@planExercise.Distance</p>
-                    <p>@planExercise.Time</p>
-                    <p>@planExercise.Reps</p>
-                    <p>@planExercise.Weight</p>
-                    <p>@planExercise.Note</p>
+            <div class="carousel-item @( i == 0 ? "active" : "")">
 
+                <h1 class="text-center">Exercise @((i + 1).ToString())</h1>
+                <div class="d-block w-100 text-center text-white mt-5 mb-5">
+                    <h1 class="mt-5 mb-5">@Model.Plan.Exercises[i].Name</h1>
+                    <p class="mt-5 mb-5">@(@Model.Plan.Exercises[i].Distance != null ? "Distance: " + @Model.Plan.Exercises[i].Distance : "")</p>
+                    <p class="mt-5 mb-5">@(@Model.Plan.Exercises[i].Time != null ? "Time: " + @Model.Plan.Exercises[i].Time : "")</p>
+                    <p class="mt-5 mb-5">@(@Model.Plan.Exercises[i].Reps != null ? "Reps: " + @Model.Plan.Exercises[i].Reps : "")</p>
+                    <p class="mt-5 mb-5">@(@Model.Plan.Exercises[i].Weight != null ? "Weight: " + @Model.Plan.Exercises[i].Weight : "")</p>
+                    <p class="mt-5 mb-5">@(@Model.Plan.Exercises[i].Note != null ? "Note: " + @Model.Plan.Exercises[i].Note : "")</p>
                 </div>
-                <div class="col-sm-2"><i class="fa fa-check" aria-hidden="true"></i></div>
-            }
-    <form asp-action="Finish" method="post">
+            </div>
+        }
+    <div class="carousel-item text-center m-3">
+        <h1 class="mt-3 mb-3">Great job!</h1>
+        <h3 class="mt-3 mb-3"> Click the button below to finish your workout</h3>
+        <form asp-action="Finish" method="post" class="text-center m-5">
+            <input asp-for="Workout.Start" type="hidden" value="@DateTime.Now" />
+            <input asp-for="Plan.Name" type="hidden" value="@Model.Plan.Name" />
+            <input asp-for="Plan.PlanId" type="hidden" value="@Model.Plan.PlanId" />
+            <input asp-for="Workout.CompletedBy" type="hidden" value="@User.Identity.Name" />
+
+            <button class="btn btn-success " type="submit">Finish Workout</button>
+        </form>
+    </div>
+    </div>
+                
+
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+    @*<form asp-action="Finish" method="post" class="text-center mt-5">
         <input asp-for="Workout.Start" type="hidden" value="@DateTime.Now" />
         <input asp-for="Plan.Name" type="hidden" value="@Model.Plan.Name" />
         <input asp-for="Plan.PlanId" type="hidden" value="@Model.Plan.PlanId" />
         <input asp-for="Workout.CompletedBy" type="hidden" value="@User.Identity.Name" />
 
-        <button class="btn btn-success" type="submit">Finish</button>
-    </form>
-    </div>
+        <button class="btn btn-success " type="submit">Finish Workout</button>
+    </form>*@
 </div>
