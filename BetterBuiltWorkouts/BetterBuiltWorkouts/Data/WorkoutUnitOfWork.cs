@@ -86,6 +86,11 @@ namespace BetterBuiltWorkouts.Data
             return Plans.List(new QueryOptions<Plan> { });
         }
 
+        public IEnumerable<Plan> ListOfPlans(string userName)
+        {
+            return Plans.List(new QueryOptions<Plan> { Where = e => e.CreatedBy == userName || e.CreatedBy == "Better Built Systems" });
+        }
+
         public Plan GetPlan(int id)
         {
             return Plans.Get(new QueryOptions<Plan> { Includes = "Exercises, Exercises.ExerciseType", Where = p => p.PlanId == id });

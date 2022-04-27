@@ -19,6 +19,7 @@ namespace BetterBuiltWorkouts.Data
         // Plan model
         Repository<Plan> Plans { get; }
         IEnumerable<Plan> ListOfPlans();
+        IEnumerable<Plan> ListOfPlans(string userName);
         Plan GetPlan(int id);
         void InsertPlan(Plan entity);
         void UpdatePlan(Plan entity);
