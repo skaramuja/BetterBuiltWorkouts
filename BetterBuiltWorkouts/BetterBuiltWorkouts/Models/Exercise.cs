@@ -21,7 +21,7 @@ namespace BetterBuiltWorkouts.Models
         public string ExerciseTypeID { get; set; }
 
 
-        [RegularExpression(@"^.*\.(jpg|JPG|gif|GIF|webp|WEBP)$", ErrorMessage = "JPG, GIF and Webp images only.")]
+        [RegularExpression(@"^.*\.(jpg|JPG|gif|GIF|webp|WEBP|png|PNG)$", ErrorMessage = "JPG, GIF, PNG and Webp images only.")]
         public string Image { get; set; }
 
 
