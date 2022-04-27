@@ -3,19 +3,25 @@
     ViewData["Title"] = "Workout Time";
 }
 
-<div class="row bg-secondary rounded">
-    <h1 class="col-sm-9 offset-sm-3 mt-5 mb-5">Pick the plan you want to do today.</h1>
-    <div class="col-sm-9 offset-sm-3">
+<div class="container form-container">
+    <h1>Pick the plan you want to do today.</h1>
+    <div class="col-sm-9">
         <div class="list-inline">
             @foreach (Plan userPlan in Model.Plans)
             {
-                <div class="item-link m-3">
+                <div class="item-link">
 
                     <a asp-action="Workout" asp-route-id="@userPlan.PlanId">
                         <div style="{display: flex, flex-direction: column}">
-
-
-                            @userPlan.Name
+                            <div>
+                                <img src="~/images/@userPlan.Image"
+                                 width=150
+                                 height=150
+                                 alt="@userPlan.Name"
+                                 title="@userPlan.Name"
+                                 class="img-responsive img-fluid rounded-circle" />
+                            </div>
+                            <div class="text-center text-wrap">@userPlan.Name</div>
                         </div>
                     </a>
                 </div>

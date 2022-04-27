@@ -13,7 +13,7 @@
   
             <h1 class="text-center">Exercise @((i + 1).ToString())</h1>
             <div class="d-block w-100 text-center text-white mt-5 mb-5">
-                <img src="~/images/@Model.Plan.Exercises[i].Image" width="150" title="@Model.Plan.Exercises[i].Name Logo" />
+                <img src="~/images/@Model.Plan.Exercises[i].Image" class="img-responsive img-fluid rounded-circle" width="150" title="@Model.Plan.Exercises[i].Name Logo" />
                 <h1 class="mt-5 mb-5">@Model.Plan.Exercises[i].Name</h1>
                 <p class="mt-5 mb-5">@(@Model.Plan.Exercises[i].Distance != null ? "Distance: " + @Model.Plan.Exercises[i].Distance : "")</p>
                 <p class="mt-5 mb-5">@(@Model.Plan.Exercises[i].Time != null ? "Time: " + @Model.Plan.Exercises[i].Time : "")</p>

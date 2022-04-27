@@ -7,14 +7,16 @@
 
             <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
 
-                <div class="text-primary">
+                <div class="image-container">
 
                     <img src="~/images/@exercise.Image"
-                         width=60
-                         alt="@exercise.Name"
-                         title="@exercise.Name" />
+                     width=150
+                     height=150
+                     alt="@exercise.Name"
+                     title="@exercise.Name"
+                     class="img-responsive img-fluid rounded-circle" />
 
-                    @exercise.Name
+                    <div class="text-center text-wrap">@exercise.Name</div>
                 </div>
             </a>
         </div>

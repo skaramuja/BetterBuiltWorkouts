@@ -41,6 +41,7 @@ namespace BetterBuiltWorkouts.Controllers
             ViewBag.Action = "Copy";
 
             Plan plan = data.GetPlan(id);
+            plan.Image = "DefaultPlan.png";
             PlanViewModel model = new PlanViewModel { 
                 PlanName = "New Plan",
                 PlanId = 0,
@@ -121,6 +122,7 @@ namespace BetterBuiltWorkouts.Controllers
 
                 Plan newPlan = new Plan()
                 {
+                    Image = "DefaultPlan.png",
                     Exercises = newExercises,
                     CreatedBy = plan.CreatedBy,
                     Name = plan.PlanName
@@ -183,7 +185,9 @@ namespace BetterBuiltWorkouts.Controllers
         {
             ViewBag.Action = "Create";
             ViewBag.Types = data.ListAllExerciseTypes().ToList();
-            return View("Edit", new Exercise());
+            Exercise exercise = new Exercise();
+            exercise.Image = "Default.png";
+            return View("Edit", exercise);
         }
 
         [HttpGet]

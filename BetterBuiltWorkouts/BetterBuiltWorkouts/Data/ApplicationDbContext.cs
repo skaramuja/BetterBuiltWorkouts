@@ -114,9 +114,9 @@ namespace BetterBuiltWorkouts.Data
                 });
 
             builder.Entity<Plan>().HasData(
-                new Plan { PlanId = 1, Name = "Example Plan 1", CreatedBy = "Better Built Systems" },
-                new Plan { PlanId = 2, Name = "Example Plan 2", CreatedBy = "Better Built Systems" },
-                new Plan { PlanId = 3, Name = "Example Plan 3", CreatedBy = "Better Built Systems" }
+                new Plan { PlanId = 1, Image = "LiftingPlan.png", Name = "Example Plan 1", CreatedBy = "Better Built Systems" },
+                new Plan { PlanId = 2, Image = "CardioPlan.png", Name = "Example Plan 2", CreatedBy = "Better Built Systems" },
+                new Plan { PlanId = 3, Image = "StretchingPlan.png", Name = "Example Plan 3", CreatedBy = "Better Built Systems" }
                 );
 
             builder.Entity<Exercise>()
@@ -191,7 +191,8 @@ namespace BetterBuiltWorkouts.Data
                     Name = "Calf Stretch",
                     ExerciseTypeID = "streching",
                     CreatedBy = "Better Built Systems",
-                    Image = "CalfStretch.png"
+                    Image = "CalfStretch.png",
+                    PlanId = 3
                 },
                 new
                 {
@@ -216,7 +217,7 @@ namespace BetterBuiltWorkouts.Data
                     ExerciseTypeID = "strength_training",
                     CreatedBy = "Better Built Systems",
                     Image = "ChestFly.png",
-                    PlanId = 1
+                    
                 },
                 new
                 {
@@ -272,7 +273,8 @@ namespace BetterBuiltWorkouts.Data
                     Name = "Hamstring Stretch",
                     ExerciseTypeID = "streching",
                     CreatedBy = "Better Built Systems",
-                    Image = "HamstringStretch.png"
+                    Image = "HamstringStretch.png",
+                    PlanId = 3
                 },
                 new
                 {
@@ -285,7 +287,7 @@ namespace BetterBuiltWorkouts.Data
                 new
                 {
                     ExerciseId = 20,
-                    Name = "HII Training",
+                    Name = "HIIT",
                     ExerciseTypeID = "aerobic",
                     CreatedBy = "Better Built Systems",
                     Image = "HighIntensityIntervalTraining.png"
@@ -329,7 +331,8 @@ namespace BetterBuiltWorkouts.Data
                     Name = "Lateral Raise",
                     ExerciseTypeID = "strength_training",
                     CreatedBy = "Better Built Systems",
-                    Image = "LateralRaise.png"
+                    Image = "LateralRaise.png",
+                    PlanId = 1
                 },
                 new
                 {
@@ -377,7 +380,8 @@ namespace BetterBuiltWorkouts.Data
                     Name = "Neck Stretch",
                     ExerciseTypeID = "streching",
                     CreatedBy = "Better Built Systems",
-                    Image = "NeckStretch.png"
+                    Image = "NeckStretch.png",
+                    PlanId = 3
                 },
                 new
                 {

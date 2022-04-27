@@ -4,14 +4,16 @@ using BetterBuiltWorkouts.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BetterBuiltWorkouts.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220427181239_Add Plan Images")]
+    partial class AddPlanImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,9 +94,9 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9e7fbb7f-ad41-4f6d-a000-1ce3bc6bc0f2",
+                            Id = "710a1ebb-07d1-40cb-b5f5-dea1b53d2646",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "97bd03a0-fa92-4a85-a8f9-b44b27ebb179",
+                            ConcurrencyStamp = "55211522-9cb8-47d4-97dd-0fc2a4ac4e1a",
                             Email = "drewxcom@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Drew",
@@ -102,17 +104,17 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DREWXCOM@GMAIL.COM",
                             NormalizedUserName = "DREWXCOM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKpxCoYWwfzgQzTIz8ZiFW0nPmpXtGhv6othi+d+hKtGPJa5XRyJXpACLQuqtG1suw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPVJXD0330S8bfPyQPNshz/clgvvumtritJSRVMPDeP3Q9Oj3rncv/q7bscQ00Sn9g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fd15f553-6d74-4881-89f5-58c5b2babdc0",
+                            SecurityStamp = "c9135632-0406-4605-b137-32ab2895e4b9",
                             TwoFactorEnabled = false,
                             UserName = "drewxcom"
                         },
                         new
                         {
-                            Id = "827583dc-c2c5-4a5e-a65d-51095566d041",
+                            Id = "de0bee9a-a679-40a0-8bd3-1f5229cd7a64",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8311d396-5c94-41db-85cd-841958cc2c10",
+                            ConcurrencyStamp = "e74b91da-04e9-4fd4-bfb6-e43c76653364",
                             Email = "hale.l.c91@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Cody",
@@ -120,17 +122,17 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "HALE.L.C91@GMAIL.COM",
                             NormalizedUserName = "CHALE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHVf/SRxQmrtuaucdZzPpCgTeY1eU6Y3kDVm32HBr/XxJ8YnbM+7QeNYvB8z2+Pzkw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJH41Xzi72W2XA4IAZUcw0yOx2FT4YtEY9LnPUaCs6rkNccJXpNyKAmMLcZ/7EJ2/g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "81fea309-253d-4f18-aa7f-b6df1d3cec57",
+                            SecurityStamp = "174504d5-a20e-48f2-bab7-4769fa7cc982",
                             TwoFactorEnabled = false,
                             UserName = "chale"
                         },
                         new
                         {
-                            Id = "f7c4dc04-2d63-4759-b19e-7d12f7d20e50",
+                            Id = "e34e3a7e-a559-44ea-bbc9-74a708b04d77",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b0ace98d-dfd9-4055-b2cf-de9646c7c574",
+                            ConcurrencyStamp = "8c096957-8825-49d8-8d6c-d6ed5e7dd9a7",
                             Email = "Karamuja.sabina@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Sabina",
@@ -138,9 +140,9 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KARAMUJA.SABINA@GMAIL.COM",
                             NormalizedUserName = "SKARAMUJA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMCtsYCgp3jHU4xpS9APS91xlN8XrgHHRioPlmXL5uDNr6JVyQXssk4NfCV2BFMOig==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH6JWIQyCX/Ln7fqVADgimBwD8KvSYEbww7xPC8E93uUf2z9a2ChI6AfX9KKLWZXug==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2596938a-6235-4cd4-99a1-0d4f04b4290f",
+                            SecurityStamp = "c574fe7b-4df6-4dd4-9214-5f070b12b0f9",
                             TwoFactorEnabled = false,
                             UserName = "skaramuja"
                         });
@@ -732,21 +734,21 @@ namespace BetterBuiltWorkouts.Migrations
                         {
                             PlanId = 1,
                             CreatedBy = "Better Built Systems",
-                            Image = "LiftingPlan.png",
+                            Image = "LiftingPlan",
                             Name = "Example Plan 1"
                         },
                         new
                         {
                             PlanId = 2,
                             CreatedBy = "Better Built Systems",
-                            Image = "CardioPlan.png",
+                            Image = "CardioPlan",
                             Name = "Example Plan 2"
                         },
                         new
                         {
                             PlanId = 3,
                             CreatedBy = "Better Built Systems",
-                            Image = "StretchingPlan.png",
+                            Image = "StretchingPlan",
                             Name = "Example Plan 3"
                         });
                 });
@@ -806,15 +808,15 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4eb957f2-d413-4f51-b2a3-8a04a02f4950",
-                            ConcurrencyStamp = "4eb957f2-d413-4f51-b2a3-8a04a02f4950",
+                            Id = "e6f10cd8-9d76-4533-8db0-e81fd2ad8b54",
+                            ConcurrencyStamp = "e6f10cd8-9d76-4533-8db0-e81fd2ad8b54",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d989c372-f55a-438c-bbcd-6976a963f1e3",
-                            ConcurrencyStamp = "d989c372-f55a-438c-bbcd-6976a963f1e3",
+                            Id = "7d4dcdb4-e462-4cd3-b649-81d90dd91de1",
+                            ConcurrencyStamp = "7d4dcdb4-e462-4cd3-b649-81d90dd91de1",
                             Name = "Suspended",
                             NormalizedName = "SUSPENDED"
                         });
@@ -907,18 +909,18 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "9e7fbb7f-ad41-4f6d-a000-1ce3bc6bc0f2",
-                            RoleId = "4eb957f2-d413-4f51-b2a3-8a04a02f4950"
+                            UserId = "710a1ebb-07d1-40cb-b5f5-dea1b53d2646",
+                            RoleId = "e6f10cd8-9d76-4533-8db0-e81fd2ad8b54"
                         },
                         new
                         {
-                            UserId = "827583dc-c2c5-4a5e-a65d-51095566d041",
-                            RoleId = "4eb957f2-d413-4f51-b2a3-8a04a02f4950"
+                            UserId = "de0bee9a-a679-40a0-8bd3-1f5229cd7a64",
+                            RoleId = "e6f10cd8-9d76-4533-8db0-e81fd2ad8b54"
                         },
                         new
                         {
-                            UserId = "f7c4dc04-2d63-4759-b19e-7d12f7d20e50",
-                            RoleId = "4eb957f2-d413-4f51-b2a3-8a04a02f4950"
+                            UserId = "e34e3a7e-a559-44ea-bbc9-74a708b04d77",
+                            RoleId = "e6f10cd8-9d76-4533-8db0-e81fd2ad8b54"
                         });
                 });
 
