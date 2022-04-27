@@ -18,16 +18,14 @@
     <div class="col-sm-9">
         <div class="container form-container">
 
-            <h1>Created Exercises:</h1>
+            <h1>User Created Exercises:</h1>
             <vc:user-exercises user-name="@User.Identity.Name" exercise-type-id="@Model.CurrentRoute.FilterBy"></vc:user-exercises>
             <div class="list-inline">
                 @foreach (Exercise exercise in Model.Exercises)
                 {
-                    @*<li class="list-inline-item">*@
                     <div class="item-link">
 
                         <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
-                            @*<img src="~/images/@exercise.Image"*@
                             <div>
 
                                 <img src="~/images/@exercise.Image"

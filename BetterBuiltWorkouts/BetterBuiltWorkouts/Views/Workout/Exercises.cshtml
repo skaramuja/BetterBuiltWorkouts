@@ -22,7 +22,6 @@
         <div class="list-inline">
             @foreach (Exercise exercise in Model.Exercises)
             {
-                @*<li class="list-inline-item">*@
                 <div class="item-link">
 
                 <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
@@ -30,7 +29,7 @@
                     <div>
 
                         <img src="~/images/default-img.webp"
-                             width=60
+               
                              height=40
                              alt="@exercise.Name"
                              title="@exercise.Name" />
