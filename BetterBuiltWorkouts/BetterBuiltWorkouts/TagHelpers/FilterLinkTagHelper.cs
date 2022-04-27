@@ -29,7 +29,15 @@ namespace BetterBuiltWorkouts.TagHelpers
         {
             var routes = Current.Clone();
 
-            routes.PageNumber = Number;
+            if (FilterBy == Current.FilterBy)
+            {
+                routes.PageNumber = Number;
+            } 
+            else
+            {
+                routes.PageNumber = 1;
+            }
+            
             routes.FilterBy = FilterBy.ToLower() ?? "all";
 
 

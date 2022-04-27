@@ -10,16 +10,14 @@
         <div class="list-group">
             @foreach (ExerciseType exerciseType in Model.ExerciseTypes)
             {
-
                 <my-filter-link number="@Model.CurrentRoute.PageNumber" current="@Model.CurrentRoute" filter-by="@exerciseType.ExerciseTypeID">@exerciseType.Name</my-filter-link>
             }
         </div>
     </div>
     <div class="col-sm-9">
         <div class="container form-container">
-
-            <h1>User Created Exercises:</h1>
             <vc:user-exercises user-name="@User.Identity.Name" exercise-type-id="@Model.CurrentRoute.FilterBy"></vc:user-exercises>
+            <h1>Exercises:</h1>
             <div class="list-inline">
                 @foreach (Exercise exercise in Model.Exercises)
                 {
@@ -32,8 +30,7 @@
                                  height=150
                                  alt="@exercise.Name"
                                  title="@exercise.Name"
-                                 class="img-responsive img-fluid rounded-circle"
-                                 />
+                                 class="img-responsive img-fluid rounded-circle" />
                             </div>
                             <div class="text-center text-wrap">@exercise.Name</div>
                         </a>

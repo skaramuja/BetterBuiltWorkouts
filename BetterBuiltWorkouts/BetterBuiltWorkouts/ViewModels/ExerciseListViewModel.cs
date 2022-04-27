@@ -21,7 +21,6 @@ namespace BetterBuiltWorkouts.Models
         }
         public RouteDictonary CurrentRoute { get; set; }
         public int TotalPages { get; set; }
-
         public string CheckActiveExerciseType(string g) =>
             g.ToLower() == ActiveExerciseType.ToLower() ? "active" : "";
     }

@@ -1,5 +1,8 @@
 ﻿@model ExerciseListViewModel
 
+@if(@Model.Exercises.Count() > 0) {
+    <h1>My Created Exercises:</h1>
+}
 <div class="list-inline">
     @foreach (Exercise exercise in Model.Exercises)
     {
