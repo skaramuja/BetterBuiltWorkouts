@@ -23,16 +23,21 @@ namespace BetterBuiltWorkoutsTest
             Exercise exercise1 = new Exercise();
             Exercise exercise2 = new Exercise();
 
+
+
             Plan plan = new Plan();
             plan.Exercises = new List<Exercise>();
             plan.Exercises.Add(exercise);
             plan.Exercises.Add(exercise1);
             plan.Exercises.Add(exercise2);
 
+
             ApplicationDbContext mockContext = new Mock<ApplicationDbContext>(new DbContextOptions<ApplicationDbContext>()).Object;
 
             Mock<Repository<Exercise>> mockExerciseRepository = new Mock<Repository<Exercise>>(mockContext);
             mockExerciseRepository.Setup(e => e.Insert(It.IsAny<Exercise>()));
+            
+         
 
             Mock<Repository<Plan>> mockPlanRepository = new Mock<Repository<Plan>>(mockContext);
             mockPlanRepository.Setup(e => e.Insert(It.IsAny<Plan>()));
@@ -43,6 +48,7 @@ namespace BetterBuiltWorkoutsTest
             unit.Setup(e => e.GetExercise(It.IsAny<int>())).Returns(new Exercise());
             unit.Setup(e => e.Exercises).Returns(mockExerciseRepository.Object);
             unit.Setup(e => e.Plans).Returns(mockPlanRepository.Object);
+
 
 
             return unit.Object;
@@ -141,15 +147,13 @@ namespace BetterBuiltWorkoutsTest
             Assert.Equal(nameof(controller.PlanList), vr.ActionName);
         }
 
-        [Fact]
+        [Fact] // Giving up on this one. Just can't make it work
         public void ExerciseListActionMethod_ModelIsAExerciseListViewModel_Moq()
         {
             //ARRANGE
             var controller = GetController();
 
-
-
-            GridDTO grid = new GridDTO() { PageNumber = 1, PageSize = 5, FilterBy = "all" };
+            GridDTO grid = new GridDTO() { PageNumber = 1, PageSize = 2, FilterBy = "all" };
             //ACT
             var result = controller.ExerciseList(grid);
             //ASSERT
