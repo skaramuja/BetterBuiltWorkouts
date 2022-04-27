@@ -65,7 +65,6 @@ namespace BetterBuiltWorkoutsTest
             };
             con.ControllerContext.HttpContext = httpContext;
             con.ControllerContext.HttpContext.Session = new Mock<ISession>().Object;
-
             return con;
         }
 

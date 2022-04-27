@@ -80,22 +80,28 @@ namespace BetterBuiltWorkouts
                     name: "admin",
                     areaName: "Admin",
                     pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+
+
                 endpoints.MapControllerRoute(
                     name: "",
-                    //pattern: "{controller=Workout}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}");
                     pattern: "{controller=Workout}/{action}/page/{pagenumber}/size/{pagesize}/filterby/{filterby}");
 
                 //This will be implemented later after we create some workouts
                 endpoints.MapControllerRoute(
                     name: "workouts",
-                    pattern: "{controller=Workout}/{action=Set}/user{user}/{id?}"
-                );
+                    pattern: "{controller=Workout}/{action=Set}/user{user}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "custom",
                     pattern: "{controller=Workout}/{action=Exercises}/selectedExerciseType/{selectedExerciseType}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "api",
+                    pattern: "api/{controller=Workout}/{Exer}/{id?}");
             });
         }
     }

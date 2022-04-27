@@ -3,6 +3,7 @@ using BetterBuiltWorkouts.Extensions;
 using BetterBuiltWorkouts.Models;
 using BetterBuiltWorkouts.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -277,6 +278,26 @@ namespace BetterBuiltWorkouts.Controllers
         public IActionResult Gratz()
         {
             return View();
+        }
+
+        [Route("api/Workout/Exer/{id?}")]
+        public string Exer(int id = 1)
+        {
+            string jsonExer;
+            var singleExer = data.GetExercise(id);
+            try
+            {
+                jsonExer = JsonConvert.SerializeObject(singleExer);
+            }
+            catch (JsonSerializationException e)
+            {
+                jsonExer = JsonConvert.SerializeObject(singleExer, new JsonSerializerSettings()
+                {
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                    Formatting = Formatting.Indented
+                });
+            }
+            return jsonExer;
         }
 
     }
