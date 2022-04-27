@@ -253,7 +253,7 @@ namespace BetterBuiltWorkouts.Data
                 new
                 {
                     ExerciseId = 16,
-                    Name = "Gardening and Weeding",
+                    Name = "Gardening",
                     ExerciseTypeID = "aerobic",
                     CreatedBy = "Better Built Systems",
                     Image = "GardeningAndWeeding.png"
@@ -285,7 +285,7 @@ namespace BetterBuiltWorkouts.Data
                 new
                 {
                     ExerciseId = 20,
-                    Name = "High-Intensity Interval Training",
+                    Name = "HII Training",
                     ExerciseTypeID = "aerobic",
                     CreatedBy = "Better Built Systems",
                     Image = "HighIntensityIntervalTraining.png"
@@ -422,7 +422,7 @@ namespace BetterBuiltWorkouts.Data
                 new
                 {
                     ExerciseId = 37,
-                    Name = "Resistance Exercise with Elastic Bands or Tubes",
+                    Name = "Elastic Bands or Tubes",
                     ExerciseTypeID = "aerobic",
                     CreatedBy = "Better Built Systems",
                     Image = "ResistanceExercise.png"
