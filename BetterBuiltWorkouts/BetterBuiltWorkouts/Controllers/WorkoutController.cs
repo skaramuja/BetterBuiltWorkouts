@@ -250,7 +250,7 @@ namespace BetterBuiltWorkouts.Controllers
         [Route("Perform-Workout")]
         public IActionResult Perform()
         {
-            PlanListViewModel model = new PlanListViewModel { Plans = data.ListOfPlans().ToList() };
+            PlanListViewModel model = new PlanListViewModel { Plans = data.ListOfPlans(User.Identity.Name).ToList() };
             return View(model);
         }
 
