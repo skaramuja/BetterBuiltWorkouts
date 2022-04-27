@@ -42,6 +42,22 @@ namespace BetterBuiltWorkouts.Data
             }
         }
 
+        public IEnumerable<Exercise> UserCreatedExercises(string activeType)
+        {
+            if (activeType != "all")
+            {
+                return Exercises.List(new QueryOptions<Exercise>
+                {
+                    Where = x => x.ExerciseTypeID == activeType && x.PlanId == null,
+                    OrderBy = x => x.Name
+                }).ToList();
+            }
+            else
+            {
+                return Exercises.List(new QueryOptions<Exercise> { });
+            }
+        }
+
         public Exercise GetExercise(int id)
         {
             return  Exercises.Get(new QueryOptions<Exercise>

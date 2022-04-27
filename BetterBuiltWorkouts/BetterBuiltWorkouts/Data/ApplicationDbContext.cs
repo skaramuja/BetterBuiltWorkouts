@@ -114,9 +114,9 @@ namespace BetterBuiltWorkouts.Data
                 });
 
             builder.Entity<Plan>().HasData(
-                new Plan { PlanId = 1, Image = "LiftingPlan.png", Name = "Example Plan 1", CreatedBy = "Better Built Systems" },
-                new Plan { PlanId = 2, Image = "CardioPlan.png", Name = "Example Plan 2", CreatedBy = "Better Built Systems" },
-                new Plan { PlanId = 3, Image = "StretchingPlan.png", Name = "Example Plan 3", CreatedBy = "Better Built Systems" }
+                new Plan { PlanId = 1, Image = "LiftingPlan.png", Name = "Sample Strength Plan", CreatedBy = "Better Built Systems" },
+                new Plan { PlanId = 2, Image = "CardioPlan.png", Name = "Sample Cardio Plan", CreatedBy = "Better Built Systems" },
+                new Plan { PlanId = 3, Image = "StretchingPlan.png", Name = "Sample Stretching Plan", CreatedBy = "Better Built Systems" }
                 );
 
             builder.Entity<Exercise>()
