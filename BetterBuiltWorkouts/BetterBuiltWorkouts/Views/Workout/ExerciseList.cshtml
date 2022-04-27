@@ -16,41 +16,42 @@
         </div>
     </div>
     <div class="col-sm-9">
-        <div class="border border-primary">
+        <div class="container form-container">
 
-        <h3 class="text-primary">User Created Exercises:</h3>
-        <vc:user-exercises user-name="@User.Identity.Name" exercise-type-id="@Model.CurrentRoute.FilterBy"></vc:user-exercises>
-        </div>
-        <div class="list-inline">
-            @foreach (Exercise exercise in Model.Exercises)
-            {
-                @*<li class="list-inline-item">*@
-            <div class="item-link">
+            <h1>Created Exercises:</h1>
+            <vc:user-exercises user-name="@User.Identity.Name" exercise-type-id="@Model.CurrentRoute.FilterBy"></vc:user-exercises>
+            <div class="list-inline">
+                @foreach (Exercise exercise in Model.Exercises)
+                {
+                    @*<li class="list-inline-item">*@
+                    <div class="item-link">
 
-                <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
-                    @*<img src="~/images/@exercise.Image"*@
-                    <div>
+                        <a asp-action="Details" asp-route-id="@exercise.ExerciseId">
+                            @*<img src="~/images/@exercise.Image"*@
+                            <div>
 
-                        <img src="~/images/default-img.webp"
-                             width=60
-                             height=40
-                             alt="@exercise.Name"
-                             title="@exercise.Name" />
-
-                        @exercise.Name
+                                <img src="~/images/@exercise.Image"
+                                 width=200
+                                 height=200
+                                 alt="@exercise.Name"
+                                 title="@exercise.Name"
+                                 class="img-responsive img-fluid rounded-circle"
+                                 />
+                            </div>
+                            <div class="text-center text-wrap">@exercise.Name</div>
+                        </a>
                     </div>
-                </a>
+                }
             </div>
-            }
         </div>
     </div>
     <div class="col-sm-9 offset-sm-3">
 
-    @{ 
-        for(int i = 1; i <= Model.TotalPages; i++)
+        @{
+            for (int i = 1; i <= Model.TotalPages; i++)
             {
                 <my-paging-link number="@i" current="@Model.CurrentRoute" />
             }
-    }
+        }
     </div>
 </div>
