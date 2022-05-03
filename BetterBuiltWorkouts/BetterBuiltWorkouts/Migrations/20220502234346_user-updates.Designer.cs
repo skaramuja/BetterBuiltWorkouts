@@ -4,14 +4,16 @@ using BetterBuiltWorkouts.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BetterBuiltWorkouts.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220502234346_user-updates")]
+    partial class userupdates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,9 +94,9 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9a330569-e01d-40d2-a9fe-30eba59b4c0d",
+                            Id = "75157424-1cc2-4469-b1eb-8c9a2e88ccc3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a8ec2cba-10b6-4e01-b88b-cf5c630fb19d",
+                            ConcurrencyStamp = "55a0e424-51d2-4bee-ac59-b3b83f58cf90",
                             Email = "drewxcom@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Drew",
@@ -102,35 +104,17 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DREWXCOM@GMAIL.COM",
                             NormalizedUserName = "DREWXCOM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECc4lRI9fPW7SdGFd+bCnl3cGeivQcDKM5fWSccKv2tG3dMF8bD4N3f4wkawoB5lzg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHMScbj0tZAmpZpXwwMHvJrHnw8dp1isplegcd17oCkM4BTNPMs9zarlgzKme12HLA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ad1ba4f9-58a5-4ac5-b5bd-4b6706c6e748",
+                            SecurityStamp = "07780890-5d2e-47b4-9bbf-aa615c7ac8f6",
                             TwoFactorEnabled = false,
                             UserName = "drewxcom"
                         },
                         new
                         {
-                            Id = "119abdfd-21cd-4bb4-9db5-3db5b5de21a0",
+                            Id = "352fe5a4-e3d4-456c-83e8-01bbee639026",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4fee0039-ce26-47ee-9641-a089589f9a5e",
-                            Email = "emhennis@dmacc.edu",
-                            EmailConfirmed = true,
-                            FirstName = "Evan",
-                            LastName = "Hennis",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "EMHENNIS@DMACC.EDU",
-                            NormalizedUserName = "EMHENNIS",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKJWOrxPrQYC/Qxx8KLftoiDZM0tvM/sbE2ed9cIUV9GLM/+/qRfVZIkK4HD9CW/og==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "19472dfe-ae09-480d-980c-604238341fee",
-                            TwoFactorEnabled = false,
-                            UserName = "emhennis"
-                        },
-                        new
-                        {
-                            Id = "29f95e2f-ebda-44ee-a59d-331a7cf1e372",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "83552ab1-7f6d-443d-a7a0-c4e1ecc8b41c",
+                            ConcurrencyStamp = "05ae8a1e-9c45-4b7c-9e3b-179647d325f4",
                             Email = "Karamuja.sabina@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Sabina",
@@ -138,9 +122,9 @@ namespace BetterBuiltWorkouts.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KARAMUJA.SABINA@GMAIL.COM",
                             NormalizedUserName = "SKARAMUJA",
-                            PasswordHash = "AQAAAAEAACcQAAAAELI3aChtjDmLOSNm4vrMEDiGaxayFySR1CwPHK9PBfs0cM4fqjE4APnUDRG+LFJJug==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECBHlkogBiTsdSjkfS1Lik9nlcuaQ2f9sGcqH9rerrN4sg5mAIwwHIyVypTrJONwCg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d0fe994a-4b14-4084-b6c2-0c209ce164e7",
+                            SecurityStamp = "5363485e-328d-48c3-bf46-8500f6474b2d",
                             TwoFactorEnabled = false,
                             UserName = "skaramuja"
                         });
@@ -806,15 +790,15 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "748376cc-5096-40ab-bc9d-80c215e4be4d",
-                            ConcurrencyStamp = "748376cc-5096-40ab-bc9d-80c215e4be4d",
+                            Id = "05f58cbd-36ec-4251-b0fe-3a011c643130",
+                            ConcurrencyStamp = "05f58cbd-36ec-4251-b0fe-3a011c643130",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "2e33c01a-6f38-4740-ad01-2af834c7aeda",
-                            ConcurrencyStamp = "2e33c01a-6f38-4740-ad01-2af834c7aeda",
+                            Id = "d2a59abb-a81f-477e-b913-a5020be9362a",
+                            ConcurrencyStamp = "d2a59abb-a81f-477e-b913-a5020be9362a",
                             Name = "Suspended",
                             NormalizedName = "SUSPENDED"
                         });
@@ -907,18 +891,13 @@ namespace BetterBuiltWorkouts.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "9a330569-e01d-40d2-a9fe-30eba59b4c0d",
-                            RoleId = "748376cc-5096-40ab-bc9d-80c215e4be4d"
+                            UserId = "75157424-1cc2-4469-b1eb-8c9a2e88ccc3",
+                            RoleId = "05f58cbd-36ec-4251-b0fe-3a011c643130"
                         },
                         new
                         {
-                            UserId = "119abdfd-21cd-4bb4-9db5-3db5b5de21a0",
-                            RoleId = "748376cc-5096-40ab-bc9d-80c215e4be4d"
-                        },
-                        new
-                        {
-                            UserId = "29f95e2f-ebda-44ee-a59d-331a7cf1e372",
-                            RoleId = "748376cc-5096-40ab-bc9d-80c215e4be4d"
+                            UserId = "352fe5a4-e3d4-456c-83e8-01bbee639026",
+                            RoleId = "05f58cbd-36ec-4251-b0fe-3a011c643130"
                         });
                 });
 

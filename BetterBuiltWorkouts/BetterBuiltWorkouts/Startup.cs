@@ -39,10 +39,9 @@ namespace BetterBuiltWorkouts
             services.AddIdentity<ApplicationUser, IdentityRole>(options => {
                 // Change these options back to make more secure
                 options.SignIn.RequireConfirmedAccount = false;
-                options.Password.RequiredLength = 4;
+                options.Password.RequiredLength = 8;
                 options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 4;
+                options.Password.RequireDigit = true;
 
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
