@@ -32,14 +32,13 @@ namespace BetterBuiltWorkoutsTest
             plan.Exercises.Add(exercise2);
 
 
-            ApplicationDbContext mockContext = new Mock<ApplicationDbContext>(new DbContextOptions<ApplicationDbContext>()).Object;
-
-            Mock<Repository<Exercise>> mockExerciseRepository = new Mock<Repository<Exercise>>(mockContext);
-            mockExerciseRepository.Setup(e => e.Insert(It.IsAny<Exercise>()));
+            Mock<ApplicationDbContext> mockContext = new Mock<ApplicationDbContext>(new DbContextOptions<ApplicationDbContext>());
             
-         
+            Mock<Repository<Exercise>> mockExerciseRepository = new Mock<Repository<Exercise>>(mockContext.Object);
+            mockExerciseRepository.Setup(e => e.Insert(It.IsAny<Exercise>()));
 
-            Mock<Repository<Plan>> mockPlanRepository = new Mock<Repository<Plan>>(mockContext);
+
+            Mock<Repository<Plan>> mockPlanRepository = new Mock<Repository<Plan>>(mockContext.Object);
             mockPlanRepository.Setup(e => e.Insert(It.IsAny<Plan>()));
 
             // Setup unit of work
@@ -240,8 +239,9 @@ namespace BetterBuiltWorkoutsTest
         [Fact]
     public void PerformMethod_ReturnsAViewResult_Moq()
     {
-        //ARRANGE
-        var controller = new WorkoutController(GetUnitOfWork());
+            //ARRANGE
+            var controller = GetController();
+            //var controller = new WorkoutController(GetUnitOfWork());
         //ACT
         var result = controller.Perform();
         //ASSERT

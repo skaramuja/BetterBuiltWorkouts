@@ -16,7 +16,23 @@ namespace BetterBuiltWorkouts.Data
         }
 
         private int? count;
-        public int Count => count ?? dbset.Count();
+        public int Count
+        {
+            get
+            {
+                if (count != null)
+                {
+                    return count.Value;
+                }
+                else if (dbset != null)
+                {
+                    return dbset.Count();
+                } else
+                {
+                    return 0;
+                }
+            }
+        }
 
         public virtual IEnumerable<T> List(QueryOptions<T> options)
         {
