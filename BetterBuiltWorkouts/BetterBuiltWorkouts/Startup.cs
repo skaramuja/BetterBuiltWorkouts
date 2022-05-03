@@ -85,7 +85,6 @@ namespace BetterBuiltWorkouts
                     name: "",
                     pattern: "{controller=Workout}/{action}/page/{pagenumber}/size/{pagesize}/filterby/{filterby}");
 
-                //This will be implemented later after we create some workouts
                 endpoints.MapControllerRoute(
                     name: "workouts",
                     pattern: "{controller=Workout}/{action=Set}/user{user}/{id?}");
