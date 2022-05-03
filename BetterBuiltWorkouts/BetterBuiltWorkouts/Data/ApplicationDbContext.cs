@@ -62,14 +62,15 @@ namespace BetterBuiltWorkouts.Data
             ApplicationUser user2 = new ApplicationUser
             {
                 Id = user2Id,
-                Email = "hale.l.c91@gmail.com",
-                NormalizedEmail = "HALE.L.C91@GMAIL.COM",
+                Email = "emhennis@dmacc.edu",
+                NormalizedEmail = "EMHENNIS@DMACC.EDU",
                 EmailConfirmed = true,
-                FirstName = "Cody",
-                LastName = "Hale",
-                UserName = "chale",
-                NormalizedUserName = "CHALE"
+                FirstName = "Evan",
+                LastName = "Hennis",
+                UserName = "emhennis",
+                NormalizedUserName = "EMHENNIS"
             };
+
 
             ApplicationUser user3 = new ApplicationUser
             {
@@ -84,13 +85,13 @@ namespace BetterBuiltWorkouts.Data
             };
 
             PasswordHasher<ApplicationUser> u1 = new PasswordHasher<ApplicationUser>();
-            user1.PasswordHash = u1.HashPassword(user1, "Drew");
+            user1.PasswordHash = u1.HashPassword(user1, "crawford1!Drew");
 
             PasswordHasher<ApplicationUser> u2 = new PasswordHasher<ApplicationUser>();
-            user2.PasswordHash = u2.HashPassword(user2, "hale1!Cody");
+            user2.PasswordHash = u2.HashPassword(user2, "hennis1!Evan");
 
             PasswordHasher<ApplicationUser> u3 = new PasswordHasher<ApplicationUser>();
-            user3.PasswordHash = u1.HashPassword(user3, "karamuja1!Sabina");
+            user3.PasswordHash = u3.HashPassword(user3, "karamuja1!Sabina");
 
             builder.Entity<ApplicationUser>().HasData(user1);
             builder.Entity<ApplicationUser>().HasData(user2);
