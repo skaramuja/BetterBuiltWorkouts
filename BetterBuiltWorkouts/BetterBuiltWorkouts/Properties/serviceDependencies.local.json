@@ -1,10 +1,3 @@
 {
-  "dependencies": {
-    "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/bbw-prd-dbserver/databases/bbw-prd",
-      "type": "mssql.azure",
-      "connectionId": "ConnectionStrings:DefaultConnection",
-      "secretStore": "AzureKeyVault"
-    }
-  }
+  "dependencies": {}
 }
